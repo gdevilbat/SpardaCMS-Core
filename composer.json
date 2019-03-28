@@ -1,0 +1,26 @@
+{
+    "name": "gdevilbat/core-spardacms",
+    "type": "laravel-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "M.Aldi Nur Ibrahim",
+            "email": "maldinuribrahim@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
+        }
+    }
+}
