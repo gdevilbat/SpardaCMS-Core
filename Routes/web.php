@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('core')->group(function() {
-    Route::get('/', 'CoreController@index');
+Route::get('core', 'CoreController@index');
+Route::group(['prefix' => 'control'], function() {
+    Route::get('setting', 'SettingController@index');
 });

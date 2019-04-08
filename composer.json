@@ -11,7 +11,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider"
+                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider",
+                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\ViewComposerProvider"
             ],
             "aliases": {
                 
