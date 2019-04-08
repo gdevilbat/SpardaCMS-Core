@@ -15,4 +15,9 @@ class Setting extends Model
     protected $casts = [
         'value' => 'array',
     ];
+
+    public function __construct()
+    {
+    	$this->connection = config('database.default');
+    }
 }
