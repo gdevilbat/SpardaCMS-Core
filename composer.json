@@ -1,6 +1,5 @@
 {
-    "name": "gdevilbat/spardacmscore-module",
-    "type": "laravel-module",
+    "name": "gdevilbat/spardacmscore",
     "description": "",
     "authors": [
         {
@@ -26,7 +25,7 @@
         "psr-4": {
             "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
         },
-        "target-dir": "gdevilbat/Spardacmscore",
+        "target-dir": "gdevilbat/SpardaCMS/Modules/Core",
         "exclude-from-classmap": [
             "/preprocessor/"
         ]
