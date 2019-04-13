@@ -22,15 +22,15 @@
   <!--end::Web font -->
 
   <!--begin::Global Theme Styles -->
-  {{Html::style(Module::asset('core:assets/metronic-v5/vendors/base/vendors.bundle.css'))}}
+  {{Html::style(Module::asset('core:public/metronic-v5/vendors/base/vendors.bundle.css'))}}
 
   <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-  {{Html::style(Module::asset('core:assets/metronic-v5/demo/default/base/style.bundle.css'))}}
+  {{Html::style(Module::asset('core:public/metronic-v5/demo/default/base/style.bundle.css'))}}
 
   <!-- BEGIN PAGE LEVEL PLUGINS -->
   {{-- Page Level Css --}}
   @yield('page_level_css')
-  {{Html::style(Module::asset('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
+  {{Html::style(Module::asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
   <!-- END PAGE LEVEL PLUGINS -->
 
   {{Html::style(Module::asset('core:resources/views/'.$theme_cms->value.'/public/css/base.css?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/public/css/base.css'))}}
@@ -231,13 +231,13 @@
   </script>
 
   <!--begin::Global Theme Bundle -->
-  {{Html::script(Module::asset('core:assets/metronic-v5/vendors/base/vendors.bundle.js'))}}
-  {{Html::script(Module::asset('core:assets/metronic-v5/demo/default/base/scripts.bundle.js'))}}
+  {{Html::script(Module::asset('core:public/metronic-v5/vendors/base/vendors.bundle.js'))}}
+  {{Html::script(Module::asset('core:public/metronic-v5/demo/default/base/scripts.bundle.js'))}}
 
   <!--end::Global Theme Bundle -->
 
   @yield('page_level_js')
-  {{Html::script(Module::asset('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
+  {{Html::script(Module::asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
 
   <!--end::Page Scripts -->
 
