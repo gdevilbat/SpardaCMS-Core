@@ -6,8 +6,7 @@
     "active": 1,
     "order": 0,
     "providers": [
-        "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider",
-        "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\ViewComposerProvider"
+        "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider"
     ],
     "aliases": {},
     "files": [],

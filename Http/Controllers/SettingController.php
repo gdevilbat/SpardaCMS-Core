@@ -4,11 +4,12 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting;
 
-class SettingController extends Controller
+class SettingController extends CoreController
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class SettingController extends Controller
     
     public function index()
     {
-        return view('core::v_2.template');
+        return view('core::'.$this->data['theme_cms']->value.'.template', $this->data);
     }
 
     /**

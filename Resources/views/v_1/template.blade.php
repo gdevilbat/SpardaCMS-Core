@@ -25,15 +25,15 @@
   {{Html::style(Module::asset('core:assets/metronic-v5/vendors/base/vendors.bundle.css'))}}
 
   <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-  {{Html::style('public/metronic-v5/demo/default/base/style.bundle.css')}}
+  {{Html::style(Module::asset('core:assets/metronic-v5/demo/default/base/style.bundle.css'))}}
 
   <!-- BEGIN PAGE LEVEL PLUGINS -->
   {{-- Page Level Css --}}
   @yield('page_level_css')
-  {{Html::style('public/metronic-v5/vendors/custom/datatables/datatables.bundle.css')}}
+  {{Html::style(Module::asset('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
   <!-- END PAGE LEVEL PLUGINS -->
 
-  {{Html::style('resources/views/admin/'.$theme_cms->value.'/public/css/base.css?id='.File::lastModified('resources/views/admin/'.$theme_cms->value.'/public/css/base.css'))}}
+  {{Html::style(Module::asset('core:resources/views/'.$theme_cms->value.'/public/css/base.css?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/public/css/base.css'))}}
   
   <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
@@ -103,7 +103,7 @@
                         <span class="m-topbar__userpic">
                           <img src="{{url('public/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                         </span>
-                        <span class="m-topbar__username m--hide">{{Auth::user()->name}}</span>
+                        <span class="m-topbar__username m--hide">{{--Auth::user()->name--}}</span>
                       </a>
                       <div class="m-dropdown__wrapper">
                         <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -114,8 +114,8 @@
                                 <img src="{{url('public/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                               </div>
                               <div class="m-card-user__details">
-                                <span class="m-card-user__name m--font-weight-500">{{Auth::user()->name}}</span>
-                                <a href="" class="m-card-user__email m--font-weight-300 m-link">{{Auth::user()->email}}</a>
+                                <span class="m-card-user__name m--font-weight-500">{{--Auth::user()->name--}}</span>
+                                <a href="" class="m-card-user__email m--font-weight-300 m-link">{{--Auth::user()->email--}}</a>
                               </div>
                             </div>
                           </div>
@@ -126,7 +126,7 @@
                                   <span class="m-nav__section-text">Section</span>
                                 </li>
                                 <li class="m-nav__item">
-                                  <a href="{{action('BackEnd\Account@index')}}" class="m-nav__link">
+                                  <a href="{{--action('BackEnd\Account@index')--}}" class="m-nav__link">
                                     <i class="m-nav__link-icon flaticon-profile-1"></i>
                                     <span class="m-nav__link-title">
                                       <span class="m-nav__link-wrap">
@@ -168,47 +168,8 @@
           <!-- BEGIN: Aside Menu -->
           <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
             <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-              <li class="m-menu__item  {{Request::segment(2) == 'module' ? 'm-menu__item--active ' : ''}}" aria-haspopup="true">
-                <a href="{{action('BackEnd\KelolaModule@index')}}" class="m-menu__link ">
-                  <i class="m-menu__link-icon fa fa-database"></i>
-                  <span class="m-menu__link-title"></span>
-                  <span class="m-menu__link-wrap"></span>
-                  <span class="m-menu__link-text">Module</span>
-                </a>
-              </li>
-              <li class="m-menu__item  {{Request::segment(2) == 'role' ? 'm-menu__item--active ' : ''}}" aria-haspopup="true">
-                <a href="{{action('BackEnd\KelolaRole@index')}}" class="m-menu__link ">
-                  <i class="m-menu__link-icon fa fa-shield-alt"></i>
-                  <span class="m-menu__link-title"></span>
-                  <span class="m-menu__link-wrap"></span>
-                  <span class="m-menu__link-text">Role</span>
-                </a>
-              </li>
-              <li class="m-menu__item  {{Request::segment(2) == 'news' ? 'm-menu__item--active ' : ''}}" aria-haspopup="true">
-                <a href="{{action('BackEnd\Article@index')}}" class="m-menu__link ">
-                  <i class="m-menu__link-icon fa fa-newspaper"></i>
-                  <span class="m-menu__link-title"></span>
-                  <span class="m-menu__link-wrap"></span>
-                  <span class="m-menu__link-text">News</span>
-                </a>
-              </li>
-              <li class="m-menu__item  {{Request::segment(2) == 'user' ? 'm-menu__item--active ' : ''}}" aria-haspopup="true">
-                <a href="{{action('BackEnd\KelolaUser@index')}}" class="m-menu__link ">
-                  <i class="m-menu__link-icon fa fa-user"></i>
-                  <span class="m-menu__link-title"></span>
-                  <span class="m-menu__link-wrap"></span>
-                  <span class="m-menu__link-text">User</span>
-                </a>
-              </li>
-              <li class="m-menu__item  {{Request::segment(2) == 'setting' ? 'm-menu__item--active ' : ''}}" aria-haspopup="true">
-                <a href="{{action('BackEnd\Setting@create')}}" class="m-menu__link ">
-                  <i class="m-menu__link-icon fa fa-wrench"></i>
-                  <span class="m-menu__link-title"></span>
-                  <span class="m-menu__link-wrap"></span>
-                  <span class="m-menu__link-text">Setting</span>
-                </a>
-              </li>
-          </div>
+            </ul>
+           </div>
 
           <!-- END: Aside Menu -->
         </div>
@@ -270,17 +231,17 @@
   </script>
 
   <!--begin::Global Theme Bundle -->
-  {{Html::script('public/metronic-v5/vendors/base/vendors.bundle.js')}}
-  {{Html::script('public/metronic-v5/demo/default/base/scripts.bundle.js')}}
+  {{Html::script(Module::asset('core:assets/metronic-v5/vendors/base/vendors.bundle.js'))}}
+  {{Html::script(Module::asset('core:assets/metronic-v5/demo/default/base/scripts.bundle.js'))}}
 
   <!--end::Global Theme Bundle -->
 
   @yield('page_level_js')
-  {{Html::script('public/metronic-v5/vendors/custom/datatables/datatables.bundle.js')}}
+  {{Html::script(Module::asset('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
 
   <!--end::Page Scripts -->
 
-  {{Html::script('resources/views/admin/'.$theme_cms->value.'/js/base.js?id='.File::lastModified('resources/views/admin/'.$theme_cms->value.'/js/base.js'))}}
+  {{Html::script(Module::asset('core:resources/views/'.$theme_cms->value.'/js/base.js?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/js/base.js'))}}
   @yield('page_script_js')
 </body>
 </html>

@@ -6,74 +6,43 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+use Gdevilbat\SpardaCMS\Modules\Core\Repositories\SettingRepository;
+use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting as Setting_m;
+
 class CoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
-    {
-        return view('core::index');
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('core::create');
-    }
+    protected $data;
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function __construct()
     {
-        //
-    }
+        $settings = Setting_m::all();
+        $settings_cms = $settings->where('name', 'theme_cms');
+        $theme_cms = null;
+        foreach ($settings_cms as $key => $value) 
+        {
+            $theme_cms = $value;
+        }
+        if(empty($theme_cms))
+            die('Theme CMS Setting Not Available');
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('core::show');
-    }
+        $settings_public =  $settings->where('name', 'theme_public');
+        $theme_public = null;
+        foreach ($settings_public as $key => $value) 
+        {
+            $theme_public = $value;
+        }
+        if(empty($theme_public))
+            die('Theme Public Setting Not Available');
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('core::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->data['theme_cms'] = $theme_cms;
+        $this->data['theme_public'] = $theme_public;
+        $this->data['settings'] = $settings;
+        $this->data['self'] = $this;
     }
 }

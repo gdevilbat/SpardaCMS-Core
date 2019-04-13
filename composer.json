@@ -8,11 +8,14 @@
             "email": "maldinuribrahim@gmail.com"
         }
     ],
+    "require": {
+        "nwidart/laravel-modules": "^4.1",
+        "joshbrw/laravel-module-installer": "^0.1.4"
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider",
-                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\ViewComposerProvider"
+                "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider"
             ],
             "aliases": {
                 
@@ -22,6 +25,10 @@
     "autoload": {
         "psr-4": {
             "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
-        }
+        },
+        "target-dir": "gdevilbat/Spardacmscore",
+        "exclude-from-classmap": [
+            "/preprocessor/"
+        ]
     }
 }

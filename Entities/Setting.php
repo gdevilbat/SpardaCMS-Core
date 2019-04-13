@@ -16,8 +16,4 @@ class Setting extends Model
         'value' => 'array',
     ];
 
-    public function __construct()
-    {
-    	$this->connection = config('database.default');
-    }
 }
