@@ -24,7 +24,6 @@
                 
             }
         },
-        "module-dir": "vendor/gdevilbat"
     },
     "autoload": {
         "psr-4": {
