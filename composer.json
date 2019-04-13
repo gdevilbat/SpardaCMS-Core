@@ -21,11 +21,11 @@
             }
         }
     },
+    "target-dir": "gdevilbat/SpardaCMS/Modules/Core",
     "autoload": {
         "psr-4": {
             "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
         },
-        "target-dir": "gdevilbat/SpardaCMS/Modules/Core",
         "exclude-from-classmap": [
             "/preprocessor/"
         ]
