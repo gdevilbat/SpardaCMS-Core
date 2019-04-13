@@ -22,28 +22,28 @@
   <!--end::Web font -->
 
   <!--begin::Global Theme Styles -->
-  {{Html::style(Module::asset('core:public/metronic-v5/vendors/base/vendors.bundle.css'))}}
+  {{Html::style(module_asset('core:public/metronic-v5/vendors/base/vendors.bundle.css'))}}
 
   <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-  {{Html::style(Module::asset('core:public/metronic-v5/demo/default/base/style.bundle.css'))}}
+  {{Html::style(module_asset('core:public/metronic-v5/demo/default/base/style.bundle.css'))}}
 
   <!-- BEGIN PAGE LEVEL PLUGINS -->
   {{-- Page Level Css --}}
   @yield('page_level_css')
-  {{Html::style(Module::asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
+  {{Html::style(module_asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
   <!-- END PAGE LEVEL PLUGINS -->
 
-  {{Html::style(Module::asset('core:resources/views/'.$theme_cms->value.'/public/css/base.css?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/public/css/base.css'))}}
+  {{Html::style(module_asset('core:resources/views/'.$theme_cms->value.'/public/css/base.css?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/public/css/base.css'))}}
   
   <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
 
   
    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-     </script>
+      window.Laravel = <?php echo json_encode([
+          'csrfToken' => csrf_token(),
+      ]); ?>
+   </script>
 
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
@@ -231,17 +231,17 @@
   </script>
 
   <!--begin::Global Theme Bundle -->
-  {{Html::script(Module::asset('core:public/metronic-v5/vendors/base/vendors.bundle.js'))}}
-  {{Html::script(Module::asset('core:public/metronic-v5/demo/default/base/scripts.bundle.js'))}}
+  {{Html::script(module_asset('core:public/metronic-v5/vendors/base/vendors.bundle.js'))}}
+  {{Html::script(module_asset('core:public/metronic-v5/demo/default/base/scripts.bundle.js'))}}
 
   <!--end::Global Theme Bundle -->
 
   @yield('page_level_js')
-  {{Html::script(Module::asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
+  {{Html::script(module_asset('core:public/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
 
   <!--end::Page Scripts -->
 
-  {{Html::script(Module::asset('core:resources/views/'.$theme_cms->value.'/js/base.js?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/js/base.js'))}}
+  {{Html::script(module_asset('core:resources/views/'.$theme_cms->value.'/js/base.js?id=').filemtime(Module::getModulePath('core').'resources/views/'.$theme_cms->value.'/js/base.js'))}}
   @yield('page_script_js')
 </body>
 </html>
