@@ -13,5 +13,19 @@
 
 Route::get('core', 'CoreController@index');
 Route::group(['prefix' => 'control'], function() {
-    Route::get('setting', 'SettingController@index');
+    Route::group(['namespace' => 'Auth'], function() {
+	    Route::group(['prefix' => 'auth'], function() {
+			Route::get('/', 'LoginController@showLoginForm')->name('login');
+			Route::post('/', 'LoginController@login')->name('login');
+			Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+			Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+			Route::post('password/reset', 'ResetPasswordController@reset');
+			Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+			Route::get('logout', 'LoginController@logout');
+	    });
+    });
+    
+	Route::group(['middleware' => 'core.auth'], function() {
+	    Route::get('setting', 'SettingController@index');
+	});
 });

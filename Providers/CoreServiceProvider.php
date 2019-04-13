@@ -5,6 +5,8 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Schema;
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\RedirectIfAuthenticated;
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\Authenticate;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,9 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        $this->app['router']->aliasMiddleware('core.guest', RedirectIfAuthenticated::class);
+        $this->app['router']->aliasMiddleware('core.auth', Authenticate::class);
     }
 
     /**
