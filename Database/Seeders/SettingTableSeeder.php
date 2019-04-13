@@ -5,6 +5,8 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+use DB;
+
 class SettingTableSeeder extends Seeder
 {
     /**
@@ -19,11 +21,11 @@ class SettingTableSeeder extends Seeder
         DB::table('setting')->insert([
             [
                 'name' => 'theme_public',
-                'value' => json_encode(array('v_1')),
+                'value' => json_encode('v_1'),
             ],
             [
                 'name' => 'theme_cms',
-                'value' => json_encode(array('v_1')),
+                'value' => json_encode('v_1'),
             ],
         ]);
     }

@@ -6,7 +6,7 @@ if (! function_exists('module_asset_url')) {
         $tmp = explode(':', $path);
 
         if(count($tmp) != 2)
-            throw new Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Wrong Format Path");
+            throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Wrong Format Path");
 
         if(strpos($path, 'resources/views') !== false)
         {
@@ -35,7 +35,7 @@ if (! function_exists('module_asset_path')) {
         $tmp = explode(':', $path);
 
         if(count($tmp) != 2)
-            throw new Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Wrong Format Path");
+            throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Wrong Format Path");
 
         if(strpos($path, 'resources/views') !== false)
         {

@@ -29,7 +29,7 @@ class CoreController extends Controller
             $theme_cms = $value;
         }
         if(empty($theme_cms))
-            die('Theme CMS Setting Not Available');
+            throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Theme CMS Setting Not Available");
 
         $settings_public =  $settings->where('name', 'theme_public');
         $theme_public = null;
@@ -38,7 +38,7 @@ class CoreController extends Controller
             $theme_public = $value;
         }
         if(empty($theme_public))
-            die('Theme Public Setting Not Available');
+            throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler("Theme Public Setting Not Available");
 
         $this->data['theme_cms'] = $theme_cms;
         $this->data['theme_public'] = $theme_public;

@@ -4,6 +4,7 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Schema;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
