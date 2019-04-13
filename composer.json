@@ -1,5 +1,5 @@
 {
-    "name": "gdevilbat/spardacmscore",
+    "name": "gdevilbat/spardacms-core",
     "description": "",
     "authors": [
         {
@@ -9,7 +9,8 @@
     ],
     "require": {
         "nwidart/laravel-modules": "^4.1",
-        "joshbrw/laravel-module-installer": "^0.1.4"
+        "joshbrw/laravel-module-installer": "^0.1.4",
+        "laravelcollective/html": "^5.8"
     },
     "extra": {
         "laravel": {
@@ -26,12 +27,16 @@
             "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
         },
         "exclude-from-classmap": [
-            "/preprocessor/"
+            "/preprocessor/",
+            "/Tests/"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-          "Gdevilbat\\SpardaCMS\\Modules\\Core\\Preprocessor\\": "preprocessor"
+          "Gdevilbat\\SpardaCMS\\Modules\\Core\\Tests\\": "Tests"
         }
+    },
+    "archive": {
+        "exclude": ["/Tests", "/preprocessor"]
     }
 }
