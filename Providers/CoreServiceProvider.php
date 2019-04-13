@@ -61,7 +61,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            __DIR__.'/../public' => resource_path('views/modules/SpardaCMS/core/public'),
+            __DIR__.'/../assets' => resource_path('views/modules/SpardaCMS/core/assets'),
         ], 'public');
     }
 
