@@ -23,7 +23,7 @@
             "aliases": {
                 
             }
-        },
+        }
     },
     "autoload": {
         "psr-4": {
