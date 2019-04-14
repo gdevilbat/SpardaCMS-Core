@@ -32,7 +32,6 @@
         },
         "exclude-from-classmap": [
             "/preprocessor/",
-            "/Tests/"
         ]
     },
     "autoload-dev": {
@@ -42,5 +41,7 @@
     },
     "archive": {
         "exclude": ["/Tests", "/preprocessor"]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
