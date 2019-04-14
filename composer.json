@@ -31,7 +31,7 @@
             "Gdevilbat\\SpardaCMS\\Modules\\Core\\": ""
         },
         "exclude-from-classmap": [
-            "/preprocessor/",
+            "/preprocessor/"
         ]
     },
     "autoload-dev": {
