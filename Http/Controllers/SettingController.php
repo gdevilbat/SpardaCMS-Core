@@ -70,7 +70,7 @@ class SettingController extends CoreController
             }
         }
 
-        return redirect(action('SettingController@create'))->with('global_message',['status' => 400, 'message' => 'Success To Update Setting']);
+        return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\ControllersSettingController@create'))->with('global_message',['status' => 400, 'message' => 'Success To Update Setting']);
     }
 
     /**
