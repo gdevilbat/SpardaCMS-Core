@@ -58,6 +58,13 @@ class CoreServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../Config/config.php', 'core'
         );
+
+        $this->publishes([
+            __DIR__.'/../Config/lfm.php' => config_path('lfm.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/lfm.php', 'core'
+        );
     }
 
     /**

@@ -385,7 +385,7 @@ $(document).ready(function() {
 
         if($(".autosize").length)
         {
-            $(".autosize").select2();
+            autosize($(".autosize"));
         }
     
     /*=====  End of Autosize Textarea  ======*/
