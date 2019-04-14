@@ -38,8 +38,8 @@ Route::group(['prefix' => 'control'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::get('setting/global', 'SettingController@create');
-		    Route::put('setting/global', 'SettingController@store');
+		    Route::get('setting', 'SettingController@create');
+		    Route::put('setting', 'SettingController@store');
         
         /*=====  End of Setting CMS  ======*/
         

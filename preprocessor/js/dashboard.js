@@ -268,50 +268,6 @@ $(document).ready(function() {
 
         /*=====  End of Data Table Object  ======*/
 
-    /*============================================
-    =            Masking Phone number            =
-    ============================================*/
-
-            $(".phone").keyup(function(event) {
-                phone = this.value;
-                for(var i = 0; i < phone.length; i++){
-                    if(phone.charAt(0) == '0')
-                    {
-                        valid_number = setCharAt(phone, 0, '');
-                        $(this).val(valid_number);
-                    }
-
-                    if(!phone.charAt(i).match(/[0-9]/))
-                    {
-                        valid_number = setCharAt(phone, i, '');
-                        $(this).val(valid_number);
-                    }
-                }
-            });
-
-            $(".phone").keydown(function(event) {
-                number = [8, 37, 39, 48, 49, 50, 51, 52 , 53, 54, 55, 56, 57];
-                value  = $.inArray(event.keyCode, number);
-                if(value !== -1)
-                {
-                    if(this.value.length === 0)
-                    {
-                        if(event.keyCode === 48)
-                            return false;
-                    }
-                    return true;
-                }
-
-                return false;
-            });
-
-            window.setCharAt = function(str,index,chr){
-                if(index > str.length-1) return str;
-                return str.substr(0,index) + chr + str.substr(index+1);
-            }
-
-    /*=====  End of Masking Phone number  ======*/
-
     /*====================================
     =            Multi Select            =
     ====================================*/
@@ -330,24 +286,6 @@ $(document).ready(function() {
        window.deleteData();
 
     /*=====  End of Delete Confirmation  ======*/
-
-    /*=================================
-    =            Form Role            =
-    =================================*/
-
-        $("#submit-role").click(function(event) {
-            $(".checkbox").each(function(index, el) {
-                if ($(this).is(':checked')) {
-                    $($(this).next('.role').get(0)).val(true);
-                  } else {
-                    $($(this).next('.role').get(0)).val(false);
-                  }
-                $(this).attr('value', 'false');
-            });
-            $("#form-role").submit();
-        });
-
-    /*=====  End of Form Role  ======*/
 
     /*=================================
     =            CK Editor            =
@@ -392,46 +330,6 @@ $(document).ready(function() {
     
     
 });
-
-if($("#thead").length > 0)
-{
-    var TableComponent = new Vue({
-        el: "#thead",
-        data: {
-            column: '',
-            dir: '',
-        },
-        methods:{
-            order: function(column){
-                self = this;
-                $first = $(self.$el).parents("div").get(0);
-                $form = $($first).prevAll("form").get(0);
-                $dir = $($form).children("[name='dir']").get(0);
-                $column = $($form).children("[name='column']").get(0);
-                if(column == $($column).val())
-                {
-                    if($($dir).val() == 'DESC')
-                    {
-                        new_dir = 'ASC';
-                    }
-                    else
-                    {
-                        new_dir = 'DESC';
-                    }
-                }
-                else
-                {
-                        new_dir = 'DESC';
-                }
-
-                $($column).val(column);
-                $($dir).val(new_dir);
-                $($form).submit();
-            }
-        }
-    })
-}
-
 
 /*=======================================
 =            Form Commponent            =

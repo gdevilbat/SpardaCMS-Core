@@ -67,11 +67,11 @@
                             </div>
                         @endif
                     </div>
-                    @include('core::admin.'.$theme_cms->value.'.content.Partials.meta_tag')
+                    @include('core::admin.'.$theme_cms->value.'.content.Partials.meta_tag', ['column' => 'global'])
                     <hr>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Background Landscape
+                            {{title_case(str_slug('global', ' '))}} Background Landscape
                         </div>
                         <div class="col-md-8">
                            <div class="input-group m-input-group">
@@ -80,16 +80,16 @@
                                        <i class="fa fa-picture-o"></i> Choose
                                      </button>
                                 </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['landscape']))
-                                   <input id="global-background-landscape" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[background][landscape]'}}" value="{{old(str_slug(Request::segment(3)).'.background.landscape')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape']))
+                                   <input id="global-background-landscape" class="form-control m-input" type="text" name="{{str_slug('global').'[background][landscape]'}}" value="{{old(str_slug('global').'.background.landscape')}}">
                                 @else
-                                   <input id="global-background-landscape" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[background][landscape]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['landscape']}}">
+                                   <input id="global-background-landscape" class="form-control m-input" type="text" name="{{str_slug('global').'[background][landscape]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape']}}">
                                 @endif
                             </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['landscape']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape']))
                                 <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['landscape'])}}">
+                                <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <label class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Background Portrait
+                            {{title_case(str_slug('global', ' '))}} Background Portrait
                         </label>
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
@@ -107,16 +107,16 @@
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['portrait']))
-                                   <input id="global-background-portrait" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[background][portrait]'}}" value="{{old(str_slug(Request::segment(3)).'.background.portrait')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait']))
+                                   <input id="global-background-portrait" class="form-control m-input" type="text" name="{{str_slug('global').'[background][portrait]'}}" value="{{old(str_slug('global').'.background.portrait')}}">
                                 @else
-                                   <input id="global-background-portrait" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[background][portrait]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['portrait']}}">
+                                   <input id="global-background-portrait" class="form-control m-input" type="text" name="{{str_slug('global').'[background][portrait]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait']}}">
                                 @endif
                              </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['portrait']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait']))
                                 <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['background']['portrait'])}}">
+                                <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -125,7 +125,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <label class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Favicon Image
+                            {{title_case(str_slug('global', ' '))}} Favicon Image
                         </label>
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
@@ -134,16 +134,16 @@
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['favicon']))
-                                   <input id="global-favicon" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[favicon]'}}" value="{{old(str_slug(Request::segment(3)).'.favicon')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon']))
+                                   <input id="global-favicon" class="form-control m-input" type="text" name="{{str_slug('global').'[favicon]'}}" value="{{old(str_slug('global').'.favicon')}}">
                                 @else
-                                   <input id="global-favicon" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[favicon]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['favicon']}}">
+                                   <input id="global-favicon" class="form-control m-input" type="text" name="{{str_slug('global').'[favicon]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['favicon']}}">
                                 @endif
                              </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['favicon']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon']))
                                 <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['favicon'])}}">
+                                <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <label class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Logo Image
+                            {{title_case(str_slug('global', ' '))}} Logo Image
                         </label>
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
@@ -161,16 +161,16 @@
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['logo']))
-                                   <input id="global-logo" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[logo]'}}" value="{{old(str_slug(Request::segment(3)).'.logo')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['logo']))
+                                   <input id="global-logo" class="form-control m-input" type="text" name="{{str_slug('global').'[logo]'}}" value="{{old(str_slug('global').'.logo')}}">
                                 @else
-                                   <input id="global-logo" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[logo]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['logo']}}">
+                                   <input id="global-logo" class="form-control m-input" type="text" name="{{str_slug('global').'[logo]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['logo']}}">
                                 @endif
                              </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['logo']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['logo']))
                                 <img id="global-logo_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-logo_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['logo'])}}">
+                                <img id="global-logo_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['logo'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <label class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Not Found Image
+                            {{title_case(str_slug('global', ' '))}} Not Found Image
                         </label>
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
@@ -188,16 +188,16 @@
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['not_found_image']))
-                                   <input id="global-not_found_image" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[not_found_image]'}}" value="{{old(str_slug(Request::segment(3)).'.not_found_image')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image']))
+                                   <input id="global-not_found_image" class="form-control m-input" type="text" name="{{str_slug('global').'[not_found_image]'}}" value="{{old(str_slug('global').'.not_found_image')}}">
                                 @else
-                                   <input id="global-not_found_image" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[not_found_image]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['not_found_image']}}">
+                                   <input id="global-not_found_image" class="form-control m-input" type="text" name="{{str_slug('global').'[not_found_image]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image']}}">
                                 @endif
                              </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['not_found_image']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image']))
                                 <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['not_found_image'])}}">
+                                <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -206,7 +206,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <label class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Maintenance Image
+                            {{title_case(str_slug('global', ' '))}} Maintenance Image
                         </label>
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
@@ -215,16 +215,16 @@
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
-                                @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['maintenance_image']))
-                                   <input id="global-maintenance_image" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[maintenance_image]'}}" value="{{old(str_slug(Request::segment(3)).'.maintenance_image')}}">
+                                @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image']))
+                                   <input id="global-maintenance_image" class="form-control m-input" type="text" name="{{str_slug('global').'[maintenance_image]'}}" value="{{old(str_slug('global').'.maintenance_image')}}">
                                 @else
-                                   <input id="global-maintenance_image" class="form-control m-input" type="text" name="{{str_slug(Request::segment(3)).'[maintenance_image]'}}" value="{{$settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['maintenance_image']}}">
+                                   <input id="global-maintenance_image" class="form-control m-input" type="text" name="{{str_slug('global').'[maintenance_image]'}}" value="{{$settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image']}}">
                                 @endif
                              </div>
-                            @if(empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['maintenance_image']))
+                            @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image']))
                                 <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['maintenance_image'])}}">
+                                <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -234,34 +234,34 @@
                     <hr>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">{{title_case(str_slug(Request::segment(3), ' '))}} Google Site Verification</label>
+                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Site Verification</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="{{str_slug(Request::segment(3)).'[google_site_verification]'}}" placeholder="Google Site Verification" value="{{old(str_slug(Request::segment(3)).'.google_site_verification') ? old(str_slug(Request::segment(3)).'.google_site_verification') : (!empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_site_verification']) ? $settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_site_verification'] : '')}}">
+                            <input type="text" class="form-control m-input" name="{{str_slug('global').'[google_site_verification]'}}" placeholder="Google Site Verification" value="{{old(str_slug('global').'.google_site_verification') ? old(str_slug('global').'.google_site_verification') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_site_verification']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_site_verification'] : '')}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">{{title_case(str_slug(Request::segment(3), ' '))}} Google Analytics</label>
+                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Analytics</label>
                         </div>
                         <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug(Request::segment(3)).'[google_analytics]'}}" placeholder="Google Analytics" id="m_autosize_1">{{old(str_slug(Request::segment(3)).'.google_analytics') ? old(str_slug(Request::segment(3)).'.google_analytics') : (!empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_analytics']) ? $settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_analytics'] : '')}}</textarea>
+                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[google_analytics]'}}" placeholder="Google Analytics" id="m_autosize_1">{{old(str_slug('global').'.google_analytics') ? old(str_slug('global').'.google_analytics') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_analytics']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_analytics'] : '')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">{{title_case(str_slug(Request::segment(3), ' '))}} Google Tags</label>
+                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Tags</label>
                         </div>
                         <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug(Request::segment(3)).'[google_tags]'}}" placeholder="Google Tags" id="m_autosize_2">{{old(str_slug(Request::segment(3)).'.google_tags') ? old(str_slug(Request::segment(3)).'.google_tags') : (!empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_tags']) ? $settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['google_tags'] : '')}}</textarea>
+                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[google_tags]'}}" placeholder="Google Tags" id="m_autosize_2">{{old(str_slug('global').'.google_tags') ? old(str_slug('global').'.google_tags') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_tags']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_tags'] : '')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug(Request::segment(3), ' '))}} Facebook Pixel
+                            {{title_case(str_slug('global', ' '))}} Facebook Pixel
                         </div>
                         <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug(Request::segment(3)).'[facebook_pixel]'}}" placeholder="Facebook Pixel" id="m_autosize_3">{{old(str_slug(Request::segment(3)).'.facebook_pixel') ? old(str_slug(Request::segment(3)).'.facebook_pixel') : (!empty($settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['facebook_pixel']) ? $settings->where('name',str_slug(Request::segment(3)))->flatten()->first()->value['facebook_pixel'] : '')}}</textarea>
+                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[facebook_pixel]'}}" placeholder="Facebook Pixel" id="m_autosize_3">{{old(str_slug('global').'.facebook_pixel') ? old(str_slug('global').'.facebook_pixel') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['facebook_pixel']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['facebook_pixel'] : '')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">

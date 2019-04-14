@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title', env('APP_NAME'))</title>
+  <title>{!! config('core.name') !!}@yield('title', '')</title>
   @section('meta_tag')
   @show
 
@@ -60,7 +60,7 @@
               <div class="m-stack m-stack--ver m-stack--general">
                 <div class="m-stack__item m-stack__item--middle m-brand__logo">
                   <a href="index.html" class="m-brand__logo-wrapper">
-                    <img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png" />
+                    <img src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo" class="img-fluid"> </a>
                   </a>
                 </div>
                 <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -138,7 +138,7 @@
                                 <li class="m-nav__separator m-nav__separator--fit">
                                 </li>
                                 <li class="m-nav__item">
-                                  <a href="{{url('logout')}}" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                  <a href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\Auth\LoginController@logout')}}" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
                                 </li>
                               </ul>
                             </div>
@@ -206,7 +206,7 @@
           <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
             <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
               <span class="m-footer__copyright">
-                2017 &copy; Metronic theme by <a href="https://keenthemes.com" class="m-link">Keenthemes</a>
+                2019 &copy; SpardaCMS by <a href="javascript:void(0)" class="m-link">gdevilbat</a>
               </span>
             </div>
           </div>
