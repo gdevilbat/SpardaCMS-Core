@@ -327,6 +327,50 @@ $(document).ready(function() {
         }
     
     /*=====  End of Autosize Textarea  ======*/
+
+    /*============================================
+    =            Masking Phone number            =
+    ============================================*/
+
+        $(".phone").keyup(function(event) {
+            phone = this.value;
+            for(var i = 0; i < phone.length; i++){
+                if(phone.charAt(0) == '0')
+                {
+                    valid_number = setCharAt(phone, 0, '');
+                    $(this).val(valid_number);
+                }
+
+                if(!phone.charAt(i).match(/[0-9]/))
+                {
+                    valid_number = setCharAt(phone, i, '');
+                    $(this).val(valid_number);
+                }
+            }
+        });
+
+        $(".phone").keydown(function(event) {
+            number = [8, 37, 39, 48, 49, 50, 51, 52 , 53, 54, 55, 56, 57];
+            value  = $.inArray(event.keyCode, number);
+            if(value !== -1)
+            {
+                if(this.value.length === 0)
+                {
+                    if(event.keyCode === 48)
+                        return false;
+                }
+                return true;
+            }
+
+            return false;
+        });
+
+        window.setCharAt = function(str,index,chr){
+            if(index > str.length-1) return str;
+            return str.substr(0,index) + chr + str.substr(index+1);
+            }
+
+    /*=====  End of Masking Phone number  ======*/
     
     
 });

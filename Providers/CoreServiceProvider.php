@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Schema;
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\RedirectIfAuthenticated;
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\Authenticate;
+use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,9 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->singleton(Repository::class, function ($app) {
+            return new Repository;
+        });
     }
 
     /**

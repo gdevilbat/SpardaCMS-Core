@@ -1,7 +1,1 @@
-[v-cloak] {
-  display: none;
-}
-.bootstrap-tagsinput .tag {
-  background-color: #9f87de;
-  padding: 0.05rem 0.4rem 0.05rem 0.4rem;
-}
+[v-cloak]{display:none}.bootstrap-tagsinput .tag{background-color:#9f87de;padding:.05rem .4rem}

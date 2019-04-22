@@ -78,6 +78,13 @@ interface BaseRepository
     public function findByAttributes(array $attributes);
 
     /**
+     * Return With Relation Builder
+     * @param  array $ids
+     * @return \Illuminate\Database\Builder\
+     */
+    public function with($relation);
+
+    /**
      * Return a collection of elements who's ids match
      * @param  array $ids
      * @return \Illuminate\Database\Eloquent\Collection

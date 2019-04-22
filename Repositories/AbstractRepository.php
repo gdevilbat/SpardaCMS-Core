@@ -151,9 +151,13 @@ abstract class AbstractRepository implements BaseRepository
      * @param  string $sortOrder
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    private function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
+    public function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
     {
-        $query = $this->model->query();
+        $query = $this->model;
+
+        if (method_exists($query, 'query')) {
+            $query = $query->query();
+        }
 
         if (method_exists($this->model, 'translations')) {
             $query = $query->with('translations');
@@ -168,6 +172,12 @@ abstract class AbstractRepository implements BaseRepository
         }
 
         return $query;
+    }
+
+    public function with($relation)
+    {
+        $this->model = $this->model->query()->with($relation);
+        return $this;
     }
 
     /**
