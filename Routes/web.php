@@ -42,6 +42,21 @@ Route::group(['prefix' => 'control'], function() {
 		    Route::put('setting', 'SettingController@store');
         
         /*=====  End of Setting CMS  ======*/
+
+
+        /*==================================
+        =            Module CMS            =
+        ==================================*/
+        
+        Route::group(['prefix' => 'module'], function() {
+            Route::get('master', 'ModuleController@index');
+            Route::get('form', 'ModuleController@create');
+            Route::post('form', 'ModuleController@store');
+            Route::put('form', 'ModuleController@store');
+            Route::delete('form', 'ModuleController@destroy');
+        });
+        
+        /*=====  End of Module CMS  ======*/
         
 	});
 });

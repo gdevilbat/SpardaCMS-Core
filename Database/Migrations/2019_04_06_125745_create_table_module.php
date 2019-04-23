@@ -16,7 +16,7 @@ class CreateTableModule extends Migration
         Schema::create('module', function (Blueprint $table) {
             $table->increments('id');
             $table->string('module_name', 50);
-            $table->text('module_slug');
+            $table->string('module_slug')->unique();
             $table->text('description');
             $table->string('scope')->default(json_encode(array()));
             $table->softDeletes();
