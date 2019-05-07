@@ -106,7 +106,7 @@
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="id" value="{{encrypt($module->id)}}">
                                                 </form>
-                                                <button class="dropdown-item confirm-delete" type="button"><a class="m-link m-link--state m-link--warning" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
+                                                <button class="dropdown-item confirm-delete" type="button"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
                                             </div>
                                         </div>
                                     </div>
