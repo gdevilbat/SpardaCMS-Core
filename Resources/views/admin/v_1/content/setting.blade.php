@@ -243,26 +243,10 @@
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Analytics</label>
+                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Meta Script</label>
                         </div>
                         <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[google_analytics]'}}" placeholder="Google Analytics" id="m_autosize_1">{{old(str_slug('global').'.google_analytics') ? old(str_slug('global').'.google_analytics') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_analytics']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_analytics'] : '')}}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Tags</label>
-                        </div>
-                        <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[google_tags]'}}" placeholder="Google Tags" id="m_autosize_2">{{old(str_slug('global').'.google_tags') ? old(str_slug('global').'.google_tags') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_tags']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_tags'] : '')}}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
-                            {{title_case(str_slug('global', ' '))}} Facebook Pixel
-                        </div>
-                        <div class="col-md-8">
-                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[facebook_pixel]'}}" placeholder="Facebook Pixel" id="m_autosize_3">{{old(str_slug('global').'.facebook_pixel') ? old(str_slug('global').'.facebook_pixel') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['facebook_pixel']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['facebook_pixel'] : '')}}</textarea>
+                            <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[meta_script]'}}" placeholder="Script Before Body" id="m_autosize_1">{{old(str_slug('global').'.meta_script') ? old(str_slug('global').'.meta_script') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['meta_script']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['meta_script'] : '')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">

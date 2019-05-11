@@ -65,7 +65,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Module Name</label>
+                            <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input" name="name" placeholder="Module Name" value="{{old('name') ? old('name') : (!empty($module) ? $module->name : '')}}">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Module Slug</label>
+                            <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input" name="slug" placeholder="Module Slug" value="{{old('slug') ? old('slug') : (!empty($module) ? $module->slug : '')}}" readonly>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     @verbatim
-                        <div id="form" v-cloak>
+                        <div id="scope" v-cloak>
                             <div class="form-group m-form__group d-flex">
                                 <div class="col-md-4 d-flex justify-content-end py-3">
                                     <label for="exampleInputEmail1">Scope</label>
@@ -99,7 +99,7 @@
                                             <div class="col-md-10 no-padding">
                                                 <input type="text" class="form-control" v-bind:name="'scope[]'" placeholder="Scope Name" v-model="components[index]">
                                             </div>
-                                            <div class="col-md-2" v-if="components.length > 1">
+                                            <div class="col-md-2">
                                                 <button type="button" class="btn m-btn--pill btn-metal" v-on:click="removeComponent(index)"><span><i class="fa fa-minus"></i></span></button>
                                             </div>
                                         </div>
@@ -141,10 +141,17 @@
 
 @section('page_level_js')
     {{Html::script(module_asset_url('core:assets/js/autosize.min.js'))}}
+    {{Html::script(module_asset_url('core:assets/js/slugify.js'))}}
+@endsection
+
+@section('page_script_js')
     <script type="text/javascript">
-        form_data = {!! !empty($module)? json_encode($module->scope) : json_encode(array(array())) !!};
-        FormComponent.components = form_data;
-        FormComponent.$nextTick(function () {
+        var Scope = new Vue({
+            mixins: [componentMixin],
+            el: "#scope",
+            data: {
+                components: {!! !empty($module)? json_encode($module->scope) : json_encode(array(array())) !!},
+            },
         });
     </script>
 @endsection

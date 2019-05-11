@@ -14,6 +14,13 @@ use Validator;
 
 class SettingController extends CoreController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setting_m = new Setting_m;
+        $this->setting_repository = new Repository(new Setting_m);
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -46,13 +53,13 @@ class SettingController extends CoreController
             }
         }
 
-        $settings = Setting_m::all();
+        $settings = $this->setting_repository->all();
         foreach ($data as $key => $value) 
         {
             $filtered = $settings->where('name', $key);
             if($filtered->count() > 0)
             {
-                $setting = Setting_m::where('name', $key);
+                $setting = $this->setting_m->where('name', $key);
                 if(!$setting->update(['value' => json_encode($value)]))
                 {
                     return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Update '.$key]);
@@ -60,7 +67,7 @@ class SettingController extends CoreController
             }
             else
             {
-                $setting = new Setting_m;
+                $setting = $this->setting_m;
                 $setting['name'] = $key;
                 $setting['value'] = $value;
                 if(!$setting->save())

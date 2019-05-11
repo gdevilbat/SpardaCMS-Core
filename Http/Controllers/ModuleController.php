@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use  Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController;
+use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
 
 use Module;
 
 class ModuleController extends CoreController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->module_m = new Module_m;
+        $this->module_repository = new Repository(new Module_m);
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -23,25 +31,25 @@ class ModuleController extends CoreController
                           return str_slug($item);  
                         });
 
-        $modules = Module_m::select('slug')->pluck('slug');
+        $modules = $this->module_m->select('slug')->pluck('slug');
 
         $add_modules = $core_modules->diff($modules)->flatten();
         $remove_modules = $modules->diff($core_modules)->flatten();
 
         foreach ($add_modules as $key => $value) 
         {
-            $module = new Module_m;
+            $module = $this->module_m;
             $module->name = title_case(str_replace('-', ' ', $value));
             $module->slug = $value;
             $module->description = '';
             $module->save();
         }
 
-        Module_m::whereIn('slug', $remove_modules)->delete();
+        $this->module_m->whereIn('slug', $remove_modules)->delete();
 
-        $this->data['modules'] = Module_m::all();
+        $this->data['modules'] = $this->module_repository->all();
 
-        return view('core::admin.'.$this->data['theme_cms']->value.'.content.module.master', $this->data);
+        return view('core::admin.'.$this->data['theme_cms']->value.'.content.Module.master', $this->data);
     }
 
     /**
@@ -53,11 +61,11 @@ class ModuleController extends CoreController
         $this->data['method'] = method_field('POST');
         if(isset($_GET['code']))
         {
-            $this->data['module'] = Module_m::find(decrypt($_GET['code']));
+            $this->data['module'] = $this->module_repository->findOrFail(decrypt($_GET['code']));
             $this->data['method'] = method_field('PUT');
         }
 
-        return view('core::admin.'.$this->data['theme_cms']->value.'.content.module.form', $this->data);
+        return view('core::admin.'.$this->data['theme_cms']->value.'.content.Module.form', $this->data);
     }
 
     /**
@@ -70,7 +78,6 @@ class ModuleController extends CoreController
         $this->validate($request,[
                 'name' => 'required|max:50',
                 'scope' => 'max:191',
-                'description' => 'required',
             ]);
 
         if($request->isMethod('POST'))
@@ -79,7 +86,7 @@ class ModuleController extends CoreController
                 'slug' => 'required|max:191|unique:module',
             ]);
             $data = $request->except(['_token','_method']);
-            $module = new Module_m;
+            $module = new $this->module_m;
         }
         else
         {
@@ -87,7 +94,7 @@ class ModuleController extends CoreController
                 'slug' => 'required|max:191|unique:module,slug,'.decrypt($request->input('id')).',id',
             ]);
             $data = $request->except(['_token','_method', 'id']);
-            $module = Module_m::findOrFail(decrypt($request->input('id')));
+            $module = $this->module_repository->findOrFail(decrypt($request->input('id')));
         }
 
         foreach ($data as $key => $value) 
@@ -95,24 +102,18 @@ class ModuleController extends CoreController
             $module->$key = $value;
         }
 
-        $module->slug = str_slug($request->input('slug'));
+        if(!$request->has('scope'))
+            $module->scope = array();
 
         if($module->save())
         {
-            if($request->ajax())
+            if($request->isMethod('POST'))
             {
-                return 'true';
+                return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
             }
             else
             {
-                if($request->isMethod('POST'))
-                {
-                    return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
-                }
-                else
-                {
-                    return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
-                }
+                return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
             }
         }
         else
@@ -172,7 +173,7 @@ class ModuleController extends CoreController
      */
     public function destroy(Request $request)
     {
-        $query = Module_m::find(decrypt($request->id));
+        $query = $this->module_repository->findOrFail(decrypt($request->id));
 
         $module = Module::find($query->slug);
 

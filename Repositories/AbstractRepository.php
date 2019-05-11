@@ -41,6 +41,18 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
+    public function findOrFail($id)
+    {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->findOrFail($id);
+        }
+
+        return $this->model->findOrFail($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function all()
     {
         if (method_exists($this->model, 'translations')) {
