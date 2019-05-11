@@ -83,8 +83,8 @@
                         @foreach ($modules as $module)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$module->module_name}}</td>
-                                <td>{{$module->module_slug}}</td>
+                                <td>{{$module->name}}</td>
+                                <td>{{$module->slug}}</td>
                                 <td>{{$module->description}}</td>
                                 <td>
                                     @foreach($module->scope as $scope)

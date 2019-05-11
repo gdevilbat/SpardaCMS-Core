@@ -68,7 +68,7 @@
                             <label for="exampleInputEmail1">Module Name</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="module_name" placeholder="Module Name" value="{{old('module_name') ? old('module_name') : (!empty($module) ? $module->module_name : '')}}">
+                            <input type="text" class="form-control m-input" name="name" placeholder="Module Name" value="{{old('name') ? old('name') : (!empty($module) ? $module->name : '')}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
@@ -76,7 +76,7 @@
                             <label for="exampleInputEmail1">Module Slug</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="module_slug" placeholder="Module Slug" value="{{old('module_slug') ? old('module_slug') : (!empty($module) ? $module->module_slug : '')}}" readonly>
+                            <input type="text" class="form-control m-input" name="slug" placeholder="Module Slug" value="{{old('slug') ? old('slug') : (!empty($module) ? $module->slug : '')}}" readonly>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">

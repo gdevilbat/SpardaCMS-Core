@@ -23,7 +23,7 @@ class ModuleController extends CoreController
                           return str_slug($item);  
                         });
 
-        $modules = Module_m::select('module_slug')->pluck('module_slug');
+        $modules = Module_m::select('slug')->pluck('slug');
 
         $add_modules = $core_modules->diff($modules)->flatten();
         $remove_modules = $modules->diff($core_modules)->flatten();
@@ -31,13 +31,13 @@ class ModuleController extends CoreController
         foreach ($add_modules as $key => $value) 
         {
             $module = new Module_m;
-            $module->module_name = title_case(str_replace('-', ' ', $value));
-            $module->module_slug = $value;
+            $module->name = title_case(str_replace('-', ' ', $value));
+            $module->slug = $value;
             $module->description = '';
             $module->save();
         }
 
-        Module_m::whereIn('module_slug', $remove_modules)->delete();
+        Module_m::whereIn('slug', $remove_modules)->delete();
 
         $this->data['modules'] = Module_m::all();
 
@@ -68,7 +68,7 @@ class ModuleController extends CoreController
     public function store(Request $request)
     {
         $this->validate($request,[
-                'module_name' => 'required|max:50',
+                'name' => 'required|max:50',
                 'scope' => 'max:191',
                 'description' => 'required',
             ]);
@@ -76,7 +76,7 @@ class ModuleController extends CoreController
         if($request->isMethod('POST'))
         {
             $this->validate($request,[
-                'module_slug' => 'required|max:191|unique:module',
+                'slug' => 'required|max:191|unique:module',
             ]);
             $data = $request->except(['_token','_method']);
             $module = new Module_m;
@@ -84,7 +84,7 @@ class ModuleController extends CoreController
         else
         {
              $this->validate($request,[
-                'module_slug' => 'required|max:191|unique:module,module_slug,'.decrypt($request->input('id')).',id',
+                'slug' => 'required|max:191|unique:module,slug,'.decrypt($request->input('id')).',id',
             ]);
             $data = $request->except(['_token','_method', 'id']);
             $module = Module_m::findOrFail(decrypt($request->input('id')));
@@ -95,7 +95,7 @@ class ModuleController extends CoreController
             $module->$key = $value;
         }
 
-        $module->module_slug = str_slug($request->input('module_slug'));
+        $module->slug = str_slug($request->input('slug'));
 
         if($module->save())
         {
@@ -174,7 +174,7 @@ class ModuleController extends CoreController
     {
         $query = Module_m::find(decrypt($request->id));
 
-        $module = Module::find($query->module_slug);
+        $module = Module::find($query->slug);
 
         try {
             $module->disable();
