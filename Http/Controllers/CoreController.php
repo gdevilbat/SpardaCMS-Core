@@ -45,4 +45,11 @@ class CoreController extends Controller
         $this->data['settings'] = $settings;
         $this->data['self'] = $this;
     }
+
+    protected function print_r($value)
+    {
+        echo "<pre>";
+        print_r($value);
+        echo "</pre>";
+    }
 }
