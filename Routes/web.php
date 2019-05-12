@@ -49,11 +49,11 @@ Route::group(['prefix' => 'control'], function() {
         ==================================*/
         
         Route::group(['prefix' => 'module'], function() {
-            Route::get('master', 'ModuleController@index');
-            Route::get('form', 'ModuleController@create');
-            Route::post('form', 'ModuleController@store');
-            Route::put('form', 'ModuleController@store');
-            Route::delete('form', 'ModuleController@destroy');
+            Route::get('master', 'ModuleController@index')->middleware('can:super-access');
+            Route::get('form', 'ModuleController@create')->middleware('can:super-access');
+            Route::post('form', 'ModuleController@store')->middleware('can:super-access');
+            Route::put('form', 'ModuleController@store')->middleware('can:super-access');
+            Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access');
         });
         
         /*=====  End of Module CMS  ======*/
