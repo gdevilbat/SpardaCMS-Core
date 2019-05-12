@@ -38,8 +38,8 @@ Route::group(['prefix' => 'control'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::get('setting', 'SettingController@create');
-		    Route::put('setting', 'SettingController@store');
+		    Route::get('setting', 'SettingController@create')->middleware('can:super-access');
+		    Route::put('setting', 'SettingController@store')->middleware('can:super-access');
         
         /*=====  End of Setting CMS  ======*/
 
