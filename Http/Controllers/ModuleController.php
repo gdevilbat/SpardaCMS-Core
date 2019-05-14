@@ -38,7 +38,7 @@ class ModuleController extends CoreController
 
         foreach ($add_modules as $key => $value) 
         {
-            $module = $this->module_m;
+            $module = new $this->module_m;
             $module->name = title_case(str_replace('-', ' ', $value));
             $module->slug = $value;
             $module->description = '';

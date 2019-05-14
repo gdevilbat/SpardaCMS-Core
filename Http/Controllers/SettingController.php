@@ -67,7 +67,7 @@ class SettingController extends CoreController
             }
             else
             {
-                $setting = $this->setting_m;
+                $setting = new $this->setting_m;
                 $setting['name'] = $key;
                 $setting['value'] = $value;
                 if(!$setting->save())
