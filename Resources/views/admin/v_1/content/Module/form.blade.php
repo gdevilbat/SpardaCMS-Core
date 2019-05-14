@@ -84,7 +84,7 @@
                             <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" class="form-control m-input" name="order" placeholder="Module order" value="{{old('order') ? old('order') : (!empty($module) ? $module->order : '')}}">
+                            <input type="number" class="form-control m-input" min="1" name="order" placeholder="Module order" value="{{old('order') ? old('order') : (!empty($module) ? $module->order : '')}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
