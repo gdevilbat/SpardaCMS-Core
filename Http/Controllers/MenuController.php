@@ -12,82 +12,40 @@ use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 use Rinvex\Menus\Models\MenuItem;
 use Rinvex\Menus\Models\MenuGenerator;
 
+use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
+
+use View;
+use Log;
+use App;
+
 class MenuController extends CoreController
 {
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function getMenu()
     {
-        Menu::create('navbar', function($menu) {
-            $menu->url('/', 'Home');
-            $menu->dropdown('Settings', function ($sub) {
-                $sub->url('settings/account', 'Account');
-                $sub->url('settings/password', 'Password');
-                $sub->url('settings/design', 'Design');
-            });
-        });
-        return view('core::index');
-    }
+        $menu = null;
+        $modules = Module_m::all();
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('core::create');
-    }
+        foreach ($modules as $module) 
+        {
+            try {
+                $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
+            } catch (\InvalidArgumentException $e) {
+                if(!App::environment('production'))
+                {
+                    throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler('Sidebar Not Found On Module '.$module->name);
+                }
+                else
+                {
+                    Log::info('Sidebar Not Found On '.$module->name);
+                    $menu .= null;
+                }
+            }
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('core::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('core::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $menu;
     }
 }

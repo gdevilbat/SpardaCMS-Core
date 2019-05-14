@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Schema;
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\RedirectIfAuthenticated;
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\Authenticate;
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Middleware\MenuGenerator;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 
 class CoreServiceProvider extends ServiceProvider
@@ -34,6 +35,7 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app['router']->aliasMiddleware('core.guest', RedirectIfAuthenticated::class);
         $this->app['router']->aliasMiddleware('core.auth', Authenticate::class);
+        $this->app['router']->aliasMiddleware('core.menu', MenuGenerator::class);
     }
 
     /**
