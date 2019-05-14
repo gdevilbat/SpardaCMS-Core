@@ -75,6 +75,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Description</th>
+                            <th>Order</th>
                             <th>Scope</th>
                             <th>Action</th>
                         </tr>
@@ -86,6 +87,7 @@
                                 <td>{{$module->name}}</td>
                                 <td>{{$module->slug}}</td>
                                 <td>{{$module->description}}</td>
+                                <td>{{$module->order}}</td>
                                 <td>
                                     @foreach($module->scope as $scope)
                                         {{$scope}},

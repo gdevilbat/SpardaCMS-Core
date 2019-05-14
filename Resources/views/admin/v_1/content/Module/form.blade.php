@@ -81,7 +81,15 @@
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Module Name</label>
+                            <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control m-input" name="order" placeholder="Module order" value="{{old('order') ? old('order') : (!empty($module) ? $module->order : '')}}">
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-flex">
+                        <div class="col-md-4 d-flex justify-content-end py-3">
+                            <label for="exampleInputEmail1">Module Description</label>
                         </div>
                         <div class="col-md-8">
                             <textarea class="form-control m-input autosize" type="text" name="description" placeholder="Module Description">{{old('description') ? old('description') : (!empty($module) ? $module->description : '')}}</textarea>
