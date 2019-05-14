@@ -27,7 +27,7 @@ class MenuController extends CoreController
     public function getMenu()
     {
         $menu = null;
-        $modules = Module_m::all();
+        $modules = Module_m::orderBy('order')->get();
 
         foreach ($modules as $module) 
         {
