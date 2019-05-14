@@ -43,7 +43,6 @@ class CoreController extends Controller
         $this->data['theme_cms'] = $theme_cms;
         $this->data['theme_public'] = $theme_public;
         $this->data['settings'] = $settings;
-        $this->data['self'] = $this;
     }
 
     protected function print_r($value)
