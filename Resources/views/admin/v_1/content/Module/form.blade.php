@@ -89,6 +89,23 @@
                     </div>
                     <div class="form-group m-form__group d-flex">
                         <div class="col-md-4 d-flex justify-content-end py-3">
+                            <label for="exampleInputEmail1">Module Scanable<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="m-radio-list">
+                                <label class="m-radio">
+                                    <input type="radio" name="is_scanable" value="1" {{old('is_scanable') !== null && old('is_scanable') == '1' ? 'checked' : (!empty($module) && $module->is_scanable == 1 ? 'checked' : '')}}> Yes
+                                    <span></span>
+                                </label>
+                                <label class="m-radio">
+                                    <input type="radio" name="is_scanable" value="0" {{old('is_scanable') !== null && old('is_scanable') == '0' ? 'checked' : (!empty($module) && $module->is_scanable == 0 ? 'checked' : '')}}> No
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-flex">
+                        <div class="col-md-4 d-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Description</label>
                         </div>
                         <div class="col-md-8">

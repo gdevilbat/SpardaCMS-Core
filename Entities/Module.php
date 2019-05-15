@@ -29,4 +29,22 @@ class Module extends Model
         $this->attributes['slug'] = Str::slug($value, '-');
     }
 
+    /**
+     * Set the get ScanableAttribute.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function getStringIsScanableAttribute()
+    {
+        if($this->is_scanable)
+        {
+            return 'Yes';
+        }
+
+        return 'No';
+    }
+
+
+
 }

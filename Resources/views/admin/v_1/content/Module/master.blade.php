@@ -76,6 +76,7 @@
                             <th>Slug</th>
                             <th>Description</th>
                             <th>Order</th>
+                            <th>Scanable</th>
                             <th>Scope</th>
                             <th>Action</th>
                         </tr>
@@ -88,6 +89,7 @@
                                 <td>{{$module->slug}}</td>
                                 <td>{{$module->description}}</td>
                                 <td>{{$module->order}}</td>
+                                <td>{{$module->string_is_scanable}}</td>
                                 <td>
                                     @foreach($module->scope as $scope)
                                         {{$scope}},

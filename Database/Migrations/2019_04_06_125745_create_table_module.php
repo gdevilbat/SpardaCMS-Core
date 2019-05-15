@@ -19,6 +19,7 @@ class CreateTableModule extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('order')->default(1);
+            $table->enum('is_scanable', [0,1])->default(0);
             $table->string('scope')->default(json_encode(array()));
             $table->softDeletes();
             $table->timestamps();
