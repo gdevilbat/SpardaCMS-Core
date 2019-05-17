@@ -34,7 +34,7 @@ class MenuController extends CoreController
             try {
                 $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
             } catch (\InvalidArgumentException $e) {
-                if(!App::environment('production'))
+                if(!App::environment('local'))
                 {
                     throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler('Sidebar Not Found On Module '.$module->name);
                 }
