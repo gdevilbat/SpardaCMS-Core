@@ -33,6 +33,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
+        $this->commands([\Gdevilbat\SpardaCMS\Modules\Core\Console\SeedCommand::class]);
+
         $this->app['router']->aliasMiddleware('core.guest', RedirectIfAuthenticated::class);
         $this->app['router']->aliasMiddleware('core.auth', Authenticate::class);
         $this->app['router']->aliasMiddleware('core.menu', MenuGenerator::class);
