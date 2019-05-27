@@ -29,6 +29,12 @@ class MenuController extends CoreController
         $menu = null;
         $modules = Module_m::where('is_scanable', '=', '1')->orderBy('order')->get();
 
+        try {
+            $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
+        } catch (\InvalidArgumentException $e) {
+            
+        }
+
         foreach ($modules as $module) 
         {
             try {
@@ -43,12 +49,6 @@ class MenuController extends CoreController
                     Log::info('Sidebar Not Found On '.$module->name);
                 }
             }
-        }
-
-        try {
-            $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
-        } catch (\InvalidArgumentException $e) {
-            
         }
 
         return $menu;
