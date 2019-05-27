@@ -34,16 +34,21 @@ class MenuController extends CoreController
             try {
                 $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
             } catch (\InvalidArgumentException $e) {
-                if(!App::environment('local'))
+                if(!App::environment('production'))
                 {
                     throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler('Sidebar Not Found On Module '.$module->name);
                 }
                 else
                 {
                     Log::info('Sidebar Not Found On '.$module->name);
-                    $menu .= null;
                 }
             }
+        }
+
+        try {
+            $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
+        } catch (\InvalidArgumentException $e) {
+            
         }
 
         return $menu;
