@@ -5,3 +5,14 @@
     background-color: #9f87de;
     padding: 0.05rem 0.4rem 0.05rem 0.4rem;
 }
+.no-sort { 
+	pointer-events: none!important; 
+	cursor: default!important; 
+	background: none !important;
+	&::after{
+		display: none!important;
+	}
+	&::before{
+		display: none!important;
+	}
+}
