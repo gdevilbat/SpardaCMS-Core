@@ -38,8 +38,8 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::get('setting', 'SettingController@create')->middleware('can:super-access');
-		    Route::put('setting', 'SettingController@store')->middleware('can:super-access');
+		    Route::get('setting', 'SettingController@create')->middleware('can:super-access')->name('setting');
+		    Route::put('setting', 'SettingController@store')->middleware('can:super-access')->name('setting');
         
         /*=====  End of Setting CMS  ======*/
 
@@ -49,11 +49,11 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         ==================================*/
         
         Route::group(['prefix' => 'module'], function() {
-            Route::get('master', 'ModuleController@index')->middleware('can:super-access');
-            Route::get('form', 'ModuleController@create')->middleware('can:super-access');
-            Route::post('form', 'ModuleController@store')->middleware('can:super-access');
-            Route::put('form', 'ModuleController@store')->middleware('can:super-access');
-            Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access');
+            Route::get('master', 'ModuleController@index')->middleware('can:super-access')->name('module');
+            Route::get('form', 'ModuleController@create')->middleware('can:super-access')->name('module');
+            Route::post('form', 'ModuleController@store')->middleware('can:super-access')->name('module');
+            Route::put('form', 'ModuleController@store')->middleware('can:super-access')->name('module');
+            Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access')->name('module');
         });
         
         /*=====  End of Module CMS  ======*/
