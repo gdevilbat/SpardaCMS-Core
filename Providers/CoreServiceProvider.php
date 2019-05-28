@@ -96,7 +96,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/SpardaCMS/core');
 
-        $sourcePath = __DIR__.'/../Resources/views';
+        $sourcePath = __DIR__.'/../resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
@@ -119,7 +119,7 @@ class CoreServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'core');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'core');
+            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'core');
         }
     }
 
