@@ -20,12 +20,12 @@ if (! function_exists('module_asset_url')) {
         if(file_exists(base_path('resources/views/modules/SpardaCMS/'.$tmp[0].'/'.$asset)))
         {
             return asset('resources/views/modules/SpardaCMS/'.$tmp[0].'/'.$asset);
-        }elseif(file_exists(base_path('vendor/gdevilbat/SpardaCMS'.$tmp[0].'/'.$tmp[1])))
+        }elseif(file_exists(base_path('vendor/gdevilbat/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1])))
         {
-            return asset('vendor/gdevilbat/SpardaCMS'.ucfirst($tmp[0]).'/'.$tmp[1]);
-        }elseif(file_exists(base_path('Modules/SpardaCMS'.$tmp[0].'/'.$tmp[1]))) 
+            return asset('vendor/gdevilbat/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]);
+        }elseif(file_exists(base_path('Modules/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]))) 
         {
-            return asset('Modules/SpardaCMS'.$tmp[0].'/'.$tmp[1]);
+            return asset('Modules/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]);
         }
 
         return Module::asset($path);
@@ -52,12 +52,12 @@ if (! function_exists('module_asset_path')) {
         if(file_exists(base_path('resources/views/modules/SpardaCMS/'.$tmp[0].'/'.$asset)))
         {
             return base_path('resources/views/modules/SpardaCMS/'.$tmp[0].'/'.$asset);
-        }elseif(file_exists(base_path('vendor/gdevilbat/SpardaCMS'.$tmp[0].'/'.$tmp[1])))
+        }elseif(file_exists(base_path('vendor/gdevilbat/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1])))
         {
-            return base_path('vendor/gdevilbat/SpardaCMS'.ucfirst($tmp[0]).'/'.$tmp[1]);
-        }elseif(file_exists(base_path('Modules/SpardaCMS'.$tmp[0].'/'.$tmp[1]))) 
+            return base_path('vendor/gdevilbat/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]);
+        }elseif(file_exists(base_path('Modules/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]))) 
         {
-            return base_path('Modules/SpardaCMS'.$tmp[0].'/'.$tmp[1]);
+            return base_path('Modules/'.ucfirst('SpardaCMS').ucfirst($tmp[0]).'/'.$tmp[1]);
         }
 
         return Module::getModulePath($tmp[0]).$tmp[1];
