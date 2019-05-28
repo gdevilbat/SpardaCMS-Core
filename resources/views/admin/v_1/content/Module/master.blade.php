@@ -67,6 +67,17 @@
                     @endif
                 </div>
 
+                <div class="row mb-4">
+                    <div class="col-md-5">
+                        <a href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create')}}" class="btn btn-brand m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span>Add New Module</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
                 <!--begin: Datatable -->
                 <table class="table table-striped data-table" id="html_table" width="100%">
                     <thead>
@@ -74,6 +85,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Slug</th>
+                            <th>Type</th>
                             <th>Description</th>
                             <th>Order</th>
                             <th>Scanable</th>
@@ -87,6 +99,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$module->name}}</td>
                                 <td>{{$module->slug}}</td>
+                                <td>{{$module->module_type}}</td>
                                 <td>{{$module->description}}</td>
                                 <td>{{$module->order}}</td>
                                 <td>{{$module->string_is_scanable}}</td>

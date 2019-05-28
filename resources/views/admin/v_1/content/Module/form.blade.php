@@ -68,7 +68,7 @@
                             <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="name" placeholder="Module Name" value="{{old('name') ? old('name') : (!empty($module) ? $module->name : '')}}">
+                            <input type="text" class="form-control m-input slugify" data-target="slug" name="name" placeholder="Module Name" value="{{old('name') ? old('name') : (!empty($module) ? $module->name : '')}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">
@@ -76,7 +76,7 @@
                             <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="slug" placeholder="Module Slug" value="{{old('slug') ? old('slug') : (!empty($module) ? $module->slug : '')}}" readonly>
+                            <input type="text" class="form-control m-input" name="slug" id="slug" placeholder="Module Slug" value="{{old('slug') ? old('slug') : (!empty($module) ? $module->slug : '')}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-flex">

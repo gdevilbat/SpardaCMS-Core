@@ -45,7 +45,7 @@ class ModuleController extends CoreController
             $module->save();
         }
 
-        $this->module_m->whereIn('slug', $remove_modules)->delete();
+        //$this->module_m->whereIn('slug', $remove_modules)->delete();
 
         $this->data['modules'] = $this->module_repository->all();
 
@@ -173,12 +173,16 @@ class ModuleController extends CoreController
      */
     public function destroy(Request $request)
     {
-        $query = $this->module_repository->findOrFail(decrypt($request->id));
+        $query = $this->module_m->where('id', decrypt($request->id));
 
-        $module = Module::find($query->slug);
+        $module = Module::find($query->firstOrFail()->slug);
 
         try {
-            $module->disable();
+            if(!empty($module))
+            {
+                $module->disable();
+            }
+            $query->delete();
 
             return redirect()->back()->with('global_message', array('status' => 200,'message' => 'Successfully Delete Module!'));
             
