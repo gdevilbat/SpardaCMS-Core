@@ -2,43 +2,18 @@
 
 namespace Gdevilbat\SpardaCMS\Modules\Core\Entities;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\User as User_m;
 
 use App;
 use Log;
 
-class User extends Authenticatable
+class User extends User_m
 {
-    use Notifiable;
+    //use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $dates = ['deleted_at'];
 
     public function role()
     {
@@ -48,5 +23,19 @@ class User extends Authenticatable
     public function userAccount()
     {
         return $this->hasOne("\Gdevilbat\SpardaCMS\Modules\Account\Entities\UserAccount", "user_id");
+    }
+
+    /**
+     * Set the user's password.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPasswordAttribute($value)
+    {
+        if(!empty($value))
+        {
+            $this->attributes['password'] = bcrypt($value);
+        }
     }
 }
