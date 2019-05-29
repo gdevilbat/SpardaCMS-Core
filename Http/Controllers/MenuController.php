@@ -30,7 +30,7 @@ class MenuController extends CoreController
         $modules = Module_m::where('is_scanable', '=', '1')->orderBy('order')->get();
 
         try {
-            $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
+            $menu .= View('admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
         } catch (\InvalidArgumentException $e) {
             
         }
@@ -38,11 +38,11 @@ class MenuController extends CoreController
         foreach ($modules as $module) 
         {
             try {
-                $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.content.sidebar')->render();
+                $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
             } catch (\InvalidArgumentException $e) {
                 if(!App::environment('production'))
                 {
-                    throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler('Sidebar Not Found On Module '.$module->name);
+                    throw new \Gdevilbat\SpardaCMS\Modules\Core\Exceptions\ManualHandler($e->getMessage().' Sidebar Not Found On Module '.$module->name);
                 }
                 else
                 {

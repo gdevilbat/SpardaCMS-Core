@@ -1,4 +1,4 @@
-@extends('core::admin.'.$theme_cms->value.'.template')
+@extends('core::admin.'.$theme_cms->value.'.templates.parent')
 
 @section('page_level_css')
     {{Html::style(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
@@ -90,7 +90,7 @@
                             <th>Order</th>
                             <th>Scanable</th>
                             <th>Scope</th>
-                            <th>Action</th>
+                            <th class="no-sort">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,4 +1,4 @@
-@extends('core::admin.'.$theme_cms->value.'.template')
+@extends('core::admin.'.$theme_cms->value.'.templates.parent')
 
 @section('page_level_css')
     {{Html::style(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
@@ -68,7 +68,7 @@
                             </div>
                         @endif
                     </div>
-                    @include('core::admin.'.$theme_cms->value.'.content.Partials.meta_tag', ['column' => 'global'])
+                    @include('core::admin.'.$theme_cms->value.'.partials.meta_tag', ['column' => 'global'])
                     <hr>
                     <div class="form-group m-form__group d-flex flex-wrap">
                         <div class="col-md-4 d-flex justify-content-end py-3">
