@@ -29,16 +29,24 @@ class MenuController extends CoreController
         $menu = null;
         $modules = Module_m::where('is_scanable', '=', '1')->orderBy('order')->get();
 
-        try {
-            $menu .= View('admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
-        } catch (\InvalidArgumentException $e) {
-            
-        }
+        $database_module_scan = 1;
 
         foreach ($modules as $module) 
         {
             try {
-                $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
+                if($module->module_type == 'Embed')
+                {
+                    $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
+                }
+                else
+                {
+                    if($database_module_scan)
+                    {
+                        $menu .= View('admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
+                    }
+
+                    $database_module_scan = 0;
+                }
             } catch (\InvalidArgumentException $e) {
                 if(!App::environment('production'))
                 {
