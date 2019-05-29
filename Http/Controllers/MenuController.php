@@ -40,12 +40,7 @@ class MenuController extends CoreController
                 }
                 else
                 {
-                    if($database_module_scan)
-                    {
-                        $menu .= View('admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
-                    }
-
-                    $database_module_scan = 0;
+                    $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.'.ucfirst($module->slug).'.sidebar')->render();
                 }
             } catch (\InvalidArgumentException $e) {
                 if(!App::environment('production'))
