@@ -77,6 +77,7 @@ class ModuleController extends CoreController
     {
         $this->validate($request,[
                 'name' => 'required|max:50',
+                'order' => 'required',
                 'scope' => 'max:191',
             ]);
 
