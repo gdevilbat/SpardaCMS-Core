@@ -274,7 +274,12 @@ $(document).ready(function() {
     
     if($(".select2").length)
     {
-        $(".select2").select2();
+        $(".select2").select2({
+          placeholder: {
+            id: '-1', // the value of the option
+            text: 'Select an option'
+          }
+        });
     }
     
     /*=====  End of Multi Select  ======*/
@@ -291,12 +296,12 @@ $(document).ready(function() {
     =            CK Editor            =
     =================================*/
     
-        $(".ckeditor").each(function () {
+        $(".texteditor").each(function () {
              CKEDITOR.replace( $(this).attr("name"),{
                 filebrowserImageBrowseUrl: base+'/filemanager?type=Images',
-                filebrowserImageUploadUrl: base+'/filemanager/upload?type=Images&_token=',
+                filebrowserImageUploadUrl: base+'/filemanager/upload?type=Images&_token='+window.Laravel.csrfToken,
                 filebrowserBrowseUrl: base+'/filemanager?type=Files',
-                filebrowserUploadUrl: base+'/filemanager/upload?type=Files&_token=',
+                filebrowserUploadUrl: base+'/filemanager/upload?type=Files&_token='+window.Laravel.csrfToken,
                 image_previewText: ' '
             });
         });
