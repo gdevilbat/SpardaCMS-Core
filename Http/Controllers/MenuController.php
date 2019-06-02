@@ -38,7 +38,7 @@ class MenuController extends CoreController
                 {
                     $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
                 }
-                else
+                elseif($module->module_type == 'Database')
                 {
                     $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.'.ucfirst($module->slug).'.sidebar')->render();
                 }
