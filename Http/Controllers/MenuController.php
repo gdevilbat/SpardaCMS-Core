@@ -38,9 +38,13 @@ class MenuController extends CoreController
                 {
                     $menu .= View($module->slug.'::admin.'.$this->data['theme_cms']->value.'.templates.sidebar')->render();
                 }
-                elseif($module->module_type == 'Database')
+                else
                 {
-                    $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.'.ucfirst($module->slug).'.sidebar')->render();
+                    try {
+                        $menu .= View('admin.'.$this->data['theme_cms']->value.'.content.'.ucfirst($module->slug).'.sidebar')->render();
+                    } catch (\InvalidArgumentException $e) {
+                        Log::info('Sidebar Not Found On Module '.$module->name.' Remove It From Database');
+                    }
                 }
             } catch (\InvalidArgumentException $e) {
                 if(!App::environment('production'))
@@ -49,7 +53,7 @@ class MenuController extends CoreController
                 }
                 else
                 {
-                    Log::info('Sidebar Not Found On '.$module->name);
+                    Log::info('Sidebar Not Found On Module'.$module->name);
                 }
             }
         }
