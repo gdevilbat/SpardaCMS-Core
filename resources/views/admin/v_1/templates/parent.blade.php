@@ -229,6 +229,8 @@
 
         <!-- end:: Body -->
 
+        <div class="loading-overlay"></div>
+
         <!-- begin::Footer -->
         <footer class="m-grid__item   m-footer ">
           <div class="m-container m-container--fluid m-container--full-height m-page__container">

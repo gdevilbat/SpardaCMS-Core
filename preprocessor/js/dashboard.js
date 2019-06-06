@@ -380,6 +380,21 @@ $(document).ready(function() {
     
 });
 
+/*=============================================
+=            Loading Overlay           =
+=============================================*/
+
+    var $loading = $('.loading-overlay');
+    $(document)
+      .ajaxStart(function (event) {
+        $loading.show();
+      })
+      .ajaxStop(function () {
+        $loading.hide();
+      })
+
+/*=====  End of Loading Overlay ======*/
+
 /*=======================================
 =            Form Commponent            =
 =======================================*/
