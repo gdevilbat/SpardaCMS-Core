@@ -269,18 +269,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Theme Public:</label>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <select class="form-control m-input" name="theme_public">
-                                @foreach($public_directories as $public)
-                                    <option value="{{$public}}" {{old('theme_public') == $public ? 'selected' : ((!empty($settings->where('name','theme_public')->flatten()[0]->value) &&  $settings->where('name','theme_public')->flatten()[0]->value == $public)? 'selected' : '')}}>{{$public}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 {{csrf_field()}}
                 {{method_field('PUT')}}
