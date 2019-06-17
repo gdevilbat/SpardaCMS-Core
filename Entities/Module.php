@@ -77,4 +77,14 @@ class Module extends Model
         return 'Database';
     }
 
+    public static function getTableName()
+    {
+        return with(new Static)->getTable();
+    }
+
+    public static function getPrimaryKey()
+    {
+        return with(new Static)->getKeyName();
+    }
+
 }
