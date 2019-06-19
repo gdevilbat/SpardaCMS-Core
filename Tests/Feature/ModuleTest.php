@@ -61,6 +61,7 @@ class ModuleTest extends TestCase
         				 ->post(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@store'), [
 								'name' => $faker->word,
 								'slug' => $slug,
+                                'description' => $faker->text,
 								'order' => 0,
         				 	])
         				 ->assertStatus(302)

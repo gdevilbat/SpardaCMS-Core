@@ -5,10 +5,11 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Tests\Browser;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ModuleTest extends DuskTestCase
 {
-    use RefreshDatabase, \Gdevilbat\SpardaCMS\Modules\Core\Tests\ManualRegisterProvider;
+    use DatabaseMigrations, \Gdevilbat\SpardaCMS\Modules\Core\Tests\ManualRegisterProvider;
     
     /**
      * A basic browser test example.
@@ -29,6 +30,7 @@ class ModuleTest extends DuskTestCase
                     ->AssertSee('Module Form')
                     ->type('name', $faker->word)
                     ->type('order', 1)
+                    ->type('description', $faker->text)
                     ->press('Submit')
                     ->waitForText('Master Data of Module')
                     ->assertSee('Successfully Add Module!');

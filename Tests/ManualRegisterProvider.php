@@ -15,4 +15,16 @@ trait ManualRegisterProvider{
 		$authentication->boot();
 	}
 
+	public function tearDown()
+    {
+        try {
+            parent::tearDown();
+        } catch (\BadMethodCallException $e) {
+            if(!(env('DB_CONNECTION') == 'sqlite'))
+            {
+                throw new \BadMethodCallException($e);
+            }
+        }
+    }
+
 }
