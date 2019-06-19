@@ -56,12 +56,12 @@ class ModuleController extends CoreController
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $this->data['method'] = method_field('POST');
-        if(isset($_GET['code']))
+        if($request->has('code'))
         {
-            $this->data['module'] = $this->module_repository->findOrFail(decrypt($_GET['code']));
+            $this->data['module'] = $this->module_repository->findOrFail(decrypt($request->input('code')));
             $this->data['method'] = method_field('PUT');
         }
 

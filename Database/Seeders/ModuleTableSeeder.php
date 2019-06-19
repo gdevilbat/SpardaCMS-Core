@@ -4,9 +4,10 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class CoreDatabaseSeeder extends Seeder
+use DB;
+
+class ModuleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +18,12 @@ class CoreDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
-        $this->call(SettingTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(ModuleTableSeeder::class);
+        DB::table('module')->insert([
+            [
+                'name' => 'test',
+                'slug' => 'test',
+                'created_at' => \Carbon\Carbon::now()
+            ]
+        ]);
     }
 }

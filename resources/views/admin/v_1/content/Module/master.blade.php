@@ -111,9 +111,9 @@
                                 <td>
                                     <div class="col">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a href="javascript:void(0)" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Action
-                                            </button>
+                                            </a>
                                             <div class="dropdown-menu dropdown-menu-left">
                                                 <button class="dropdown-item" type="button">
                                                     <a class="m-link m-link--state m-link--info" href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create').'?code='.encrypt($module->id)}}"><i class="fa fa-edit"> Edit</i></a>
