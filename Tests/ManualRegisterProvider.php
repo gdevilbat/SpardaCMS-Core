@@ -20,7 +20,7 @@ trait ManualRegisterProvider{
         try {
             parent::tearDown();
         } catch (\BadMethodCallException $e) {
-            if(!(env('DB_CONNECTION') == 'sqlite'))
+            if(!(env('DB_CONNECTION') == 'sqlite' && env('DB_DATABASE') != ':memory:'))
             {
                 throw new \BadMethodCallException($e);
             }
