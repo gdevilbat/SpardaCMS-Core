@@ -29,6 +29,7 @@ class ModuleTest extends DuskTestCase
                     ->waitForText('Module Form')
                     ->AssertSee('Module Form')
                     ->type('name', $faker->word)
+                    ->type('slug', $faker->word)
                     ->type('order', 1)
                     ->type('description', $faker->text)
                     ->press('Submit')
