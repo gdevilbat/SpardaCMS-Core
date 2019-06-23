@@ -38,4 +38,14 @@ class User extends User_m
             $this->attributes['password'] = bcrypt($value);
         }
     }
+
+    public static function getTableName()
+    {
+        return with(new Static)->getTable();
+    }
+
+    public static function getPrimaryKey()
+    {
+        return with(new Static)->getKeyName();
+    }
 }
