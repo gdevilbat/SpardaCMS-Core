@@ -131,7 +131,7 @@ class ModuleTest extends TestCase
 
         $response = $this->actingAs($user)
 				        ->from(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))
-				        ->post(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@store'), [
+				        ->post(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@destroy'), [
 				        	$module->getKeyName() => encrypt($module->getKey()),
 							'_method' => 'DELETE'
 				    	])
