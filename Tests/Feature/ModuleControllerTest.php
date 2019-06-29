@@ -5,7 +5,7 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ModuleTest extends TestCase
+class ModuleControllerTest extends TestCase
 {
 	use RefreshDatabase, \Gdevilbat\SpardaCMS\Modules\Core\Tests\ManualRegisterProvider;
 
@@ -127,7 +127,7 @@ class ModuleTest extends TestCase
 
 
         $user = \App\User::find(1);
-        $module = \Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::latest()->first();
+        $module = \Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::where('slug', 'test')->first();
 
         $response = $this->actingAs($user)
 				        ->from(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))
