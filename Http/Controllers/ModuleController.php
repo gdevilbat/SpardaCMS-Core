@@ -92,10 +92,10 @@ class ModuleController extends CoreController
         else
         {
              $this->validate($request,[
-                'slug' => 'required|max:191|unique:module,slug,'.decrypt($request->input('id')).',id',
+                'slug' => 'required|max:191|unique:module,slug,'.decrypt($request->input(\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey())).','.\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey(),
             ]);
-            $data = $request->except(['_token','_method', 'id']);
-            $module = $this->module_repository->findOrFail(decrypt($request->input('id')));
+            $data = $request->except(['_token','_method', \Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey()]);
+            $module = $this->module_repository->findOrFail(decrypt($request->input(\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey())));
         }
 
         foreach ($data as $key => $value) 
@@ -174,7 +174,7 @@ class ModuleController extends CoreController
      */
     public function destroy(Request $request)
     {
-        $query = $this->module_m->where('id', decrypt($request->id));
+        $query = $this->module_m->where(\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey(), decrypt($request->input(\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey())));
 
         $module = Module::find($query->firstOrFail()->slug);
 

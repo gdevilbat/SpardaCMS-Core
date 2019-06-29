@@ -16,6 +16,7 @@ class Module extends Model
      * @var array
      */
     protected $table = 'module';
+    protected $primaryKey = 'id_module';
     protected $casts = [
         'scope' => 'array',
     ];

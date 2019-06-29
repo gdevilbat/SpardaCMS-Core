@@ -14,7 +14,7 @@ class CreateTableModule extends Migration
     public function up()
     {
         Schema::create('module', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_module');
             $table->string('name', 50);
             $table->string('slug')->unique();
             $table->text('description')->nullable();
