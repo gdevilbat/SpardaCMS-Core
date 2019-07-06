@@ -13,6 +13,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\SettingRepository;
 use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting as Setting_m;
 
+use Config;
+
 class CoreController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -21,7 +23,16 @@ class CoreController extends Controller
 
     public function __construct()
     {
-        $settings = Setting_m::all();
+    	if(empty(Config::get('settings')))
+    	{
+	        $settings = Setting_m::all();
+    		Config::set('settings', $settings);
+    	}
+    	else
+    	{
+    		$settings = Config::get('settings');
+    	}
+
         $settings_cms = $settings->where('name', 'theme_cms');
         $theme_cms = null;
         foreach ($settings_cms as $key => $value) 
