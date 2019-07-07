@@ -10,6 +10,7 @@ use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
 
 use Module;
+use App;
 
 class ModuleController extends CoreController
 {
@@ -181,7 +182,10 @@ class ModuleController extends CoreController
         try {
             if(!empty($module))
             {
-                $module->disable();
+                if(!App::environment('testing'))
+                {
+                    $module->disable();
+                }
             }
             $query->delete();
 
