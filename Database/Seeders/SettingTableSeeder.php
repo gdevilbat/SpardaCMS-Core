@@ -21,7 +21,7 @@ class SettingTableSeeder extends Seeder
         DB::table('setting')->insert([
             [
                 'name' => 'theme_public',
-                'value' => json_encode('v_1'),
+                'value' => json_encode('classic'),
             ],
             [
                 'name' => 'theme_cms',
