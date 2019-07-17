@@ -7,8 +7,11 @@ use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as MaintenanceMode;
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController;
 
-class CheckForMaintenanceMode
+use Module;
+
+class CheckForMaintenanceMode extends CoreController
 {
     /**
      * Handle an incoming request.
@@ -31,6 +34,7 @@ class CheckForMaintenanceMode
 
     public function __construct(Application $app)
     {
+    	parent::__construct();
         $this->app = $app;
     }
 
@@ -38,7 +42,16 @@ class CheckForMaintenanceMode
     {
         if ($this->app->isDownForMaintenance() && !$this->inExceptArray($request) && !(Auth::check())) 
         {
-            abort(503);
+        	if(Module::has('Appearance'))
+        	{
+        		return response()
+                ->view('appearance::general.'.$this->data['theme_public']->value.'.errors.503', $this->data, 503);
+        	}
+        	else
+
+        	{
+	            abort(503);
+        	}
         }
         return $next($request);
     }
