@@ -79,59 +79,64 @@
                 </div>
 
                 <!--begin: Datatable -->
-                <table class="table table-striped data-table" id="html_table" width="100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Slug</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Order</th>
-                            <th>Scanable</th>
-                            <th>Scope</th>
-                            <th class="no-sort">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($modules as $module)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$module->name}}</td>
-                                <td>{{$module->slug}}</td>
-                                <td>{{$module->module_type}}</td>
-                                <td>{{$module->description}}</td>
-                                <td>{{$module->order}}</td>
-                                <td>{{$module->string_is_scanable}}</td>
-                                <td>
-                                    @foreach($module->scope as $scope)
-                                        {{$scope}},
-                                    @endforeach
-                                </td>
-                                <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-left">
-                                                <button class="dropdown-item" type="button">
-                                                    <a class="m-link m-link--state m-link--info" href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create').'?code='.encrypt($module->getKey())}}"><i class="fa fa-edit"> Edit</i></a>
-                                                </button>
-                                                <form action="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@destroy')}}" method="post" accept-charset="utf-8">
-                                                    {{method_field('DELETE')}}
-                                                    {{csrf_field()}}
-                                                    <input type="hidden" name="{{\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey()}}" value="{{encrypt($module->getKey())}}">
-                                                </form>
-                                                <button class="dropdown-item confirm-delete" type="button"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped data-table display responsive nowrap" id="html_table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-priority="1">No</th>
+                                    <th data-priority="2">Name</th>
+                                    <th>Slug</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Order</th>
+                                    <th>Scanable</th>
+                                    <th>Scope</th>
+                                    <th class="no-sort" data-priority="3">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($modules as $module)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$module->name}}</td>
+                                        <td>{{$module->slug}}</td>
+                                        <td>{{$module->module_type}}</td>
+                                        <td>{{$module->description}}</td>
+                                        <td>{{$module->order}}</td>
+                                        <td>{{$module->string_is_scanable}}</td>
+                                        <td>
+                                            @foreach($module->scope as $scope)
+                                                {{$scope}},
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="btn-group">
+                                                    <a href="javascript:void(0)" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-left">
+                                                        <button class="dropdown-item" type="button">
+                                                            <a class="m-link m-link--state m-link--info" href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create').'?code='.encrypt($module->getKey())}}"><i class="fa fa-edit"> Edit</i></a>
+                                                        </button>
+                                                        <form action="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@destroy')}}" method="post" accept-charset="utf-8">
+                                                            {{method_field('DELETE')}}
+                                                            {{csrf_field()}}
+                                                            <input type="hidden" name="{{\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey()}}" value="{{encrypt($module->getKey())}}">
+                                                        </form>
+                                                        <button class="dropdown-item confirm-delete" type="button"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
 
                 <!--end: Datatable -->
             </div>
