@@ -162,9 +162,11 @@ $(document).ready(function() {
         }
     }
     window.confirm_delete = confirm_delete;
+
+
     
     /*----------  Datatable  ----------*/
-    var table = $(".data-table").DataTable({
+    /*var table = $(".data-table").DataTable({
         "pagingType": "full_numbers",
         fnInitComplete: function(settings){
         url = window.location.href;
@@ -175,10 +177,10 @@ $(document).ready(function() {
             api.page(parseInt(url[1])-1).draw('page');
         }
        }
-    });
+    });*/
 
-    $(".dataTables_wrapper .dataTables_paginate").click(function(event) {
-        url = window.location.href;
+    //$(".dataTables_wrapper .dataTables_paginate").click(function(event) {
+        /*url = window.location.href;
         url = url.split("#");
         if($(".product-table").length > 0)
         {
@@ -189,24 +191,24 @@ $(document).ready(function() {
             info = table.page.info();
         }
         new_url = url[0]+'#'+(info.page+1);
-        window.location = new_url;
+        window.location = new_url;*/
 
         /*===========================================
         =            Delete Confirmation            =
         ===========================================*/
 
-            $(".confirm-delete").click(function(event) {
+            /*$(".confirm-delete").click(function(event) {
                 confirm_delete.data.object = this;
             });
 
             $(".confirmed").click(function(event) {
                 $(confirm_delete.data.object).prev().get(0).submit();
-            });
+            });*/
 
         /*=====  End of Delete Confirmation  ======*/
-    });
+    //});
 
-    var hidden_table = $(".hidden-table").dataTable({
+    /*var hidden_table = $(".hidden-table").dataTable({
         buttons: [
             { extend: 'print', className: 'btn dark btn-outline' },
             { extend: 'copy', className: 'btn red btn-outline' },
@@ -224,13 +226,13 @@ $(document).ready(function() {
 
     $(".btn-cancel").click(function(event) {
         window.history.back();
-    });
+    });*/
 
     /*==============================================
     =            Component Filter Table            =
     ==============================================*/
 
-         $(".length-filter").each(function(index, el) {
+         /*$(".length-filter").each(function(index, el) {
              $(this).change(function(event) {
                 $($(this).parents("form").get(0)).submit();
              });
@@ -240,9 +242,34 @@ $(document).ready(function() {
              $(this).click(function(event) {
                 $($(this).parents("form").get(0)).submit();
              });
-         });   
+         });  */ 
 
     /*=====  End of Component Filter Table  ======*/
+
+    /*==================================
+    =            Data Table            =
+    ==================================*/
+    
+    $(".data-table").each(function(index, el) {
+        $(this).DataTable( {
+            "processing": true,
+            "serverSide": true,
+            "order": [],
+            "searchDelay": 1000,
+            "ajax": $.fn.dataTable.pipeline( {
+                url: $(this).attr('data-ajax'),
+                pages: 5 // number of pages to cache
+            }),
+             "columnDefs": [
+            ],
+            "drawCallback": function( settings ) {
+                deleteData();
+            }
+        } );
+    });
+    
+    /*=====  End of Data Table  ======*/
+    
 
     /*========================================
     =            Image Filemanage            =
