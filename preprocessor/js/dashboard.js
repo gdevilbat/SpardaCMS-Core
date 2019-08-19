@@ -166,18 +166,21 @@ $(document).ready(function() {
 
     
     /*----------  Datatable  ----------*/
-    /*var table = $(".data-table").DataTable({
+    var table = $(".data-table").DataTable({
         "pagingType": "full_numbers",
         fnInitComplete: function(settings){
-        url = window.location.href;
-        url = url.split("#");
-        if(1 in url)
-        {
-            var api = new $.fn.dataTable.Api( settings );
-            api.page(parseInt(url[1])-1).draw('page');
+            /*url = window.location.href;
+            url = url.split("#");
+            if(1 in url)
+            {
+                var api = new $.fn.dataTable.Api( settings );
+                api.page(parseInt(url[1])-1).draw('page');
+            }*/
+       },
+       "drawCallback": function( settings ) {
+                deleteData();
         }
-       }
-    });*/
+    });
 
     //$(".dataTables_wrapper .dataTables_paginate").click(function(event) {
         /*url = window.location.href;
