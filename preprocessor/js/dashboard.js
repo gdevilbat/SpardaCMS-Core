@@ -250,7 +250,7 @@ $(document).ready(function() {
     =            Data Table            =
     ==================================*/
     
-    $(".data-table").each(function(index, el) {
+    $(".data-table-ajax").each(function(index, el) {
         $(this).DataTable( {
             "processing": true,
             "serverSide": true,
