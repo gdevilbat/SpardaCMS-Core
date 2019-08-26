@@ -345,8 +345,11 @@ $(document).ready(function() {
         /*----------  Product Slug URL  ----------*/
        $(".slugify").each(function(index, el) {
            $(this).keyup(function(event) {
-               target = $(this).attr('data-target');
-               $("#"+target).val(slugify($(this).val()));
+               if(getParameterByName('code') == null)
+               {
+                   target = $(this).attr('data-target');
+                   $("#"+target).val(slugify($(this).val()));
+               }
            });
        });
 
@@ -582,4 +585,14 @@ window.deleteData = function(){
     $(".confirmed").click(function(event) {
         $(confirm_delete.data.object).prev().get(0).submit();
     });
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
