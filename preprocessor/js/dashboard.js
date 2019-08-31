@@ -342,7 +342,7 @@ $(document).ready(function() {
     =            Slugify link            =
     ====================================*/
 
-        /*----------  Product Slug URL  ----------*/
+        /*----------  Post Slug URL  ----------*/
        $(".slugify").each(function(index, el) {
            $(this).keyup(function(event) {
                if(getParameterByName('code') == null)
@@ -352,6 +352,14 @@ $(document).ready(function() {
                }
            });
        });
+
+       /*----------  Slug Self  ----------*/
+       $(".slug-me").each(function(index, el) {
+           $(this).change(function(event) {
+               $(this).val(slugify($(this).val()));
+           });
+       });
+       
 
     /*=====  End of Slugify link  ======*/
 
