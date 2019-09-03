@@ -375,6 +375,20 @@ $(document).ready(function() {
     /*=====  End of Autosize Textarea  ======*/
 
     /*============================================
+    =            Show Count Text Area            =
+    ============================================*/
+    
+    $(".count-textarea").each(function(index, el) {
+        $($(this).attr('data-target-count-text')).html(this.value.length);
+        $(this).keyup(function(event) {
+            showCountTextLength(this, event);
+        });    
+    });
+    
+    /*=====  End of Show Count Text Area  ======*/
+    
+
+    /*============================================
     =            Masking Phone number            =
     ============================================*/
 
@@ -604,3 +618,13 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+function showCountTextLength(textBox, e) { 
+    
+    var maxLength = parseInt($(textBox).data("length"));
+    
+  
+    $($(textBox).attr('data-target-count-text')).html(textBox.value.length);
+    
+    return true; 
+} 
