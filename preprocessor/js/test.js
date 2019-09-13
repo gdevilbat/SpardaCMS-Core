@@ -28,11 +28,11 @@ axios.get('https://www.tokopedia.com/sparda-store/acer-nitro-5-an515-52-51t2-i5-
     .then((response) => {
         if(response.status === 200) {
         const html = response.data;
-        const $ = cheerio.load(html);
+        const cheerioJquery = cheerio.load(html);
         let devtoList = [];
-        $('.rvm-price').each(function(i, elem) {
+        cheerioJquery('.rvm-price').each(function(i, elem) {
             devtoList[i] = {
-                url: $(this).children('[itemprop="price"]').attr('content')
+                url: cheerioJquery(this).children('[itemprop="price"]').attr('content')
             }      
         });
         window.console.log(devtoList);
