@@ -151,6 +151,8 @@ $.fn.dataTable.Api.register( 'clearPipeline()', function () {
         settings.clearCache = true;
     } );
 } );
+
+$.fn.exists = function(){ return this.length > 0; }
  
 
 })(jQuery);
