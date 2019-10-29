@@ -257,10 +257,10 @@ $(document).ready(function() {
     
     $(".data-table-ajax").each(function(index, el) {
         $(this).DataTable( {
+            "pagingType": "full_numbers",
             "processing": true,
             "serverSide": true,
             "order": [],
-            "searchDelay": 1000,
             "ajax": $.fn.dataTable.pipeline( {
                 url: $(this).attr('data-ajax'),
                 pages: 5 // number of pages to cache
@@ -269,6 +269,15 @@ $(document).ready(function() {
             ],
             "drawCallback": function( settings ) {
                 deleteData();
+            },
+            "initComplete": function(settings, json) {
+                var $searchBox = $("div.dataTables_filter input");
+                $searchBox.unbind();
+                var searchDebouncedFn = debounce(function() {
+                    var api = new $.fn.dataTable.Api( settings );
+                    api.search( this.value ).draw();
+                }, 1000);
+                $searchBox.on("keyup", searchDebouncedFn);
             }
         } );
     });
@@ -629,4 +638,19 @@ function showCountTextLength(textBox, e) {
     $($(textBox).attr('data-target-count-text')).html(textBox.value.length);
     
     return true; 
-} 
+}
+
+window. debounce = function(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}; 
