@@ -20,6 +20,8 @@ Route::group(['middleware' => 'core.auth'], function() {
 
 Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
 
+    Route::get('dashboard', 'DashboardController@index');
+
     Route::group(['namespace' => 'Auth'], function() {
 	    Route::group(['prefix' => 'auth'], function() {
 			Route::get('/', 'LoginController@showLoginForm')->name('login');
