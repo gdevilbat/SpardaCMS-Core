@@ -63,3 +63,13 @@ if (! function_exists('module_asset_path')) {
         return Module::getModulePath($tmp[0]).$tmp[1];
     }
 }
+
+if (! function_exists('generata_storage_url')) {
+    function generata_storage_url($path, $time = 5)
+    {
+        if(env('FILESYSTEM_DEFAULT') == 'cloud')
+            return Storage::temporaryUrl($path, now()->addMinutes(5));
+
+        return Storage::url($path);
+    }
+}
