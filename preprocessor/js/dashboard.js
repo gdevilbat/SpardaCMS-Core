@@ -291,7 +291,7 @@ $(document).ready(function() {
 
         if($(".filemanager-image").length > 0)
         {
-            $('.filemanager-image').filemanager('image', {prefix: base+'/filemanager'});
+            $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
         }
 
     /*=====  End of Image Filemanage  ======*/
@@ -339,10 +339,10 @@ $(document).ready(function() {
     
         $(".texteditor").each(function () {
              CKEDITOR.replace( $(this).attr("name"),{
-                filebrowserImageBrowseUrl: base+'/filemanager?type=Images',
-                filebrowserImageUploadUrl: base+'/filemanager/upload?type=Images&_token='+window.Laravel.csrfToken,
-                filebrowserBrowseUrl: base+'/filemanager?type=Files',
-                filebrowserUploadUrl: base+'/filemanager/upload?type=Files&_token='+window.Laravel.csrfToken,
+                filebrowserImageBrowseUrl: base+'/control/filemanager?type=Images',
+                filebrowserImageUploadUrl: base+'/control/filemanager/upload?type=Images&_token='+window.Laravel.csrfToken,
+                filebrowserBrowseUrl: base+'/control/filemanager?type=Files',
+                filebrowserUploadUrl: base+'/control/filemanager/upload?type=Files&_token='+window.Laravel.csrfToken,
                 image_previewText: ' '
             });
         });
@@ -483,7 +483,7 @@ $(document).ready(function() {
 
                         if($(".filemanager-image").length > 0)
                         {
-                            $('.filemanager-image').filemanager('image', {prefix: base+'/filemanager'});
+                            $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                         }
 
                         $(".banner").each(function(index, el) {
@@ -514,7 +514,7 @@ $(document).ready(function() {
 
                             if($(".filemanager-image").length > 0)
                             {
-                                $('.filemanager-image').filemanager('image', {prefix: base+'/filemanager'});
+                                $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                             }
                         $(".banner").each(function(index, el) {
                            $(this).change(function(event) {
@@ -551,12 +551,12 @@ $(document).ready(function() {
 
                         if($(".filemanager-file").length > 0)
                         {
-                            $('.filemanager-file').filemanager('file', {prefix: base+'/filemanager'});
+                            $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                         }
 
                         if($(".filemanager-image").length > 0)
                         {
-                            $('.filemanager-image').filemanager('image', {prefix: base+'/filemanager'});
+                            $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                         }
 
 
@@ -584,12 +584,12 @@ $(document).ready(function() {
 
                     if($(".filemanager-file").length > 0)
                     {
-                        $('.filemanager-file').filemanager('file', {prefix: base+'/filemanager'});
+                        $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                     }
 
                     if($(".filemanager-image").length > 0)
                     {
-                        $('.filemanager-image').filemanager('image', {prefix: base+'/filemanager'});
+                        $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                     }
 
 

@@ -13,7 +13,7 @@
 
 Route::get('core', 'CoreController@index');
 
-Route::group(['middleware' => 'core.auth'], function() {
+Route::group(['prefix' => 'control', 'middleware' => 'core.auth'], function() {
 	Route::get('/filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
     Route::post('/filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 });
