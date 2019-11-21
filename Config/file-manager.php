@@ -104,7 +104,7 @@ return [
      *
      * default - false(OFF)
      */
-    'acl' => false,
+    'acl' => true,
 
     /**
      * Hide files and folders from file-manager if user doesn't have access
@@ -120,7 +120,7 @@ return [
      *
      * whitelist - Deny anything(access - 0 - deny), that not allowed by the ACL rules list
      */
-    'aclStrategy' => 'blacklist',
+    'aclStrategy' => 'whitelist',
 
     /**
      * ACL Rules cache
@@ -155,8 +155,11 @@ return [
             //['disk' => 'public', 'path' => '/', 'access' => 2],
         ],
         1 => [
-            //['disk' => 'public', 'path' => 'images/arch*.jpg', 'access' => 2],
-            //['disk' => 'public', 'path' => 'files/*', 'access' => 1],
+            /*['disk' => 'public', 'path' => '/', 'access' => 1],
+            ['disk' => 'public', 'path' => 'users', 'access' => 1],
+            ['disk' => 'public', 'path' => 'users/*', 'access' => 2],*/
         ],
     ],
+
+    'aclRepository' => \Gdevilbat\SpardaCMS\Modules\Core\Http\Handler\UsersACLRepository::class,
 ];
