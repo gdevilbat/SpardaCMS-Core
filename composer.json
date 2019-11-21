@@ -14,6 +14,7 @@
         "nwidart/laravel-modules": "^4.1",
         "joshbrw/laravel-module-installer": "^0.1.4",
         "laravelcollective/html": "^5.7",
+        "alexusmai/laravel-file-manager": "^2.0",
         "unisharp/laravel-filemanager": "^1.9"
     },
     "extra": {

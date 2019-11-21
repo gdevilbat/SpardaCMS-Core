@@ -57,6 +57,15 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         });
         
         /*=====  End of Module CMS  ======*/
+
+        /*===========================================
+        =            Laravel Filemanager            =
+        ===========================================*/
+        
+            Route::get('/laravel-filemanager', 'FileManagerController@index')->middleware('can:super-access')->name('filemanager');
+        
+        /*=====  End of Laravel Filemanager  ======*/
+        
         
 	});
 });
