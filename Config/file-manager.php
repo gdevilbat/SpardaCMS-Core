@@ -10,14 +10,14 @@ return [
      *
      * Default - DefaultConfigRepository get config from this file
      */
-    'configRepository' => DefaultConfigRepository::class,
+    'configRepository' => \Gdevilbat\SpardaCMS\Modules\Core\Http\Handler\UsersConfigDiskRepository::class,
 
     /**
      * ACL rules repository
      *
      * Default - ConfigACLRepository (see rules in - aclRules)
      */
-    'aclRepository' => ConfigACLRepository::class,
+    'aclRepository' =>\Gdevilbat\SpardaCMS\Modules\Core\Http\Handler\UsersACLRepository::class,
 
     //********* Default configuration for DefaultConfigRepository **************
 
@@ -25,7 +25,7 @@ return [
      * List of disk names that you want to use
      * (from config/filesystems)
      */
-    'diskList' => ['public'],
+    //'diskList' => ['public'],
 
     /**
      * Default disk for left manager
@@ -97,14 +97,14 @@ return [
      * Add your middleware name to array -> ['web', 'auth', 'admin']
      * !!!! RESTRICT ACCESS FOR NON ADMIN USERS !!!!
      */
-    'middleware' => ['web'],
+    'middleware' => ['web','core.auth'],
 
     /***************************************************************************
      * ACL mechanism ON/OFF
      *
      * default - false(OFF)
      */
-    'acl' => false,
+    'acl' => true,
 
     /**
      * Hide files and folders from file-manager if user doesn't have access
@@ -120,7 +120,7 @@ return [
      *
      * whitelist - Deny anything(access - 0 - deny), that not allowed by the ACL rules list
      */
-    'aclStrategy' => 'blacklist',
+    'aclStrategy' => 'whitelist',
 
     /**
      * ACL Rules cache
@@ -155,8 +155,10 @@ return [
             //['disk' => 'public', 'path' => '/', 'access' => 2],
         ],
         1 => [
-            //['disk' => 'public', 'path' => 'images/arch*.jpg', 'access' => 2],
-            //['disk' => 'public', 'path' => 'files/*', 'access' => 1],
+            /*['disk' => 'public', 'path' => '/', 'access' => 1],
+            ['disk' => 'public', 'path' => 'users', 'access' => 1],
+            ['disk' => 'public', 'path' => 'users/*', 'access' => 2],*/
         ],
     ],
+
 ];

@@ -337,13 +337,19 @@ $(document).ready(function() {
     =            CK Editor            =
     =================================*/
     
-        $(".texteditor").each(function () {
+        /*$(".texteditor").each(function () {
              CKEDITOR.replace( $(this).attr("name"),{
                 filebrowserImageBrowseUrl: base+'/control/filemanager?type=Images',
                 filebrowserImageUploadUrl: base+'/control/filemanager/upload?type=Images&_token='+window.Laravel.csrfToken,
                 filebrowserBrowseUrl: base+'/control/filemanager?type=Files',
                 filebrowserUploadUrl: base+'/control/filemanager/upload?type=Files&_token='+window.Laravel.csrfToken,
                 image_previewText: ' '
+            });
+        });*/
+
+        $(".texteditor").each(function () {
+             CKEDITOR.replace( $(this).attr("name"),{
+                filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
             });
         });
     
