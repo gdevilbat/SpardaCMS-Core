@@ -555,7 +555,7 @@ $(document).ready(function() {
                         =            Image Filemanage            =
                         ========================================*/
 
-                        if($(".filemanager-file").length > 0)
+                        /*if($(".filemanager-file").length > 0)
                         {
                             $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                         }
@@ -563,6 +563,32 @@ $(document).ready(function() {
                         if($(".filemanager-image").length > 0)
                         {
                             $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
+                        }*/
+
+                        if($(".filemanager-image").length > 0)
+                        {
+                            $(".filemanager-image").each(function(index, el) {
+                                $(this).click(function(event) {
+                                    event.preventDefault();
+
+                                      objFileManager = '#input-photo-'+index;
+
+                                      window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                });   
+                            });
+                        }
+
+                        if($(".filemanager-file").length > 0)
+                        {
+                            $(".filemanager-file").each(function(index, el) {
+                                $(this).click(function(event) {
+                                    event.preventDefault();
+
+                                      objFileManager = '#input-photo-'+index;
+
+                                      window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                });   
+                            });
                         }
 
 
@@ -573,7 +599,7 @@ $(document).ready(function() {
                                value = $(this).val();
                                index = $(this).attr('data-index');
                                name = $(this).attr('data-name');
-                               self.components[index][name] = value;
+                               self.$set(self.components[index], name, value);
                            });
                         });
                 });
@@ -588,7 +614,7 @@ $(document).ready(function() {
                     =            Image Filemanage            =
                     ========================================*/
 
-                    if($(".filemanager-file").length > 0)
+                    /*if($(".filemanager-file").length > 0)
                     {
                         $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                     }
@@ -596,6 +622,32 @@ $(document).ready(function() {
                     if($(".filemanager-image").length > 0)
                     {
                         $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
+                    }*/
+
+                    if($(".filemanager-image").length > 0)
+                    {
+                        $(".filemanager-image").each(function(index, el) {
+                            $(this).click(function(event) {
+                                event.preventDefault();
+
+                                  objFileManager = '#input-photo-'+index;
+
+                                  window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                            });   
+                        });
+                    }
+
+                    if($(".filemanager-file").length > 0)
+                    {
+                        $(".filemanager-file").each(function(index, el) {
+                            $(this).click(function(event) {
+                                event.preventDefault();
+
+                                  objFileManager = '#input-photo-'+index;
+
+                                  window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                            });   
+                        });
                     }
 
 
@@ -606,7 +658,7 @@ $(document).ready(function() {
                            value = $(this).val();
                            index = $(this).attr('data-index');
                            name = $(this).attr('data-name');
-                           self.components[index][name] = value;
+                           self.$set(self.components[index], name, value);
                        });
                     });
                 });
@@ -659,4 +711,27 @@ window. debounce = function(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
-}; 
+};
+
+let objFileManager;
+
+window.fmSetLink = function($url){
+    $(objFileManager).val($url.replace(window.base, '')).change();
+}
+
+window.getStorageLink = function($url){
+    if(isValidURL($url))
+    {
+        return $url;
+    }
+    else
+    {
+        return window.base+$url;
+    }
+}
+
+window.isValidURL = function (url) {
+
+    var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  return (res !== null)
+};
