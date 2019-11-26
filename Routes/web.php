@@ -62,7 +62,7 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         =            Laravel Filemanager            =
         ===========================================*/
         
-            Route::get('/laravel-filemanager', 'FileManagerController@index')->middleware('can:super-access')->name('filemanager');
+            Route::get('/laravel-filemanager', 'FileManagerController@index')->middleware('can:super-access')->name('cms.filemanager.master');
         
         /*=====  End of Laravel Filemanager  ======*/
         
