@@ -49,7 +49,7 @@
             </div>
 
             <!--begin::Form-->
-            <form class="m-form m-form--fit m-form--label-align-right" action="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\SettingController@store')}}" method="post">
+            <form class="m-form m-form--fit m-form--label-align-right" action="{{route('cms.setting.update')}}" method="post">
                 <div class="m-portlet__body">
                     <div class="col-md-5 offset-md-4">
                         @if (!empty(session('global_message')))

@@ -76,7 +76,7 @@ class SettingController extends CoreController
             }
         }
 
-        return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\SettingController@create'))->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
+        return redirect(route('cms.setting.create'))->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
     }
 
     /**

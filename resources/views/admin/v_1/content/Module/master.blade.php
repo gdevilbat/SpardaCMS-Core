@@ -69,7 +69,7 @@
 
                 <div class="row mb-4">
                     <div class="col-md-5">
-                        <a href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create')}}" class="btn btn-brand m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <a href="{{route('cms.module.create')}}" class="btn btn-brand m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Add New Module</span>
@@ -116,9 +116,9 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left">
                                                 <button class="dropdown-item" type="button">
-                                                    <a class="m-link m-link--state m-link--info" href="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@create').'?code='.encrypt($module->getKey())}}"><i class="fa fa-edit"> Edit</i></a>
+                                                    <a class="m-link m-link--state m-link--info" href="{{route('cms.module.create').'?code='.encrypt($module->getKey())}}"><i class="fa fa-edit"> Edit</i></a>
                                                 </button>
-                                                <form action="{{action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@destroy')}}" method="post" accept-charset="utf-8">
+                                                <form action="{{route('cms.module.delete')}}" method="post" accept-charset="utf-8">
                                                     {{method_field('DELETE')}}
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="{{\Gdevilbat\SpardaCMS\Modules\Core\Entities\Module::getPrimaryKey()}}" value="{{encrypt($module->getKey())}}">

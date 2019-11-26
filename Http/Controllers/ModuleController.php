@@ -111,11 +111,11 @@ class ModuleController extends CoreController
         {
             if($request->isMethod('POST'))
             {
-                return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
+                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
             }
             else
             {
-                return redirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\ModuleController@index'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
+                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
             }
         }
         else

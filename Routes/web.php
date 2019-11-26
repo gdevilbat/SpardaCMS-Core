@@ -38,8 +38,8 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::get('setting', 'SettingController@create')->middleware('can:super-access')->name('setting');
-		    Route::put('setting', 'SettingController@store')->middleware('can:super-access')->name('setting');
+		    Route::get('setting', 'SettingController@create')->middleware('can:super-access')->name('cms.setting.create');
+		    Route::put('setting', 'SettingController@store')->middleware('can:super-access')->name('cms.setting.update');
         
         /*=====  End of Setting CMS  ======*/
 
@@ -49,11 +49,11 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         ==================================*/
         
         Route::group(['prefix' => 'module'], function() {
-            Route::get('master', 'ModuleController@index')->middleware('can:super-access')->name('module');
-            Route::get('form', 'ModuleController@create')->middleware('can:super-access')->name('module');
-            Route::post('form', 'ModuleController@store')->middleware('can:super-access')->name('module');
-            Route::put('form', 'ModuleController@store')->middleware('can:super-access')->name('module');
-            Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access')->name('module');
+            Route::get('master', 'ModuleController@index')->middleware('can:super-access')->name('cms.module.master');
+            Route::get('form', 'ModuleController@create')->middleware('can:super-access')->name('cms.module.create');
+            Route::post('form', 'ModuleController@store')->middleware('can:super-access')->name('cms.module.save');
+            Route::put('form', 'ModuleController@store')->middleware('can:super-access')->name('cms.module.update');
+            Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access')->name('cms.module.delete');
         });
         
         /*=====  End of Module CMS  ======*/
