@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('cloud/assets/{path?}', 'DashboardController@getStorageURL')->where('path', '.*');
+
 Route::group(['prefix' => 'control', 'middleware' => 'core.auth'], function() {
 	Route::get('/filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
     Route::post('/filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
