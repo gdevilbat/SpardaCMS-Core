@@ -11,7 +11,7 @@
 	         </span>
 	     </a>
 	</li>
-	<li class="m-menu__item  {{Route::current()->getName() == 'cms.module.master' ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
+	<li class="m-menu__item  {{strstr(Route::current()->getName(), 'cms.module') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
 	    <a href="{{route('cms.module.master')}}" class="m-menu__link ">
 	        <i class="m-menu__link-icon flaticon-squares-4"></i>
 	        <span class="m-menu__link-title"> 
