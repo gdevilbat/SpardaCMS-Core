@@ -31,7 +31,7 @@ class DashboardController extends CoreController
 	    	$client = new Client();
 	    	$request = $client->get($url);
 	    	$response = $request->getBody()->getContents();
-		} catch (\GuzzleHttp\Exception\ClientExceptiovn $e) {
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
 			abort(404);
 		}
 
