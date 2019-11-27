@@ -573,7 +573,7 @@ $(document).ready(function() {
 
                                       objFileManager = '#input-photo-'+index;
 
-                                      window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                                 });   
                             });
                         }
@@ -586,7 +586,7 @@ $(document).ready(function() {
 
                                       objFileManager = '#input-photo-'+index;
 
-                                      window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                                 });   
                             });
                         }
@@ -632,7 +632,7 @@ $(document).ready(function() {
 
                                   objFileManager = '#input-photo-'+index;
 
-                                  window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                  window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                             });   
                         });
                     }
@@ -645,7 +645,7 @@ $(document).ready(function() {
 
                                   objFileManager = '#input-photo-'+index;
 
-                                  window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+                                  window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                             });   
                         });
                     }
@@ -716,7 +716,7 @@ window. debounce = function(func, wait, immediate) {
 let objFileManager;
 
 window.fmSetLink = function($url){
-    $(objFileManager).val($url.replace(window.base, '')).change();
+    $(objFileManager).val($url.replace(window.storage_url, '')).change();
 }
 
 window.getStorageLink = function($url){

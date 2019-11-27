@@ -261,6 +261,8 @@
     {{-- Javascript Core --}}
     <script type="text/javascript">
       var base = <?= "'".url('/')."'" ?>;
+      var disk = "{{config('filesystems.default')}}";
+      var storage_url = "{{config('filesystems.disks.'.config('filesystems.default').'.url')}}"
     </script>
 
     <!--begin::Global Theme Bundle -->
