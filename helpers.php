@@ -67,7 +67,7 @@ if (! function_exists('module_asset_path')) {
 if (! function_exists('generate_storage_url')) {
     function generate_storage_url($path, $time = 5)
     {
-        if(env('FILESYSTEM_DEFAULT') == 'cloud')
+        if(config('filesystems.disks.'.config('filesystems.default').'.driver') == 's3')
             return Storage::temporaryUrl($path, now()->addMinutes(5));
 
         return Storage::url($path);
