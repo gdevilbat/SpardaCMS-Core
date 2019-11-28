@@ -15,6 +15,7 @@
         "joshbrw/laravel-module-installer": "^0.1.4",
         "laravelcollective/html": "^5.7",
         "alexusmai/laravel-file-manager": "^2.0",
+        "doctrine/dbal": "^2.0",
         "unisharp/laravel-filemanager": "^1.9"
     },
     "extra": {
