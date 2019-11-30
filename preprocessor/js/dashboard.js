@@ -143,6 +143,9 @@ $.fn.dataTable.pipeline = function ( opts ) {
         }
     }
 };
+
+if(window.env == "testing")
+    $.fn.dataTable.ext.errMode = 'none';
  
 // Register an API method that will empty the pipelined data, forcing an Ajax
 // fetch on the next draw (i.e. `table.clearPipeline().draw()`)

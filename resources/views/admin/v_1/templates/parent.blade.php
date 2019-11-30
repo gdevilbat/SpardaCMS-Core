@@ -261,6 +261,7 @@
     {{-- Javascript Core --}}
     <script type="text/javascript">
       var base = <?= "'".url('/')."'" ?>;
+      var env = "<?=  env('APP_ENV') ?>";
       var disk = "{{config('filesystems.default')}}";
       var storage_url = "{{config('filesystems.disks.'.config('filesystems.default').'.url')}}"
     </script>
