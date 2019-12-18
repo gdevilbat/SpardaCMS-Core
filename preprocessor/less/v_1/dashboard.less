@@ -44,4 +44,51 @@ div.dataTables_wrapper{
 	div.dataTables_info{
 		white-space: inherit;
 	}
-} 
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+	.m-portlet__head{
+		display: none !important;
+	}
+	.m-subheader{
+		display: none !important;
+	}
+	.m_aside_left{
+		display: none !important;
+	}
+	.m-header--fixed{
+		.m-body{
+			padding: unset !important;
+		}
+	}
+	.m-content{
+		padding: unset !important;
+	}
+	header{
+		display: none !important;
+	}
+	body {
+		-webkit-print-color-adjust: exact !important;
+		background-color: white;
+	}
+	.m-body{
+		background-color: white !important;
+	}
+	/* .page-content{
+		table{
+			font-size: 18px;
+		}
+	} */
+	/* .chart{
+		font-size: 14px;
+	    } */
+}
+
+.page-content{
+	width: 30cm;
+}
+
+@page {
+   size: auto ;
+}

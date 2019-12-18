@@ -53,7 +53,7 @@
       <div class="m-grid m-grid--hor m-grid--root m-page">
 
         <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
+        <header id="m_header" class="m-grid__item    m-header d-print-none" m-minimize-offset="200" m-minimize-mobile-offset="200">
           <div class="m-container m-container--fluid m-container--full-height">
             <div class="m-stack m-stack--ver m-stack--desktop">
 
@@ -234,7 +234,7 @@
         <div class="loading-overlay"></div>
 
         <!-- begin::Footer -->
-        <footer class="m-grid__item   m-footer ">
+        <footer class="m-grid__item   m-footer d-print-none">
           <div class="m-container m-container--fluid m-container--full-height m-page__container">
             <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
               <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
