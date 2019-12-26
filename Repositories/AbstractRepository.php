@@ -188,8 +188,15 @@ abstract class AbstractRepository implements BaseRepository
 
     public function with($relation)
     {
-        $this->model = $this->model->query()->with($relation);
-        return $this;
+        $query = $this->model;
+
+        if (method_exists($query, 'query')) {
+            $query = $query->query();
+        }
+
+        $query = $query->with($relation);
+
+        return $query;
     }
 
     /**
