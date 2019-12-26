@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Contract\BaseRepository;
 
+use Auth;
+
 /**
  * Class EloquentCoreRepository
  *
