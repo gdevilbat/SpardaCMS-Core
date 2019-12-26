@@ -194,9 +194,9 @@ abstract class AbstractRepository implements BaseRepository
             $query = $query->query();
         }
 
-        $query = $query->with($relation);
+        $this->model = $query->with($relation);
 
-        return $query;
+        return $this;
     }
 
     /**
