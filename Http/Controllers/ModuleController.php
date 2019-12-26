@@ -18,7 +18,7 @@ class ModuleController extends CoreController
     {
         parent::__construct();
         $this->module_m = new Module_m;
-        $this->module_repository = new Repository(new Module_m);
+        $this->module_repository = new Repository(new Module_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
     }
 
     /**

@@ -21,9 +21,10 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @param Model $model
      */
-    public function __construct($model)
+    public function __construct($model, \Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository $acl)
     {
         $this->model = $model;
+        $this->acl = $acl;
     }
 
     /**
@@ -186,6 +187,25 @@ abstract class AbstractRepository implements BaseRepository
         return $query;
     }
 
+    /**
+     * Build Query to catch resources by an array of attributes and params
+     * @param  array $attributes
+     * @param  null|string $orderBy
+     * @param  string $sortOrder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function buildQueryByCreatedUser(array $attributes, $orderBy = null, $sortOrder = 'asc')
+    {
+        $query = $this->buildQueryByAttributes($attributes, $orderBy, $sortOrder);
+
+        if(Auth::user()->can('read-'.$this->getModule()))
+        {
+            return $query;
+        }
+
+        return $query;
+    }
+
     public function with($relation)
     {
         $query = $this->model;
@@ -219,5 +239,15 @@ abstract class AbstractRepository implements BaseRepository
     public function clearCache()
     {
         return true;
+    }
+
+    public function getModule()
+    {
+        return $this->module;
+    }
+
+    public function setModule($module)
+    {
+        $this->module = $module;
     }
 }
