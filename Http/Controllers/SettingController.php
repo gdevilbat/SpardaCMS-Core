@@ -18,7 +18,7 @@ class SettingController extends CoreController
     {
         parent::__construct();
         $this->setting_m = new Setting_m;
-        $this->setting_repository = new Repository(new Setting_m);
+        $this->setting_repository = new Repository(new Setting_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
     }
 
     /**
