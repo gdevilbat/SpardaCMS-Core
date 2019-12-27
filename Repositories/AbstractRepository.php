@@ -205,7 +205,7 @@ abstract class AbstractRepository implements BaseRepository
             return $query;
         }
 
-        return $query;
+        return $this->acl->getDataByCreatedUser($query);
     }
 
     public function with($relation)
