@@ -23,6 +23,16 @@ class ModuleTableSeeder extends Seeder
                 'name' => 'test',
                 'slug' => 'test',
                 'created_at' => \Carbon\Carbon::now()
+            ],
+        ]);
+
+        DB::table('module')->insert([
+            [
+                'name' => 'Core',
+                'slug' => 'core',
+                'is_scanable' => '1',
+                'order' => 999999,
+                'created_at' => \Carbon\Carbon::now()
             ]
         ]);
     }
