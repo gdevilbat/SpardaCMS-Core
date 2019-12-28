@@ -105,7 +105,7 @@
                                 <td>{{$module->string_is_scanable}}</td>
                                 <td>
                                     @foreach($module->scope as $scope)
-                                        {{$scope}},
+                                        {{$scope}},&nbsp;
                                     @endforeach
                                 </td>
                                 <td>
