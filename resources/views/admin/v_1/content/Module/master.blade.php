@@ -88,8 +88,8 @@
                             <th>Type</th>
                             <th>Description</th>
                             <th>Order</th>
-                            <th>Scanable</th>
-                            <th>Scope</th>
+                            <th data-priority="4">Scanable</th>
+                            <th data-priority="5">Scope</th>
                             <th class="no-sort" data-priority="3">Action</th>
                         </tr>
                     </thead>
