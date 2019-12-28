@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController;
+use GuzzleHttp\Client;
+
+use Storage;
 
 class FileManagerController extends CoreController
 {
@@ -16,5 +19,24 @@ class FileManagerController extends CoreController
     public function index()
     {
         return view('core::admin.'.$this->data['theme_cms']->value.'.content.filemanager', $this->data);
+    }
+
+    public function getStorageURL($path)
+    {
+    	$url = Storage::temporaryUrl(
+		    $path, now()->addMinutes(5)
+		);
+
+		try {
+	    	$client = new Client();
+	    	$request = $client->get($url);
+	    	$response = $request->getBody()->getContents();
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
+			abort(404);
+		}
+
+
+    	header('Content-Type: '.$request->getHeaders()['Content-Type'][0]);
+    	echo $response;
     }
 }
