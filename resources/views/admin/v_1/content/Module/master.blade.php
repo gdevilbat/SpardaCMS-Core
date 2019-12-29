@@ -104,9 +104,11 @@
                                 <td>{{$module->order}}</td>
                                 <td>{{$module->string_is_scanable}}</td>
                                 <td>
-                                    @foreach($module->scope as $scope)
-                                        {{$scope}},&nbsp;
-                                    @endforeach
+                                    @isset($module->scope)
+                                        @foreach($module->scope as $scope)
+                                            {{$scope}},&nbsp;
+                                        @endforeach
+                                    @endisset
                                 </td>
                                 <td>
                                     <div class="col">

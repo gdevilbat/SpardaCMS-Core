@@ -175,7 +175,7 @@
             mixins: [componentMixin],
             el: "#scope",
             data: {
-                components: {!! !empty($module)? json_encode($module->scope) : json_encode(array(array())) !!},
+                components: {!! !empty($module) && !empty($module->scope)? json_encode($module->scope) : json_encode(array(array())) !!},
             },
         });
     </script>
