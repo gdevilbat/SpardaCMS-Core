@@ -30,8 +30,5 @@ class ChangeScopeModuleTable extends Migration
      */
     public function down()
     {
-        Schema::table('module', function ($table) {
-            $table->string('scope')->default(json_encode(array()))->change();
-        });
     }
 }
