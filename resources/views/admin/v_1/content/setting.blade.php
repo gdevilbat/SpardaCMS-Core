@@ -70,8 +70,8 @@
                     </div>
                     @include('core::admin.'.$theme_cms->value.'.partials.meta_tag', ['column' => 'global'])
                     <hr>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Background Landscape
                         </div>
                         <div class="col-md-8">
@@ -97,8 +97,8 @@
                             <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <label class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <label class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Background Portrait
                         </label>
                         <div class="col-md-8">
@@ -124,8 +124,8 @@
                                 <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <label class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <label class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Favicon Image
                         </label>
                         <div class="col-md-8">
@@ -151,8 +151,8 @@
                                 <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <label class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <label class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Logo Image
                         </label>
                         <div class="col-md-8">
@@ -178,8 +178,8 @@
                                 <span class="form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <label class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <label class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Not Found Image
                         </label>
                         <div class="col-md-8">
@@ -205,8 +205,8 @@
                                 <span class="form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex flex-wrap">
-                        <label class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex flex-wrap">
+                        <label class="col-md-4 d-md-flex justify-content-end py-3">
                             {{title_case(str_slug('global', ' '))}} Maintenance Image
                         </label>
                         <div class="col-md-8">
@@ -233,32 +233,32 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Google Site Verification</label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input" name="{{str_slug('global').'[google_site_verification]'}}" placeholder="Google Site Verification" value="{{old(str_slug('global').'.google_site_verification') ? old(str_slug('global').'.google_site_verification') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['google_site_verification']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['google_site_verification'] : '')}}">
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">{{title_case(str_slug('global', ' '))}} Meta Script</label>
                         </div>
                         <div class="col-md-8">
                             <textarea type="text" class="form-control m-input autosize" name="{{str_slug('global').'[meta_script]'}}" placeholder="Script Before Body" id="m_autosize_1">{{old(str_slug('global').'.meta_script') ? old(str_slug('global').'.meta_script') : (!empty($settings->where('name',str_slug('global'))->flatten()->first()->value['meta_script']) ? $settings->where('name',str_slug('global'))->flatten()->first()->value['meta_script'] : '')}}</textarea>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Pagination Count:</label>
                         </div>
                         <div class="col-md-8">
                             <input type="number" class="form-control m-input" name="pagination_count" placeholder="Pagination Count" value="{{old('pagination_count') ? old('pagination_count') : ($settings->where('name','pagination_count')->count() > 0 ? $settings->where('name','pagination_count')->flatten()->first()->value : '')}}">
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Theme CMS:</label>
                         </div>
                         <div class="col-md-6 col-sm-6">

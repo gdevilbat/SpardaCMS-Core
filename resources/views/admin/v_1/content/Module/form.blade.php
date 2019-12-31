@@ -63,32 +63,32 @@
                             </div>
                         @endif
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input slugify" data-target="slug" name="name" placeholder="Module Name" value="{{old('name') ? old('name') : (!empty($module) ? $module->name : '')}}">
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input" name="slug" id="slug" placeholder="Module Slug" value="{{old('slug') ? old('slug') : (!empty($module) ? $module->slug : '')}}">
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
                             <input type="number" class="form-control m-input" min="1" name="order" placeholder="Module order" value="{{old('order') ? old('order') : (!empty($module) ? $module->order : '')}}">
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Scanable<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
                         </div>
                         <div class="col-md-8">
@@ -104,8 +104,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group m-form__group d-flex">
-                        <div class="col-md-4 d-flex justify-content-end py-3">
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
                             <label for="exampleInputEmail1">Module Description</label>
                         </div>
                         <div class="col-md-8">
@@ -114,24 +114,24 @@
                     </div>
                     @verbatim
                         <div id="scope" v-cloak>
-                            <div class="form-group m-form__group d-flex">
-                                <div class="col-md-4 d-flex justify-content-end py-3">
+                            <div class="form-group m-form__group d-md-flex">
+                                <div class="col-md-4 d-md-flex justify-content-end py-3">
                                     <label for="exampleInputEmail1">Scope</label>
                                 </div>
                                 <div class="col-md-8">
                                     <div v-for="(item, index) in (components)">
-                                        <div class="d-flex my-1">
+                                        <div class="d-md-flex my-1">
                                             <div class="col-md-10 no-padding">
                                                 <input type="text" class="form-control" v-bind:name="'scope[]'" placeholder="Scope Name" v-model="components[index]">
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2 text-right">
                                                 <button type="button" class="btn m-btn--pill btn-metal" v-on:click="removeComponent(index)"><span><i class="fa fa-minus"></i></span></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group m-form__group d-flex">
+                            <div class="form-group m-form__group d-md-flex">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="button" class="btn btn-success" v-on:click="addComponent">Tambah Scope</button>
                                 </div>
