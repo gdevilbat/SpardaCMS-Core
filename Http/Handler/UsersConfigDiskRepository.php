@@ -9,9 +9,9 @@ class UsersConfigDiskRepository extends DefaultConfigRepository  implements Conf
 {
     public function getDiskList(): array
     {
-        /*if (\Auth::id() === 1) {
+        if (\Auth::id() === 1) {
             return array_keys(config('filesystems.disks'));
-        }*/
+        }
         
         return [config('filesystems.default')];
     }
