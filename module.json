@@ -8,7 +8,9 @@
     "providers": [
         "Gdevilbat\\SpardaCMS\\Modules\\Core\\Providers\\CoreServiceProvider"
     ],
-    "aliases": {},
+    "aliases": {
+        "StorageService": "\\Gdevilbat\\SpardaCMS\\Modules\\Core\\Services\\Support\\StorageService"
+    },
     "files": [
         "helpers.php"
     ],

@@ -50,8 +50,13 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->singleton(Repository::class, function ($app) {
+        $this->app->bind(Repository::class, function ($app) {
             return new Repository;
+        });
+
+        $this->app->bind(\Gdevilbat\SpardaCMS\Modules\Core\Services\Contract\BaseStorageService::class, function ($app) {
+            $service =  config('core.storage.repository');
+            return new $service; 
         });
     }
 
@@ -70,18 +75,20 @@ class CoreServiceProvider extends ServiceProvider
         );
 
         $this->publishes([
-            __DIR__.'/../Config/lfm.php' => config_path('lfm.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            __DIR__.'/../Config/lfm.php', 'core'
-        );
-
-        $this->publishes([
             __DIR__.'/../Config/file-manager.php' => config_path('file-manager.php'),
         ], 'config');
         $this->mergeConfigFrom(
             __DIR__.'/../Config/file-manager.php', 'core'
         );
+
+        $this->publishes([
+            __DIR__.'/../Config/storage-service.php' => config_path('storage-service.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/storage-service.php', 'core'
+        );
+
+
     }
 
     /**
