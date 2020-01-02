@@ -40,7 +40,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 	public function getSmallImage(string $thumb_path, $file, string $filename, string $path): string
 	{
-		if(!empty(config('core.storage.thumbnail.resolution.small')))
+		if(config('core.storage.thumbnail.resolution.small.compress'))
 		{
 			$img = Image::make($file);
 
@@ -81,7 +81,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 	{
 		$img = Image::make($file);
 
-		if(!empty(config('core.storage.thumbnail.resolution.thumb')))
+		if(config('core.storage.thumbnail.resolution.thumb.compress'))
 		{
 			if(config('core.storage.thumbnail.resolution.thumb.size.width') == 'auto')
 			{
@@ -118,7 +118,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 	public function getMediumImage(string $thumb_path, $file, string $filename, string $path): string
 	{
-		if(!empty(config('core.storage.thumbnail.resolution.medium')))
+		if(config('core.storage.thumbnail.resolution.medium.compress'))
 		{
 			$img = Image::make($file);
 
