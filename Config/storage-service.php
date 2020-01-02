@@ -25,7 +25,7 @@ return [
     					'width' => 800,
     					'height' => 'auto',
     				],
-                    'compress' => false,
+                    'compress' => true,
     			]
     		]
     	]
