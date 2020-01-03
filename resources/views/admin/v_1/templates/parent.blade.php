@@ -39,6 +39,8 @@
     
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
+    @yield('page_style_css')
+
 
     
      <script>
