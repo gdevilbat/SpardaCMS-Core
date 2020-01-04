@@ -13,10 +13,10 @@
 
 Route::get('cloud/assets/{path?}', 'FileManagerController@getStorageURL')->where('path', '.*');
 
-Route::group(['prefix' => 'control', 'middleware' => 'core.auth'], function() {
+/*Route::group(['prefix' => 'control', 'middleware' => 'core.auth'], function() {
 	Route::get('/filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
     Route::post('/filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
-});
+});*/
 
 Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
 

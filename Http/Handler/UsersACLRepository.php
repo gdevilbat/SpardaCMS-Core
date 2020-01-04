@@ -4,6 +4,8 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Http\Handler;
 
 use Alexusmai\LaravelFileManager\Services\ACLService\ACLRepository;
 
+use Auth;
+
 class UsersACLRepository implements ACLRepository
 {
 	/**
@@ -23,10 +25,10 @@ class UsersACLRepository implements ACLRepository
      */
     public function getRules(): array
     {
-        if (\Auth::id() === 1) {
+        if (\Auth::id() === 1 || Auth::user()->can('full-control-filemanager-core')) {
             return $this->getDiskSuperAdminAccess();
         }
-        
+
         return [
             ['disk' => config('filesystems.default'), 'path' => '/', 'access' => 1],                                  // main folder - read
             ['disk' => config('filesystems.default'), 'path' => 'users', 'access' => 1],                              // only read
