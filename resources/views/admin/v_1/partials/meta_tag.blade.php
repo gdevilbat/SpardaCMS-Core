@@ -37,7 +37,7 @@
     <div class="col-md-8">
        <div class="input-group m-input-group">
           <div class="input-group-prepend">
-            <button data-input="{{str_slug($column)}}-fb_share_image" data-preview="{{str_slug($column)}}-fb_share_preview" class="btn btn-primary filemanager-image">
+            <button data-input="{{str_slug($column)}}-fb_share_image" data-preview="{{str_slug($column)}}-fb_share_preview" class="btn btn-primary lfm-input">
               <i class="fa fa-picture-o"></i> Choose
             </button>
           </div>
@@ -50,7 +50,7 @@
        @if(empty($settings->where('name',str_slug($column))->flatten()->first()->value['fb_share_image']))
            <img id="{{str_slug($column)}}-fb_share_preview" style="margin-top:15px;max-height:100px;">
        @else
-           <img id="{{str_slug($column)}}-fb_share_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug($column))->flatten()->first()->value['fb_share_image'])}}">
+           <img id="{{str_slug($column)}}-fb_share_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug($column))->flatten()->first()->value['fb_share_image'])}}">
        @endif
     </div>
     <div class="col-md-8 offset-md-4">

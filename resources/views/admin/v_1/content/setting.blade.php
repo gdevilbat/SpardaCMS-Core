@@ -77,7 +77,7 @@
                         <div class="col-md-8">
                            <div class="input-group m-input-group">
                                 <div class="input-group-prepend">
-                                    <button data-input="global-background-landscape" data-preview="global-background-landscape_preview" class="btn btn-primary filemanager-image">
+                                    <button data-input="global-background-landscape" data-preview="global-background-landscape_preview" class="btn btn-primary lfm-input">
                                        <i class="fa fa-picture-o"></i> Choose
                                      </button>
                                 </div>
@@ -90,7 +90,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape']))
                                 <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape'])}}">
+                                <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['landscape'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -104,7 +104,7 @@
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
                                <div class="input-group-prepend">
-                                 <button data-input="global-background-portrait" data-preview="global-background-portrait_preview" class="btn btn-primary filemanager-image">
+                                 <button data-input="global-background-portrait" data-preview="global-background-portrait_preview" class="btn btn-primary lfm-input">
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
@@ -117,7 +117,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait']))
                                 <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait'])}}">
+                                <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['background']['portrait'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -131,7 +131,7 @@
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
                                <div class="input-group-prepend">
-                                 <button data-input="global-favicon" data-preview="global-favicon_preview" class="btn btn-primary filemanager-image">
+                                 <button data-input="global-favicon" data-preview="global-favicon_preview" class="btn btn-primary lfm-input">
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
@@ -144,7 +144,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon']))
                                 <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon'])}}">
+                                <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['favicon'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -158,7 +158,7 @@
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
                                <div class="input-group-prepend">
-                                 <button data-input="global-logo" data-preview="global-logo_preview" class="btn btn-primary filemanager-image">
+                                 <button data-input="global-logo" data-preview="global-logo_preview" class="btn btn-primary lfm-input">
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
@@ -171,7 +171,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['logo']))
                                 <img id="global-logo_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-logo_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['logo'])}}">
+                                <img id="global-logo_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['logo'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -185,7 +185,7 @@
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
                                <div class="input-group-prepend">
-                                 <button data-input="global-not_found_image" data-preview="global-not_found_image_preview" class="btn btn-primary filemanager-image">
+                                 <button data-input="global-not_found_image" data-preview="global-not_found_image_preview" class="btn btn-primary lfm-input">
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
@@ -198,7 +198,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image']))
                                 <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image'])}}">
+                                <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['not_found_image'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">
@@ -212,7 +212,7 @@
                         <div class="col-md-8">
                             <div class="input-group m-input-group">
                                <div class="input-group-prepend">
-                                 <button data-input="global-maintenance_image" data-preview="global-maintenance_image_preview" class="btn btn-primary filemanager-image">
+                                 <button data-input="global-maintenance_image" data-preview="global-maintenance_image_preview" class="btn btn-primary lfm-input">
                                    <i class="fa fa-picture-o"></i> Choose
                                  </button>
                                </div>
@@ -225,7 +225,7 @@
                             @if(empty($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image']))
                                 <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;">
                             @else
-                                <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;" src="{{url($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image'])}}">
+                                <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;" src="{{generate_storage_url($settings->where('name',str_slug('global'))->flatten()->first()->value['maintenance_image'])}}">
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-4">

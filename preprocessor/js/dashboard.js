@@ -160,6 +160,9 @@ $.fn.exists = function(){ return this.length > 0; }
 
 })(jQuery);
 
+let objInputFileManager;
+let objPreviewFileManager;
+
 $(document).ready(function() {
     var confirm_delete = {
         data: {
@@ -295,6 +298,20 @@ $(document).ready(function() {
         if($(".filemanager-image").length > 0)
         {
             $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
+        }
+
+        if($(".lfm-input").length > 0)
+        {
+            $(".lfm-input").each(function(index, el) {
+                $(this).click(function(event) {
+                    event.preventDefault();
+
+                      objInputFileManager = '#'+$(this).attr('data-input');
+                      objPreviewFileManager = '#'+$(this).attr('data-preview');
+
+                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
+                });   
+            });
         }
 
     /*=====  End of Image Filemanage  ======*/
@@ -558,7 +575,7 @@ $(document).ready(function() {
                         =            Image Filemanage            =
                         ========================================*/
 
-                        /*if($(".filemanager-file").length > 0)
+                        if($(".filemanager-file").length > 0)
                         {
                             $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                         }
@@ -566,34 +583,21 @@ $(document).ready(function() {
                         if($(".filemanager-image").length > 0)
                         {
                             $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
-                        }*/
+                        }
 
-                        if($(".filemanager-image").length > 0)
+                        if($(".lfm-input").length > 0)
                         {
-                            $(".filemanager-image").each(function(index, el) {
+                            $(".lfm-input").each(function(index, el) {
                                 $(this).click(function(event) {
                                     event.preventDefault();
 
-                                      objFileManager = '#input-photo-'+index;
+                                      objInputFileManager = '#'+$(this).attr('data-input');
+                                      objPreviewFileManager = '#'+$(this).attr('data-preview');
 
                                       window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                                 });   
                             });
                         }
-
-                        if($(".filemanager-file").length > 0)
-                        {
-                            $(".filemanager-file").each(function(index, el) {
-                                $(this).click(function(event) {
-                                    event.preventDefault();
-
-                                      objFileManager = '#input-photo-'+index;
-
-                                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
-                                });   
-                            });
-                        }
-
 
                         self = this;
                         $(".file-input").each(function(index, el) {
@@ -617,7 +621,7 @@ $(document).ready(function() {
                     =            Image Filemanage            =
                     ========================================*/
 
-                    /*if($(".filemanager-file").length > 0)
+                    if($(".filemanager-file").length > 0)
                     {
                         $('.filemanager-file').filemanager('file', {prefix: base+'/control/filemanager'});
                     }
@@ -625,34 +629,21 @@ $(document).ready(function() {
                     if($(".filemanager-image").length > 0)
                     {
                         $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
-                    }*/
+                    }
 
-                    if($(".filemanager-image").length > 0)
+                    if($(".lfm-input").length > 0)
                     {
-                        $(".filemanager-image").each(function(index, el) {
+                        $(".lfm-input").each(function(index, el) {
                             $(this).click(function(event) {
                                 event.preventDefault();
 
-                                  objFileManager = '#input-photo-'+index;
+                                  objInputFileManager = '#'+$(this).attr('data-input');
+                                  objPreviewFileManager = '#'+$(this).attr('data-preview');
 
                                   window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                             });   
                         });
                     }
-
-                    if($(".filemanager-file").length > 0)
-                    {
-                        $(".filemanager-file").each(function(index, el) {
-                            $(this).click(function(event) {
-                                event.preventDefault();
-
-                                  objFileManager = '#input-photo-'+index;
-
-                                  window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
-                            });   
-                        });
-                    }
-
 
                     self = this;
                     $(".file-input").each(function(index, el) {
@@ -716,10 +707,9 @@ window. debounce = function(func, wait, immediate) {
     };
 };
 
-let objFileManager;
-
 window.fmSetLink = function($url){
-    $(objFileManager).val($url.replace(window.storage_url, '')).change();
+    $(objInputFileManager).val($url.replace(window.storage_url, '')).change();
+    $(objPreviewFileManager).attr('src', $url);
 }
 
 window.getStorageLink = function($url){
