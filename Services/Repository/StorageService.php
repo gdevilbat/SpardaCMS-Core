@@ -12,7 +12,7 @@ use Arr;
  */
 class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contract\BaseStorageService
 {
-	public function putImageAs(string $path, $file, string $filename, bool $thumbnail = false, string $thumb_path = null): object
+	public function putImageAs(string $path, $file, $filename, bool $thumbnail = false, string $thumb_path = null): object
 	{
 		$original = Storage::putFileAs($path, $file, $filename);
 
