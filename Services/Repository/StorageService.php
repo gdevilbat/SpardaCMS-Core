@@ -14,7 +14,6 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 {
 	public function putImageAs(string $path, $file, $filename, bool $thumbnail = false, string $thumb_path = null): object
 	{
-		$original = Storage::putFileAs($path, $file, $filename);
 		$original = $this->getOriginalImage($path, $file, $filename);
 
 		if($thumb_path == null)
