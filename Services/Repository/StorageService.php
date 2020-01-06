@@ -15,6 +15,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 	public function putImageAs(string $path, $file, $filename, bool $thumbnail = false, string $thumb_path = null): object
 	{
 		$original = Storage::putFileAs($path, $file, $filename);
+		$original = $this->getOriginalImage($path, $file, $filename);
 
 		if($thumb_path == null)
 		{
@@ -38,7 +39,67 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 		return json_decode(json_encode($response));
 	}
 
-	public function getSmallImage(string $thumb_path, $file, string $filename, string $path): string
+	public function getOriginalImage(string $path, $file, $filename): string
+	{
+		if($this->isOriginalImageCompress())
+		{
+			$img = Image::make($file);
+
+			$dimension = getimagesize($file);
+
+			if(config('core.storage.thumbnail.resolution.original.size.width') == 'auto')
+			{
+				if($dimension[1] > config('core.storage.thumbnail.resolution.original.size.height'))
+				{
+					// resize the image to a height of 200 and constrain aspect ratio (auto width)
+					$img->resize(null, config('core.storage.thumbnail.resolution.original.size.height'), function ($constraint) {
+					    $constraint->aspectRatio();
+					});
+				}
+			}
+			elseif(config('core.storage.thumbnail.resolution.original.size.height') == 'auto') 
+			{
+				if($dimension[0] > config('core.storage.thumbnail.resolution.original.size.width'))
+				{
+					// resize the image to a height of 200 and constrain aspect ratio (auto width)
+					$img->resize(config('core.storage.thumbnail.resolution.original.size.width'), null, function ($constraint) {
+					    $constraint->aspectRatio();
+					});
+				}
+			}
+			else
+			{
+				// resize the image to a height of 200 and constrain aspect ratio (auto width)
+				$img->resize(config('core.storage.thumbnail.resolution.original.size.width'), config('core.storage.thumbnail.resolution.original.size.height'), function ($constraint) {
+				    $constraint->aspectRatio();
+				});
+			}
+
+			$location = $path.'/'.$filename;
+
+			$status = Storage::put($location, (string) $img->encode());
+
+			if($status)
+				return $location;
+
+			return '';
+		}
+		{
+			$location = Storage::putFileAs($path, $file, $filename);
+
+			return $location;
+		}
+	}
+
+	public function isOriginalImageCompress(): bool
+	{
+		if(config('core.storage.thumbnail.resolution.original.compress'))
+			return true;
+
+		return false;
+	}
+
+	public function getSmallImage(string $thumb_path, $file, $filename, string $path): string
 	{
 		if(config('core.storage.thumbnail.resolution.small.compress'))
 		{
@@ -77,7 +138,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 		return '';
 	}
 
-	public function getThumbImage(string $thumb_path, $file, string $filename, string $path): string
+	public function getThumbImage(string $thumb_path, $file, $filename, string $path): string
 	{
 		$img = Image::make($file);
 
@@ -116,7 +177,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 		return '';
 	}
 
-	public function getMediumImage(string $thumb_path, $file, string $filename, string $path): string
+	public function getMediumImage(string $thumb_path, $file, $filename, string $path): string
 	{
 		if(config('core.storage.thumbnail.resolution.medium.compress'))
 		{

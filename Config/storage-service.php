@@ -6,6 +6,13 @@ return [
     	'thumbnail' => [
     		'folder' => 'thumbnail',
     		'resolution' => [
+                'original' => [
+                    'size' => [
+                        'width' => 1920,
+                        'height' => 'auto',
+                    ],
+                    'compress' => true, 
+                ],
     			'small' => [
     				'size' => [
     					'width' => 400,
