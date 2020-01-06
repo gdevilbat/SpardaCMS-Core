@@ -18,7 +18,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 		if($thumb_path == null)
 		{
-			$thumb_path = config('core.storage.thumbnail.folder');
+			$thumb_path = config('storage-service.thumbnail.folder');
 		}
 
 		$response = ['file' => $original];
@@ -46,22 +46,22 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 			$dimension = getimagesize($file);
 
-			if(config('core.storage.thumbnail.resolution.original.size.width') == 'auto')
+			if(config('storage-service.thumbnail.resolution.original.size.width') == 'auto')
 			{
-				if($dimension[1] > config('core.storage.thumbnail.resolution.original.size.height'))
+				if($dimension[1] > config('storage-service.thumbnail.resolution.original.size.height'))
 				{
 					// resize the image to a height of 200 and constrain aspect ratio (auto width)
-					$img->resize(null, config('core.storage.thumbnail.resolution.original.size.height'), function ($constraint) {
+					$img->resize(null, config('storage-service.thumbnail.resolution.original.size.height'), function ($constraint) {
 					    $constraint->aspectRatio();
 					});
 				}
 			}
-			elseif(config('core.storage.thumbnail.resolution.original.size.height') == 'auto') 
+			elseif(config('storage-service.thumbnail.resolution.original.size.height') == 'auto') 
 			{
-				if($dimension[0] > config('core.storage.thumbnail.resolution.original.size.width'))
+				if($dimension[0] > config('storage-service.thumbnail.resolution.original.size.width'))
 				{
 					// resize the image to a height of 200 and constrain aspect ratio (auto width)
-					$img->resize(config('core.storage.thumbnail.resolution.original.size.width'), null, function ($constraint) {
+					$img->resize(config('storage-service.thumbnail.resolution.original.size.width'), null, function ($constraint) {
 					    $constraint->aspectRatio();
 					});
 				}
@@ -69,7 +69,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 			else
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.original.size.width'), config('core.storage.thumbnail.resolution.original.size.height'), function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.original.size.width'), config('storage-service.thumbnail.resolution.original.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
@@ -92,7 +92,7 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 	public function isOriginalImageCompress(): bool
 	{
-		if(config('core.storage.thumbnail.resolution.original.compress'))
+		if(config('storage-service.thumbnail.resolution.original.compress'))
 			return true;
 
 		return false;
@@ -100,28 +100,28 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 	public function getSmallImage(string $thumb_path, $file, $filename, string $path): string
 	{
-		if(config('core.storage.thumbnail.resolution.small.compress'))
+		if(config('storage-service.thumbnail.resolution.small.compress'))
 		{
 			$img = Image::make($file);
 
-			if(config('core.storage.thumbnail.resolution.small.size.width') == 'auto')
+			if(config('storage-service.thumbnail.resolution.small.size.width') == 'auto')
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(null, config('core.storage.thumbnail.resolution.small.size.height'), function ($constraint) {
+				$img->resize(null, config('storage-service.thumbnail.resolution.small.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
-			elseif(config('core.storage.thumbnail.resolution.small.size.height') == 'auto') 
+			elseif(config('storage-service.thumbnail.resolution.small.size.height') == 'auto') 
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.small.size.width'), null, function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.small.size.width'), null, function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
 			else
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.small.size.width'), config('core.storage.thumbnail.resolution.small.size.height'), function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.small.size.width'), config('storage-service.thumbnail.resolution.small.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
@@ -141,26 +141,26 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 	{
 		$img = Image::make($file);
 
-		if(config('core.storage.thumbnail.resolution.thumb.compress'))
+		if(config('storage-service.thumbnail.resolution.thumb.compress'))
 		{
-			if(config('core.storage.thumbnail.resolution.thumb.size.width') == 'auto')
+			if(config('storage-service.thumbnail.resolution.thumb.size.width') == 'auto')
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(null, config('core.storage.thumbnail.resolution.thumb.size.height'), function ($constraint) {
+				$img->resize(null, config('storage-service.thumbnail.resolution.thumb.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
-			elseif(config('core.storage.thumbnail.resolution.thumb.size.height') == 'auto') 
+			elseif(config('storage-service.thumbnail.resolution.thumb.size.height') == 'auto') 
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.thumb.size.width'), null, function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.thumb.size.width'), null, function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
 			else
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.thumb.size.width'), config('core.storage.thumbnail.resolution.thumb.size.height'), function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.thumb.size.width'), config('storage-service.thumbnail.resolution.thumb.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
@@ -178,28 +178,28 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 
 	public function getMediumImage(string $thumb_path, $file, $filename, string $path): string
 	{
-		if(config('core.storage.thumbnail.resolution.medium.compress'))
+		if(config('storage-service.thumbnail.resolution.medium.compress'))
 		{
 			$img = Image::make($file);
 
-			if(config('core.storage.thumbnail.resolution.medium.size.width') == 'auto')
+			if(config('storage-service.thumbnail.resolution.medium.size.width') == 'auto')
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(null, config('core.storage.thumbnail.resolution.medium.size.height'), function ($constraint) {
+				$img->resize(null, config('storage-service.thumbnail.resolution.medium.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
-			elseif(config('core.storage.thumbnail.resolution.medium.size.height') == 'auto') 
+			elseif(config('storage-service.thumbnail.resolution.medium.size.height') == 'auto') 
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.medium.size.width'), null, function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.medium.size.width'), null, function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}
 			else
 			{
 				// resize the image to a height of 200 and constrain aspect ratio (auto width)
-				$img->resize(config('core.storage.thumbnail.resolution.medium.size.width'), config('core.storage.thumbnail.resolution.medium.size.height'), function ($constraint) {
+				$img->resize(config('storage-service.thumbnail.resolution.medium.size.width'), config('storage-service.thumbnail.resolution.medium.size.height'), function ($constraint) {
 				    $constraint->aspectRatio();
 				});
 			}

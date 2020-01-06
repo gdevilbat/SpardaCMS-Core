@@ -57,7 +57,7 @@ class CoreServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(\Gdevilbat\SpardaCMS\Modules\Core\Services\Contract\BaseStorageService::class, function ($app) {
-            $service =  config('core.storage.repository');
+            $service =  config('storage-service.repository');
             return new $service; 
         });
     }
@@ -87,7 +87,7 @@ class CoreServiceProvider extends ServiceProvider
             __DIR__.'/../Config/storage-service.php' => config_path('storage-service.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/storage-service.php', 'core'
+            __DIR__.'/../Config/storage-service.php', 'storage-service'
         );
 
 
