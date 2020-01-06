@@ -70,7 +70,7 @@ class SeedCommand extends NwidartSeedCommand
         $foundModules = [];
         foreach($this->laravel['modules']->config('scan.paths') as $path) {
             $namespace = array_slice(explode('/', $path), -1)[0];
-            $foundModules[] = ucfirst($namespace).'\\'.config('core.name').'\\Modules'. '\\' . $name . '\\' . $seederPath . '\\' . $name . 'DatabaseSeeder';
+            $foundModules[] = ucfirst($namespace).'\\'.'SpardaCMS'.'\\Modules'. '\\' . $name . '\\' . $seederPath . '\\' . $name . 'DatabaseSeeder';
         }
 
         return $foundModules;
