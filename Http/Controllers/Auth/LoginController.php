@@ -34,7 +34,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('core.guest')->except('logout');
+        $this->middleware('core.guest')->except(['logout', 'isLogin']);
     }
 
     /**
@@ -45,5 +45,13 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('core::auth.login');
+    }
+
+    public function isLogin()
+    {
+        if(\Auth::check())
+            return response()->json(['status' => true], 200);
+
+        return response()->json(['status' => false], 403);
     }
 }

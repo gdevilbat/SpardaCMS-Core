@@ -29,7 +29,8 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
             Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
             Route::post('password/reset', 'ResetPasswordController@reset');
             Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-            Route::get('logout', 'LoginController@logout');
+            Route::get('logout', 'LoginController@logout')->name('logout');
+            Route::get('islogin', 'LoginController@isLogin')->name('islogin');
         });
     });
     
