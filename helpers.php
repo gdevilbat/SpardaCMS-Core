@@ -67,9 +67,30 @@ if (! function_exists('module_asset_path')) {
 if (! function_exists('generate_storage_url')) {
     function generate_storage_url($path, $time = 5)
     {
-        if(config('filesystems.disks.'.config('filesystems.default').'.driver') == 's3')
-            return Storage::temporaryUrl($path, now()->addMinutes(5));
+        if(is_url($path))
+        {
+            return url($path);
+        }
+        else
+        {
+            try {
+                return Storage::temporaryUrl($path, now()->addMinutes(5));
+            } catch (\Exception $e) {
+                if($e->getMessage() == 'This driver does not support creating temporary URLs.')
+                    return Storage::url($path);
+            }
+        }
 
-        return Storage::url($path);
+    }
+}
+
+if (! function_exists('is_url')) {
+    function is_url($uri){
+        if(preg_match( '/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i' ,$uri)){
+          return true;
+        }
+        else{
+            return false;
+        }
     }
 }
