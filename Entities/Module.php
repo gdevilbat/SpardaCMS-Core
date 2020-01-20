@@ -21,6 +21,8 @@ class Module extends Model
         'scope' => 'array',
     ];
 
+    const FOREIGN_KEY = 'module_id';
+
     /**
      * Set the user's Slug.
      *

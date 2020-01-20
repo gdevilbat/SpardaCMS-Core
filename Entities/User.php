@@ -12,17 +12,19 @@ use Log;
 class User extends User_m
 {
     //use SoftDeletes;
+    
+    const FOREIGN_KEY = 'user_id';
 
     protected $dates = ['deleted_at'];
 
     public function role()
     {
-        return $this->belongsToMany("\Gdevilbat\SpardaCMS\Modules\Role\Entities\Role", "role_users", "user_id", "role_id");
+        return $this->belongsToMany("\Gdevilbat\SpardaCMS\Modules\Role\Entities\Role", "role_users", SELF::FOREIGN_KEY, \Gdevilbat\SpardaCMS\Modules\Role\Entities\Role::FOREIGN_KEY);
     }
 
     public function userAccount()
     {
-        return $this->hasOne("\Gdevilbat\SpardaCMS\Modules\Account\Entities\UserAccount", "user_id");
+        return $this->hasOne("\Gdevilbat\SpardaCMS\Modules\Account\Entities\UserAccount", SELF::FOREIGN_KEY);
     }
 
     /**
