@@ -14,11 +14,11 @@ use App;
 
 class ModuleController extends CoreController
 {
-    public function __construct()
+    public function __construct(Module_m $module)
     {
         parent::__construct();
-        $this->module_m = new Module_m;
-        $this->module_repository = new Repository(new Module_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
+        $this->module_m = $module;
+        $this->module_repository = new Repository($module, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
     }
 
     /**
