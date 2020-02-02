@@ -8,6 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 	config.extraPlugins = 'uploadimage,wordcount,notification';
+	config.allowedContent = true; 
 	config.wordcount = {
 
 	    // Whether or not you want to show the Paragraphs Count
