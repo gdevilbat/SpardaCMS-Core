@@ -233,7 +233,7 @@
 
         <!-- end:: Body -->
 
-        <div class="loading-overlay"></div>
+        <div class="loading-overlay h-100 w-100"></div>
 
         <!-- begin::Footer -->
         <footer class="m-grid__item   m-footer d-print-none">
