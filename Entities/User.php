@@ -17,6 +17,11 @@ class User extends User_m
 
     protected $dates = ['deleted_at'];
 
+    public function group()
+    {
+        return $this->belongsToMany(\Gdevilbat\SpardaCMS\Modules\User\Entities\Group::class, "rlt_group_users", SELF::FOREIGN_KEY, \Gdevilbat\SpardaCMS\Modules\User\Entities\Group::FOREIGN_KEY);
+    }
+
     public function role()
     {
         return $this->belongsToMany("\Gdevilbat\SpardaCMS\Modules\Role\Entities\Role", "role_users", SELF::FOREIGN_KEY, \Gdevilbat\SpardaCMS\Modules\Role\Entities\Role::FOREIGN_KEY);
