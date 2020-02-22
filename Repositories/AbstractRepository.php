@@ -200,12 +200,9 @@ abstract class AbstractRepository implements BaseRepository
     {
         $query = $this->buildQueryByAttributes($attributes, $orderBy, $sortOrder);
 
-        if(Auth::user()->can('read-'.$this->getModule()))
-        {
-            return $query;
-        }
+        $authentication = 'read-'.$this->getModule();
 
-        return $this->acl->getDataByCreatedUser($query, $this->model);
+        return $this->acl->getDataByCreatedUser($query, $this->model, $authentication);
     }
 
     public function with($relation)
