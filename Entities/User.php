@@ -24,7 +24,14 @@ class User extends User_m
 
     public function role()
     {
-        return $this->belongsToMany("\Gdevilbat\SpardaCMS\Modules\Role\Entities\Role", "role_users", SELF::FOREIGN_KEY, \Gdevilbat\SpardaCMS\Modules\Role\Entities\Role::FOREIGN_KEY);
+        return $this->hasOneThrough(
+            "\Gdevilbat\SpardaCMS\Modules\Role\Entities\Role", 
+            "\Gdevilbat\SpardaCMS\Modules\Role\Entities\RoleUser", 
+            SELF::FOREIGN_KEY, 
+            \Gdevilbat\SpardaCMS\Modules\Role\Entities\Role::getPrimaryKey(),
+            SELF::getPrimaryKey(),
+            \Gdevilbat\SpardaCMS\Modules\Role\Entities\Role::FOREIGN_KEY
+        );
     }
 
     public function userAccount()
