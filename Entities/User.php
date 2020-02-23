@@ -19,7 +19,13 @@ class User extends User_m
 
     public function group()
     {
-        return $this->belongsToMany(\Gdevilbat\SpardaCMS\Modules\User\Entities\Group::class, "rlt_group_users", SELF::FOREIGN_KEY, \Gdevilbat\SpardaCMS\Modules\User\Entities\Group::FOREIGN_KEY);
+        return $this->hasOneThrough(
+            \Gdevilbat\SpardaCMS\Modules\User\Entities\Group::class,
+            \Gdevilbat\SpardaCMS\Modules\User\Entities\RltGroupUsers::class,
+            SELF::FOREIGN_KEY,
+            \Gdevilbat\SpardaCMS\Modules\User\Entities\Group::getPrimaryKey(),
+            SELF::getPrimaryKey(),
+            \Gdevilbat\SpardaCMS\Modules\User\Entities\Group::FOREIGN_KEY);
     }
 
     public function role()
