@@ -15,7 +15,7 @@ trait ManualRegisterProvider{
 		$authentication->boot();
 	}
 
-	public function tearDown()
+	public function tearDown():void
     {
         try {
             parent::tearDown();
