@@ -262,30 +262,14 @@ $(document).ready(function() {
     ==================================*/
     
     $(".data-table-ajax").each(function(index, el) {
-        $(this).DataTable( {
-            "pagingType": "full_numbers",
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "ajax": $.fn.dataTable.pipeline( {
-                url: $(this).attr('data-ajax'),
-                pages: 5 // number of pages to cache
-            }),
-             "columnDefs": [
-            ],
-            "drawCallback": function( settings ) {
-                deleteData();
-            },
-            "initComplete": function(settings, json) {
-                var $searchBox = $("div.dataTables_filter input");
-                $searchBox.unbind();
-                var searchDebouncedFn = debounce(function() {
-                    var api = new $.fn.dataTable.Api( settings );
-                    api.search( this.value ).draw();
-                }, 1000);
-                $searchBox.on("keyup", searchDebouncedFn);
-            }
-        } );
+        if($("#"+$(this).attr('id')).length > 0)
+        {
+            window['table_'+$(this).attr('id')]= generateDatatable(this);
+        }
+        else
+        {
+            generateDatatable(this);
+        }
     });
     
     /*=====  End of Data Table  ======*/
@@ -670,6 +654,33 @@ window.deleteData = function(){
     $(".confirmed").click(function(event) {
         $(confirm_delete.data.object).prev().get(0).submit();
     });
+}
+
+function generateDatatable(object){
+    return $(object).DataTable( {
+        "pagingType": "full_numbers",
+        "processing": true,
+        "serverSide": true,
+        "order": [],
+        "ajax": $.fn.dataTable.pipeline( {
+            url: $(this).attr('data-ajax'),
+            pages: 5 // number of pages to cache
+        }),
+         "columnDefs": [
+        ],
+        "drawCallback": function( settings ) {
+            deleteData();
+        },
+        "initComplete": function(settings, json) {
+            var $searchBox = $("div.dataTables_filter input");
+            $searchBox.unbind();
+            var searchDebouncedFn = debounce(function() {
+                var api = new $.fn.dataTable.Api( settings );
+                api.search( this.value ).draw();
+            }, 1000);
+            $searchBox.on("keyup", searchDebouncedFn);
+        }
+    } );
 }
 
 function getParameterByName(name, url) {
