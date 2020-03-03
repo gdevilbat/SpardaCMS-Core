@@ -7,7 +7,7 @@ return [
 		'resolution' => [
             'original' => [
                 'size' => [
-                    'width' => 800,
+                    'width' => 1920,
                     'height' => 'auto',
                 ],
                 'compress' => true, 
