@@ -18,8 +18,7 @@ Route::get('cloud/assets/{path?}', 'FileManagerController@getStorageURL')->where
     Route::post('/filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 });*/
 
-Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
-
+Route::group(['prefix' => 'control'], function() {
 
     Route::group(['namespace' => 'Auth'], function() {
         Route::group(['prefix' => 'auth'], function() {
@@ -33,6 +32,10 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         });
     });
     
+});
+
+Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
+
     Route::group(['middleware' => 'core.auth'], function() {
 
         Route::get('dashboard', 'DashboardController@index');
