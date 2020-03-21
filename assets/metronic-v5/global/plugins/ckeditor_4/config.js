@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 	config.extraPlugins = 'uploadimage,wordcount,notification';
-	config.allowedContent = true; 
+	//config.allowedContent = true;
 	config.wordcount = {
 
 	    // Whether or not you want to show the Paragraphs Count
@@ -23,4 +23,6 @@ CKEDITOR.editorConfig = function( config ) {
 	    // Whether or not you want to count Spaces as Chars
 	    countSpacesAsChars: false,
 	};
+	config.removeButtons = 'Font,FontSize';
+	config.disallowedContent = 'span{font,font-size,font-family}';
 };
