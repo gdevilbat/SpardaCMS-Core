@@ -40,6 +40,14 @@ class FileManager
                 if(Auth::user()->can('delete-filemanager-core'))
                     return $next($request);
 
+                $url_path = collect(explode('/', $request->input('items.0.path')));
+
+                if($url_path->first() == 'shares')
+                	return $next($request);
+
+                if($url_path->first() == 'users' && $url_path->get(1) == Auth::id())
+                	return $next($request);
+
                 abort(403);
             }
         }
