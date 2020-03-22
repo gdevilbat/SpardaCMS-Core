@@ -7,8 +7,19 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	config.extraPlugins = 'uploadimage,wordcount,notification';
-	//config.allowedContent = true;
+	config.extraPlugins = 'uploadimage,wordcount,notification,shortcodepost';
+	config.allowedContent = {
+		shortcodepost: {
+			attributes: 'data-url,data-id'
+		},
+	    $1: {
+	        // Use the ability to specify elements as an object.
+	        elements: CKEDITOR.dtd,
+	        attributes: true,
+	        styles: true,
+	        classes: true
+	    }
+	};
 	config.wordcount = {
 
 	    // Whether or not you want to show the Paragraphs Count
@@ -24,5 +35,5 @@ CKEDITOR.editorConfig = function( config ) {
 	    countSpacesAsChars: false,
 	};
 	config.removeButtons = 'Font,FontSize';
-	config.disallowedContent = 'span{font,font-size,font-family}';
+	config.disallowedContent = 'span{font,font-size,font-family};script; *[on*]';
 };
