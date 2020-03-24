@@ -35,6 +35,9 @@ class FileManager
             if(Auth::user()->can('full-control-filemanager-core'))
                 return $next($request);
 
+            if(Auth::user()->can('restrict-delete-filemanager-core'))
+                abort(403);
+
             if(Auth::user()->can('read-write-filemanager-core'))
             {
                 if(Auth::user()->can('delete-filemanager-core'))
