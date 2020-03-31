@@ -293,7 +293,7 @@ $(document).ready(function() {
                       objInputFileManager = '#'+$(this).attr('data-input');
                       objPreviewFileManager = '#'+$(this).attr('data-preview');
 
-                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
+                      window.open(base+'/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                 });   
             });
         }
