@@ -23,7 +23,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @param Model $model
      */
-    public function __construct($model, \Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository $acl)
+    public function __construct(\Illuminate\Database\Eloquent\Model $model, \Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository $acl)
     {
         $this->model = $model;
         $this->acl = $acl;
@@ -32,7 +32,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function find($id)
+    final function find($id)
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->find($id);
@@ -44,7 +44,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function findOrFail($id)
+    final function findOrFail($id)
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->findOrFail($id);
@@ -56,7 +56,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function all()
+    final function all()
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->orderBy('created_at', 'DESC')->get();
@@ -68,7 +68,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function allWithBuilder() : Builder
+    final function allWithBuilder() : Builder
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations');
@@ -80,7 +80,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function paginate($perPage = 15)
+    final function paginate($perPage = 15)
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->orderBy('created_at', 'DESC')->paginate($perPage);
@@ -92,7 +92,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function create($data)
+    final function create($data)
     {
         return $this->model->create($data);
     }
@@ -100,7 +100,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function update($model, $data)
+    final function update($model, $data)
     {
         $model->update($data);
 
@@ -110,7 +110,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function destroy($model)
+    final function destroy($model)
     {
         return $model->delete();
     }
@@ -118,7 +118,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function allTranslatedIn($lang)
+    final function allTranslatedIn($lang)
     {
         return $this->model->whereHas('translations', function (Builder $q) use ($lang) {
             $q->where('locale', "$lang");
@@ -128,7 +128,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function findBySlug($slug)
+    final function findBySlug($slug)
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->whereHas('translations', function (Builder $q) use ($slug) {
@@ -142,7 +142,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function findByAttributes(array $attributes)
+    final function findByAttributes(array $attributes)
     {
         $query = $this->buildQueryByAttributes($attributes);
 
@@ -152,7 +152,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function getByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
+    final function getByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
     {
         $query = $this->buildQueryByAttributes($attributes, $orderBy, $sortOrder);
 
@@ -166,7 +166,7 @@ abstract class AbstractRepository implements BaseRepository
      * @param  string $sortOrder
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
+    final function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
     {
         $query = $this->model;
 
@@ -196,7 +196,7 @@ abstract class AbstractRepository implements BaseRepository
      * @param  string $sortOrder
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function buildQueryByCreatedUser(array $attributes, $orderBy = null, $sortOrder = 'asc')
+    final function buildQueryByCreatedUser(array $attributes, $orderBy = null, $sortOrder = 'asc')
     {
         $query = $this->buildQueryByAttributes($attributes, $orderBy, $sortOrder);
 
@@ -205,7 +205,7 @@ abstract class AbstractRepository implements BaseRepository
         return $this->acl->getDataByCreatedUser($query, $this->model, $authentication);
     }
 
-    public function with($relation)
+    final function with($relation)
     {
         $query = $this->model;
 
@@ -221,7 +221,7 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function findByMany(array $ids)
+    final function findByMany(array $ids)
     {
         $query = $this->model->query();
 
@@ -235,18 +235,25 @@ abstract class AbstractRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function clearCache()
+    final function clearCache()
     {
         return true;
     }
 
-    public function getModule()
+    final function getModule()
     {
         return $this->module;
     }
 
-    public function setModule($module)
+    final function setModule($module)
     {
         $this->module = $module;
+    }
+
+    final function reloadModel(\Illuminate\Database\Eloquent\Model $model)
+    {
+        $this->model = new $model;
+
+        return $this;
     }
 }
