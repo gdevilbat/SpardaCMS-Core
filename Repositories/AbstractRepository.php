@@ -213,9 +213,7 @@ abstract class AbstractRepository implements BaseRepository
             $query = $query->query();
         }
 
-        $this->model = $query->with($relation);
-
-        return $this->model;
+        return $query->with($relation);
     }
 
     /**
@@ -250,9 +248,9 @@ abstract class AbstractRepository implements BaseRepository
         $this->module = $module;
     }
 
-    final function reloadModel(\Illuminate\Database\Eloquent\Model $model)
+    final function setModel(\Illuminate\Database\Eloquent\Model $model)
     {
-        $this->model = new $model;
+        $this->model = $model;
 
         return $this;
     }
