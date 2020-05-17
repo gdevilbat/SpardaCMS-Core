@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'uploadimage,wordcount,notification,shortcodepost';
 	config.allowedContent = {
 		shortcodepost: {
-			attributes: 'data-url,data-id,data-src'
+			attributes: 'data-url,data-id'
 		},
 	    $1: {
 	        // Use the ability to specify elements as an object.
@@ -36,4 +36,5 @@ CKEDITOR.editorConfig = function( config ) {
 	};
 	config.removeButtons = 'Font,FontSize';
 	config.disallowedContent = 'span{font,font-size,font-family};script; *[on*]';
+	config.extraAllowedContent ='*{data-*}';
 };
