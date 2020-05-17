@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'uploadimage,wordcount,notification,shortcodepost';
 	config.allowedContent = {
 		shortcodepost: {
-			attributes: 'data-url,data-id'
+			attributes: 'data-url,data-id,data-src'
 		},
 	    $1: {
 	        // Use the ability to specify elements as an object.
