@@ -36,5 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	};
 	config.removeButtons = 'Font,FontSize';
 	config.disallowedContent = 'span{font,font-size,font-family}';
-	config.extraAllowedContent ='*{data-*};script; *[on*]';
+	config.extraAllowedContent ='*{data-*};script; *[on*];i;';
+	config.protectedSource.push( /<i class[\s\S]*?\>/g );
+    config.protectedSource.push( /<\/i>/g );
 };
