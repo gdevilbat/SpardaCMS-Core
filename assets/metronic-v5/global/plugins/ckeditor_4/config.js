@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	config.extraPlugins = 'uploadimage,wordcount,notification,shortcodepost';
+	config.extraPlugins = 'uploadimage,wordcount,notification,shortcodepost,lazyload';
 	config.allowedContent = {
 		shortcodepost: {
 			attributes: 'data-*'
