@@ -63,7 +63,7 @@
               <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                   <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                    <a href="index.html" class="m-brand__logo-wrapper">
+                    <a href="{{ url('/') }}" class="m-brand__logo-wrapper">
                       <img src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : generate_storage_url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo" class="img-logo"> </a>
                     </a>
                   </div>
