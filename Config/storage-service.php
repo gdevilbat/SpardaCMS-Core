@@ -10,7 +10,8 @@ return [
                     'width' => 1920,
                     'height' => 'auto',
                 ],
-                'compress' => true, 
+                'compress' => true,
+                'max_size' => 500 
             ],
 			'small' => [
 				'size' => [
