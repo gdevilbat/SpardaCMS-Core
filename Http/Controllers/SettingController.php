@@ -76,7 +76,7 @@ class SettingController extends CoreController
             }
         }
 
-        return redirect(route('cms.setting.create'))->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
+        return redirect()->back()->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
     }
 
     /**
