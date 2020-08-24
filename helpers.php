@@ -106,7 +106,7 @@ if (! function_exists('getSettingConfig')) {
             $settings = Config::get('settings')->where('name', $column);
         }
 
-        if(!isset($settings))
+        if($settings->count() <= 0)
             return null;
 
         $setting = $settings->first()->value;
