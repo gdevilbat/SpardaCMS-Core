@@ -94,3 +94,32 @@ if (! function_exists('is_url')) {
         }
     }
 }
+
+if (! function_exists('getSettingConfig')) {
+    function getSettingConfig($column, $index = null){
+        if(empty(Config::get('settings')))
+        {
+            $settings = \Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting::where('name', $column)->get();
+        }
+        else
+        {
+            $settings = Config::get('settings')->where('name', $column);
+        }
+
+        if(!isset($settings))
+            return null;
+
+        $setting = $settings->first()->value;
+
+        if(is_array($setting) && isset($index))
+        {
+            $array_dot = \Illuminate\Support\Arr::dot($setting);
+            if(isset($setting[$index]))
+                return $setting[$index];
+
+            return null;
+        }
+
+        return $setting;
+    }
+}
