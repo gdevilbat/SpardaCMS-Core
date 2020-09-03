@@ -45,6 +45,11 @@ class User extends User_m
         return $this->hasOne("\Gdevilbat\SpardaCMS\Modules\Account\Entities\UserAccount", SELF::FOREIGN_KEY);
     }
 
+    public function userMeta()
+    {
+        return $this->hasMany(\Gdevilbat\SpardaCMS\Modules\User\Entities\UserMeta::class, SELF::FOREIGN_KEY);
+    }
+
     /**
      * Set the user's password.
      *
