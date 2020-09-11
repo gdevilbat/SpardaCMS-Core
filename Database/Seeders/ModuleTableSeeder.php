@@ -31,6 +31,7 @@ class ModuleTableSeeder extends Seeder
                 'name' => 'Core',
                 'slug' => 'core',
                 'is_scanable' => '1',
+                'scope' => json_encode(array('menu-filemanager', 'full-control-filemanager', 'delete-filemanager', 'permission')),
                 'order' => 999999,
                 'created_at' => \Carbon\Carbon::now()
             ]
