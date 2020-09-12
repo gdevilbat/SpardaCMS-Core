@@ -73,4 +73,12 @@ class User extends User_m
     {
         return with(new Static)->getKeyName();
     }
+
+    public function getRateLimitAttribute($value)
+    {
+        if($value == 0)
+            return 60;
+
+        return $value;
+    }
 }
