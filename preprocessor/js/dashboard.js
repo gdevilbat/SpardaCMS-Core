@@ -739,3 +739,23 @@ window.isValidURL = function (url) {
     var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
 };
+
+window.objSize = function(obj) {
+    var count = 0;
+    
+    if (typeof obj == "object") {
+    
+        if (Object.keys) {
+            count = Object.keys(obj).length;
+        } else if (window._) {
+            count = _.keys(obj).length;
+        } else if (window.$) {
+            count = $.map(obj, function() { return 1; }).length;
+        } else {
+            for (var key in obj) if (obj.hasOwnProperty(key)) count++;
+        }
+        
+    }
+    
+    return count;
+};
