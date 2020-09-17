@@ -452,6 +452,27 @@ $(document).ready(function() {
             }
 
     /*=====  End of Masking Phone number  ======*/
+
+
+    /*======================================
+    =            Data Checklist            =
+    ======================================*/
+    
+        $("#data-checklist").change(function(event) {
+            self = $(this);
+            $(".data-checklist").each(function(index, el) {
+                if($(self).is(':checked')){
+                    $(this).prop('checked', true);
+                }
+                else
+                {
+                    $(this).prop('checked', false);
+                }
+            });
+        });
+    
+    /*=====  End of Data Checklist  ======*/
+    
     
     
 });
