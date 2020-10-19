@@ -5,6 +5,8 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Entities;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\User as User_m;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 use App;
 use Log;
@@ -13,6 +15,8 @@ class User extends User_m
 {
     //use SoftDeletes;
     
+    use HasApiTokens, Notifiable;
+
     const FOREIGN_KEY = 'user_id';
 
     protected $dates = ['deleted_at'];
