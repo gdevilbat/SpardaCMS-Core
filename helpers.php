@@ -69,7 +69,7 @@ if (! function_exists('generate_storage_url')) {
     {
         if(is_url($path))
         {
-            return url($path);
+            return url('/'.$path);
         }
         else
         {
