@@ -43,7 +43,7 @@
         }
     },
     "archive": {
-        "exclude": ["/Tests", "/preprocessor"]
+        "exclude": ["/Tests/*", "/preprocessor"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true
