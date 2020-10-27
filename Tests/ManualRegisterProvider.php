@@ -10,7 +10,7 @@ trait ManualRegisterProvider{
 	public function setUp():void
 	{
 		parent::setUp();
-		$this->artisan('module:seed');
+		$this->artisan('module:sparda-seed');
 		$authentication = new \Gdevilbat\SpardaCMS\Modules\Role\Providers\AuthServiceProvider(Mockery::mock(Application::class));
 		$authentication->boot();
 	}
