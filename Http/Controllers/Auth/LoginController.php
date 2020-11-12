@@ -4,6 +4,7 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\Auth;
 
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController as Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
