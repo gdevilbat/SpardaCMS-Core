@@ -54,4 +54,19 @@ class LoginController extends Controller
 
         return response()->json(['status' => false], 403);
     }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->regenerate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
 }
