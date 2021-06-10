@@ -7,15 +7,16 @@ use Illuminate\Contracts\Foundation\Application;
 
 trait ManualRegisterProvider{
 
-	public function setUp():void
-	{
-		parent::setUp();
-		$this->artisan('module:sparda-seed');
-		$authentication = new \Gdevilbat\SpardaCMS\Modules\Role\Providers\AuthServiceProvider(Mockery::mock(Application::class));
-		$authentication->boot();
-	}
+    protected $seed;
 
-	public function tearDown():void
+    public function setUp():void
+    {
+        parent::setUp();
+        $authentication = new \Gdevilbat\SpardaCMS\Modules\Role\Providers\AuthServiceProvider(Mockery::mock(Application::class));
+        $authentication->boot();
+    }
+
+    public function tearDown():void
     {
         try {
             parent::tearDown();
@@ -27,4 +28,14 @@ trait ManualRegisterProvider{
         }
     }
 
+    /**
+     * @before
+     */
+    public function setupSeed()
+    {
+        $self = $this;
+        $this->afterApplicationCreated(function () use ($self) {
+            $self->artisan('module:sparda-seed');
+        });
+    }
 }
