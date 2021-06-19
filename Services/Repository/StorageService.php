@@ -5,6 +5,9 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Services\Repository;
 use Storage;
 use Image;
 use Arr;
+use Str;
+
+use Illuminate\Http\UploadedFile;
 
 /**
  * Interface CoreRepository
@@ -36,6 +39,20 @@ class StorageService implements \Gdevilbat\SpardaCMS\Modules\Core\Services\Contr
 		}
 
 		return json_decode(json_encode($response));
+	}
+
+	public function putImageUrl(string $path, $url, bool $thumbnail = false, string $thumb_path = null): object
+	{
+		$info = pathinfo($url);
+		$contents = file_get_contents($url);
+		$file = '/tmp/' . $info['basename'];
+		file_put_contents($file, $contents);
+		$uploaded_file = new UploadedFile($file, $info['basename']);
+
+		$filename = pathinfo($uploaded_file, PATHINFO_FILENAME);
+        $extension = pathinfo($uploaded_file, PATHINFO_EXTENSION);
+
+		return $this->putImageAs($path, $uploaded_file, Str::slug(md5(microtime()).'-'.$filename, '-').'.'.$extension, $thumbnail, $thumb_path);
 	}
 
 	public function getOriginalImage(string $path, $file, $filename): string
