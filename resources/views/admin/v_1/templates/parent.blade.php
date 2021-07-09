@@ -33,6 +33,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     {{-- Page Level Css --}}
     @yield('page_level_css')
+    @stack('page_level_css')
     {{Html::style(module_asset_url('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
     <!-- END PAGE LEVEL PLUGINS -->
 
@@ -41,6 +42,7 @@
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
     @yield('page_style_css')
+    @stack('page_style_css')
 
 
     
@@ -276,11 +278,13 @@
     <!--end::Global Theme Bundle -->
 
     @yield('page_level_js')
+    @stack('page_level_js')
     {{Html::script(module_asset_url('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
 
     <!--end::Page Scripts -->
 
     {{Html::script(module_asset_url('core:resources/views/admin/'.$theme_cms->value.'/js/base.js').'?id='.filemtime(module_asset_path('core:resources/views/admin/'.$theme_cms->value.'/js/base.js')))}}
     @yield('page_script_js')
+    @stack('page_script_js')
   </body>
 </html>
