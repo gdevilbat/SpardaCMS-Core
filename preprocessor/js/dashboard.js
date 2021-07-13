@@ -691,7 +691,7 @@ function generateDatatable(object){
         ],
         "drawCallback": function( settings ) {
             let api = new $.fn.dataTable.Api( settings );
-            let page = api.page.info().page;
+            let page = api.page.info().page + 1;
             let stateObj = { id: page };
               
             window.history.pushState(stateObj,
@@ -707,15 +707,6 @@ function generateDatatable(object){
                 api.search( this.value ).draw();
             }, 1000);
             $searchBox.on("keyup", searchDebouncedFn);
-
-            let urlParams = new URLSearchParams(window.location.search);
-            let page = urlParams.get('page');
-
-            if(page != '')
-            {
-                let api = new $.fn.dataTable.Api( settings );
-                api.page(parseInt(page)).draw('page');
-            }
         }
     } );
 }
