@@ -264,7 +264,7 @@ $(document).ready(function() {
     $(".data-table-ajax").each(function(index, el) {
         if($("#"+$(this).attr('id')).length > 0)
         {
-            window['table_'+$(this).attr('id')]= generateDatatable(this);
+            window['table_'+$(this).attr('id')] = generateDatatable(this);
         }
         else
         {
@@ -690,16 +690,32 @@ function generateDatatable(object){
          "columnDefs": [
         ],
         "drawCallback": function( settings ) {
+            let api = new $.fn.dataTable.Api( settings );
+            let page = api.page.info().page;
+            let stateObj = { id: page };
+              
+            window.history.pushState(stateObj,
+                     $('title').text(), "?page="+page);
+
             deleteData();
         },
         "initComplete": function(settings, json) {
-            var $searchBox = $("div.dataTables_filter input");
+            let $searchBox = $("div.dataTables_filter input");
             $searchBox.unbind();
-            var searchDebouncedFn = debounce(function() {
-                var api = new $.fn.dataTable.Api( settings );
+            let searchDebouncedFn = debounce(function() {
+                let api = new $.fn.dataTable.Api( settings );
                 api.search( this.value ).draw();
             }, 1000);
             $searchBox.on("keyup", searchDebouncedFn);
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let page = urlParams.get('page');
+
+            if(page != '')
+            {
+                let api = new $.fn.dataTable.Api( settings );
+                api.page(parseInt(page)).draw('page');
+            }
         }
     } );
 }
