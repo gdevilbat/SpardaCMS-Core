@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="api-token" content="{{ \Auth::user()->api_token }}">
+    <meta name="api-token" content="{{ \Auth::check() ? \Auth::user()->api_token : '' }}">
     <title>{!! config('core.name') !!}@yield('title', '')</title>
     @section('meta_tag')
     @show
@@ -110,7 +110,7 @@
                           <span class="m-topbar__userpic">
                             <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                           </span>
-                          <span class="m-topbar__username m--hide">{{Auth::user()->name}}</span>
+                          <span class="m-topbar__username m--hide">{{\Auth::check() ? Auth::user()->name : ''}}</span>
                         </a>
                         <div class="m-dropdown__wrapper">
                           <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -121,8 +121,8 @@
                                   <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                                 </div>
                                 <div class="m-card-user__details">
-                                  <span class="m-card-user__name m--font-weight-500">{{Auth::user()->name}}</span>
-                                  <a href="javascript:void(0)" class="m-card-user__email m--font-weight-300 m-link">{{Auth::user()->email}}</a>
+                                  <span class="m-card-user__name m--font-weight-500">{{\Auth::check() ? Auth::user()->name : ''}}</span>
+                                  <a href="javascript:void(0)" class="m-card-user__email m--font-weight-300 m-link">{{\Auth::check() ? Auth::user()->email : ''}}</a>
                                 </div>
                               </div>
                             </div>
