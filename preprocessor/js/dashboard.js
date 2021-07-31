@@ -604,7 +604,7 @@ $(document).ready(function() {
                             });
                         }
 
-                        self = this;
+                        let self = this;
                         $(".file-input").each(function(index, el) {
                            $(this).change(function(event) {
                                //window.alert('asdads');
@@ -650,7 +650,7 @@ $(document).ready(function() {
                         });
                     }
 
-                    self = this;
+                    let self = this;
                     $(".file-input").each(function(index, el) {
                        $(this).change(function(event) {
                            //window.alert('asdads');

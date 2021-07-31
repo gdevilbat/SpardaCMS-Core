@@ -1,5 +1,5 @@
-const { mix } = require('laravel-mix');
-
+const mix  = require('laravel-mix');
+mix.setPublicPath('../resources/views/admin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,9 +11,9 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('js/dashboard.js', '../../resources/views/admin/v_1/js/base.js').options({
+mix.js('js/dashboard.js', 'v_1/js/base.js').options({
       processCssUrls: false
    })
-   .less('less/v_1/dashboard.less', '../../resources/views/admin/v_1/css/base.css').options({
+   .less('less/v_1/dashboard.less', 'v_1/css/base.css').options({
       processCssUrls: false
    });
