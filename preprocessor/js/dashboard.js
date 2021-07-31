@@ -576,6 +576,8 @@ $(document).ready(function() {
             addComponent: function(){
                 this.components.push([]);
                 this.$nextTick(function(){
+                        let self = this;
+
                         /*========================================
                         =            Image Filemanage            =
                         ========================================*/
@@ -590,22 +592,18 @@ $(document).ready(function() {
                             $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                         }
 
-                        if($(".lfm-input").length > 0)
-                        {
-                            $(".lfm-input").each(function(index, el) {
-                                $(this).click(function(event) {
-                                    event.preventDefault();
+                        $(this.$el).find(".lfm-input").each(function(index, el) {
+                            $(this).click(function(event) {
+                                event.preventDefault();
 
-                                      objInputFileManager = '#'+$(this).attr('data-input');
-                                      objPreviewFileManager = '#'+$(this).attr('data-preview');
+                                  objInputFileManager = '#'+$(this).attr('data-input');
+                                  objPreviewFileManager = '#'+$(this).attr('data-preview');
 
-                                      window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
-                                });   
-                            });
-                        }
+                                  window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
+                            });   
+                        });
 
-                        let self = this;
-                        $(".file-input").each(function(index, el) {
+                        $(this.$el).find(".file-input").each(function(index, el) {
                            $(this).change(function(event) {
                                //window.alert('asdads');
                                value = $(this).val();
@@ -622,6 +620,8 @@ $(document).ready(function() {
         },
         mounted: function () {
                 this.$nextTick(function () {
+                    let self = this;
+
                     /*========================================
                     =            Image Filemanage            =
                     ========================================*/
@@ -636,22 +636,18 @@ $(document).ready(function() {
                         $('.filemanager-image').filemanager('image', {prefix: base+'/control/filemanager'});
                     }
 
-                    if($(".lfm-input").length > 0)
-                    {
-                        $(".lfm-input").each(function(index, el) {
-                            $(this).click(function(event) {
-                                event.preventDefault();
+                    $(this.$el).find(".lfm-input").each(function(index, el) {
+                        $(this).click(function(event) {
+                            event.preventDefault();
 
-                                  objInputFileManager = '#'+$(this).attr('data-input');
-                                  objPreviewFileManager = '#'+$(this).attr('data-preview');
+                              objInputFileManager = '#'+$(this).attr('data-input');
+                              objPreviewFileManager = '#'+$(this).attr('data-preview');
 
-                                  window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
-                            });   
-                        });
-                    }
+                              window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
+                        });   
+                    });
 
-                    let self = this;
-                    $(".file-input").each(function(index, el) {
+                    $(this.$el).find(".file-input").each(function(index, el) {
                        $(this).change(function(event) {
                            //window.alert('asdads');
                            value = $(this).val();
