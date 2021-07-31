@@ -596,8 +596,8 @@ $(document).ready(function() {
                             $(this).click(function(event) {
                                 event.preventDefault();
 
-                                  objInputFileManager = '#'+$(this).attr('data-input');
-                                  objPreviewFileManager = '#'+$(this).attr('data-preview');
+                                  objInputFileManager = $(self.$el).find('#'+$(this).attr('data-input')).eq(0);
+                                  objPreviewFileManager = $(self.$el).find('#'+$(this).attr('data-preview')).eq(0);
 
                                   window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                             });   
@@ -640,8 +640,8 @@ $(document).ready(function() {
                         $(this).click(function(event) {
                             event.preventDefault();
 
-                              objInputFileManager = '#'+$(this).attr('data-input');
-                              objPreviewFileManager = '#'+$(this).attr('data-preview');
+                              objInputFileManager = $(self.$el).find('#'+$(this).attr('data-input')).eq(0);
+                              objPreviewFileManager = $(self.$el).find('#'+$(this).attr('data-preview')).eq(0);
 
                               window.open('/file-manager/fm-button?leftDisk='+window.disk+'&rightDisk='+window.disk, 'fm', 'width=800,height=600');
                         });   
