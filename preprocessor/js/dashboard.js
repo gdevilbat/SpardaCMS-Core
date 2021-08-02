@@ -160,9 +160,6 @@ $.fn.exists = function(){ return this.length > 0; }
 
 })(jQuery);
 
-let objInputFileManager;
-let objPreviewFileManager;
-
 $(document).ready(function() {
     var confirm_delete = {
         data: {
@@ -747,6 +744,9 @@ window. debounce = function(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 };
+
+let objInputFileManager = '';
+let objPreviewFileManager = '';
 
 window.fmSetLink = function($url){
     $(objInputFileManager).val($url.replace(window.storage_url, '')).change();
