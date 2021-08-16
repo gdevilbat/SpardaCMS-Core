@@ -25,6 +25,8 @@
 	         </span>
 	     </a>
 	</li>
+@endcan
+@can('menu-core')
 	<li class="m-menu__item  {{Route::current()->getName() == 'cms.setting.create' ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
 	    <a href="{{route('cms.setting.create')}}" class="m-menu__link ">
 	        <i class="m-menu__link-icon flaticon-cogwheel"></i>

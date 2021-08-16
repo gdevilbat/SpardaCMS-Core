@@ -44,8 +44,8 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::get('setting', 'SettingController@create')->middleware('can:super-access')->name('cms.setting.create');
-		    Route::put('setting', 'SettingController@store')->middleware('can:super-access')->name('cms.setting.store');
+		    Route::get('setting', 'SettingController@create')->middleware('can:menu-core')->name('cms.setting.create');
+		    Route::put('setting', 'SettingController@store')->middleware('can:menu-core')->name('cms.setting.store');
         
         /*=====  End of Setting CMS  ======*/
 
