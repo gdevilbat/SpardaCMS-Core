@@ -352,9 +352,12 @@ $(document).ready(function() {
         });*/
 
         $(".texteditor").each(function () {
-             CKEDITOR.replace( $(this).attr("name"),{
-                filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
-            });
+            if(CKEDITOR.instances[$(this).attr("name")] == undefined)
+            {
+                 CKEDITOR.replace( $(this).attr("name"),{
+                    filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
+                });
+            }
         });
     
     /*=====  End of CK Editor  ======*/
@@ -601,6 +604,16 @@ $(document).ready(function() {
                                self.$set(self.components[index], name, value);
                            });
                         });
+
+                        $(".texteditor").each(function () {
+                            if(CKEDITOR.instances[$(this).attr("name")] == undefined)
+                            {
+                                 CKEDITOR.replace( $(this).attr("name"),{
+                                    filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
+                                });
+
+                            }
+                        });
                 });
             },
             removeComponent: function(index){
@@ -638,6 +651,16 @@ $(document).ready(function() {
                            name = $(this).attr('data-name');
                            self.$set(self.components[index], name, value);
                        });
+                    });
+
+                    $(".texteditor").each(function () {
+                        if(CKEDITOR.instances[$(this).attr("name")] == undefined)
+                        {
+                             CKEDITOR.replace( $(this).attr("name"),{
+                                filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
+                            });
+
+                        }
                     });
                 });
         }
