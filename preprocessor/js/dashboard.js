@@ -1,3 +1,5 @@
+import CKEditor from 'ckeditor4-vue';
+
 window._ = require('lodash');
 
 /**
@@ -8,6 +10,7 @@ window._ = require('lodash');
 
 window.Vue = require('vue');
 
+Vue.use(CKEditor);
 Vue.config.errorHandler = function (err, vm) {
   window.console.log(err);
 };
@@ -573,7 +576,10 @@ $(document).ready(function() {
 =================================*/
     var componentMixin = {
         data: {
-            window: window
+            window: window,
+            editorConfig: {
+                filebrowserImageBrowseUrl: window.base+'/file-manager/ckeditor',
+            }
         },
        methods: {
             addComponent: function(){
@@ -603,16 +609,6 @@ $(document).ready(function() {
                                name = $(this).attr('data-name');
                                self.$set(self.components[index], name, value);
                            });
-                        });
-
-                        $(".texteditor").each(function () {
-                            if(CKEDITOR.instances[$(this).attr("name")] == undefined)
-                            {
-                                 CKEDITOR.replace( $(this).attr("name"),{
-                                    filebrowserImageBrowseUrl: base+'/file-manager/ckeditor',
-                                });
-
-                            }
                         });
                 });
             },
@@ -653,7 +649,7 @@ $(document).ready(function() {
                        });
                     });
 
-                    $(".texteditor").each(function () {
+                    $(this.$el).find(".texteditor").each(function () {
                         if(CKEDITOR.instances[$(this).attr("name")] == undefined)
                         {
                              CKEDITOR.replace( $(this).attr("name"),{
