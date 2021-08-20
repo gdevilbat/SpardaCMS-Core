@@ -423,7 +423,7 @@ $(document).ready(function() {
             var phone = this.value;
             for(var i = 0; i < phone.length; i++){
                 var valid_number;
-                
+
                 if(phone.charAt(0) == '0')
                 {
                     valid_number = setCharAt(phone, 0, '');
@@ -528,9 +528,9 @@ $(document).ready(function() {
                         $(".banner").each(function(index, el) {
                            $(this).change(function(event) {
                                //window.alert('asdads');
-                               value = $(this).val();
-                               index = $(this).attr('data-index');
-                               name = $(this).attr('data-name');
+                               var value = $(this).val();
+                               var index = $(this).attr('data-index');
+                               var name = $(this).attr('data-name');
                                FormComponent.components[index][name] = value;
                            });
                         });
@@ -558,9 +558,9 @@ $(document).ready(function() {
                         $(".banner").each(function(index, el) {
                            $(this).change(function(event) {
                                //window.alert('asdads');
-                               value = $(this).val();
-                               index = $(this).attr('data-index');
-                               name = $(this).attr('data-name');
+                               var value = $(this).val();
+                               var index = $(this).attr('data-index');
+                               var name = $(this).attr('data-name');
                                FormComponent.components[index][name] = value;
                            });
                         });
@@ -606,9 +606,9 @@ $(document).ready(function() {
                         $(this.$el).find(".file-input").each(function(index, el) {
                            $(this).change(function(event) {
                                //window.alert('asdads');
-                               value = $(this).val();
-                               index = $(this).attr('data-index');
-                               name = $(this).attr('data-name');
+                               var value = $(this).val();
+                               var index = $(this).attr('data-index');
+                               var name = $(this).attr('data-name');
                                self.$set(self.components[index], name, value);
                            });
                         });
