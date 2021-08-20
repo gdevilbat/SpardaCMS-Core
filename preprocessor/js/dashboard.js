@@ -374,7 +374,7 @@ $(document).ready(function() {
            $(this).keyup(function(event) {
                if(getParameterByName('code') == null)
                {
-                   target = $(this).attr('data-target');
+                   var target = $(this).attr('data-target');
                    $("#"+target).val(slugify($(this).val()));
                }
            });
@@ -420,8 +420,10 @@ $(document).ready(function() {
     ============================================*/
 
         $(".phone").keyup(function(event) {
-            phone = this.value;
+            var phone = this.value;
             for(var i = 0; i < phone.length; i++){
+                var valid_number;
+                
                 if(phone.charAt(0) == '0')
                 {
                     valid_number = setCharAt(phone, 0, '');
@@ -437,8 +439,8 @@ $(document).ready(function() {
         });
 
         $(".phone").keydown(function(event) {
-            number = [8, 37, 39, 48, 49, 50, 51, 52 , 53, 54, 55, 56, 57];
-            value  = $.inArray(event.keyCode, number);
+            var number = [8, 37, 39, 48, 49, 50, 51, 52 , 53, 54, 55, 56, 57];
+            var value  = $.inArray(event.keyCode, number);
             if(value !== -1)
             {
                 if(this.value.length === 0)
@@ -465,7 +467,7 @@ $(document).ready(function() {
     ======================================*/
     
         $("#data-checklist").change(function(event) {
-            self = $(this);
+            let self = $(this);
             $(".data-checklist").each(function(index, el) {
                 if($(self).is(':checked')){
                     $(this).prop('checked', true);
