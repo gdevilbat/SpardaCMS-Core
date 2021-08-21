@@ -644,9 +644,9 @@ $(document).ready(function() {
 
                     $(this.$el).find(".file-input").each(function(index, el) {
                        $(this).change(function(event) {
-                           value = $(this).val();
-                           index = $(this).attr('data-index');
-                           name = $(this).attr('data-name');
+                           var value = $(this).val();
+                           var index = $(this).attr('data-index');
+                           var name = $(this).attr('data-name');
                            self.$set(self.components[index], name, value);
                        });
                     });
