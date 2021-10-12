@@ -16,8 +16,7 @@
         "intervention/image": "^2.5",
         "alexusmai/laravel-file-manager": "^2.0",
         "doctrine/dbal": "^2.0",
-        "unisharp/laravel-filemanager": "^1.9",
-        "laravel/passport": "^7.0"
+        "unisharp/laravel-filemanager": "^1.9"
     },
     "extra": {
         "laravel": {
