@@ -49,6 +49,14 @@ class User extends User_m
         return $this->hasMany(\Gdevilbat\SpardaCMS\Modules\User\Entities\UserMeta::class, SELF::FOREIGN_KEY);
     }
 
+    final function getMetaAttribute()
+    {
+        $meta_repo = resolve(\Gdevilbat\SpardaCMS\Modules\User\Repositories\UserMetaRepository::class);
+        $meta_repo->user = $this;
+
+        return $meta_repo;
+    }
+
     /**
      * Set the user's password.
      *
