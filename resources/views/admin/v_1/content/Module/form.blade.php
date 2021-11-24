@@ -165,8 +165,8 @@
 @endsection
 
 @section('page_level_js')
-    {{Html::script(module_asset_url('core:assets/js/autosize.min.js'))}}
-    {{Html::script(module_asset_url('core:assets/js/slugify.js'))}}
+    {{Html::script(module_asset_url('Core:assets/js/autosize.min.js'))}}
+    {{Html::script(module_asset_url('Core:assets/js/slugify.js'))}}
 @endsection
 
 @section('page_script_js')

@@ -25,19 +25,19 @@
     <!--end::Web font -->
 
     <!--begin::Global Theme Styles -->
-    {{Html::style(module_asset_url('core:assets/metronic-v5/vendors/base/vendors.bundle.css'))}}
+    {{Html::style(module_asset_url('Core:assets/metronic-v5/vendors/base/vendors.bundle.css'))}}
 
     <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    {{Html::style(module_asset_url('core:assets/metronic-v5/demo/default/base/style.bundle.css'))}}
+    {{Html::style(module_asset_url('Core:assets/metronic-v5/demo/default/base/style.bundle.css'))}}
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     {{-- Page Level Css --}}
     @yield('page_level_css')
     @stack('page_level_css')
-    {{Html::style(module_asset_url('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
+    {{Html::style(module_asset_url('Core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
     <!-- END PAGE LEVEL PLUGINS -->
 
-    {{Html::style(module_asset_url('core:resources/views/admin/'.$theme_cms->value.'/css/base.css').'?id='.filemtime(module_asset_path('core:resources/views/admin/'.$theme_cms->value.'/css/base.css')))}}
+    {{Html::style(module_asset_url('Core:resources/views/admin/'.$theme_cms->value.'/css/base.css').'?id='.filemtime(module_asset_path('Core:resources/views/admin/'.$theme_cms->value.'/css/base.css')))}}
     
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
@@ -67,7 +67,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                   <div class="m-stack__item m-stack__item--middle m-brand__logo">
                     <a href="{{ url('/') }}" class="m-brand__logo-wrapper">
-                      <img src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : generate_storage_url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo" class="img-logo"> </a>
+                      <img src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('Core:assets/images/Spartan.png') : generate_storage_url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo" class="img-logo"> </a>
                     </a>
                   </div>
                   <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -108,7 +108,7 @@
                        m-dropdown-toggle="click">
                         <a href="#" class="m-nav__link m-dropdown__toggle">
                           <span class="m-topbar__userpic">
-                            <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
+                            <img src="{{module_asset_url('Core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                           </span>
                           <span class="m-topbar__username m--hide">{{\Auth::check() ? Auth::user()->name : ''}}</span>
                         </a>
@@ -118,7 +118,7 @@
                             <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                               <div class="m-card-user m-card-user--skin-dark">
                                 <div class="m-card-user__pic">
-                                  <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
+                                  <img src="{{module_asset_url('Core:assets/images/atomix_user31.png')}}" class="m--img-rounded m--marginless" alt="" />
                                 </div>
                                 <div class="m-card-user__details">
                                   <span class="m-card-user__name m--font-weight-500">{{\Auth::check() ? Auth::user()->name : ''}}</span>
@@ -272,18 +272,18 @@
     </script>
 
     <!--begin::Global Theme Bundle -->
-    {{Html::script(module_asset_url('core:assets/metronic-v5/vendors/base/vendors.bundle.js'))}}
-    {{Html::script(module_asset_url('core:assets/metronic-v5/demo/default/base/scripts.bundle.js'))}}
+    {{Html::script(module_asset_url('Core:assets/metronic-v5/vendors/base/vendors.bundle.js'))}}
+    {{Html::script(module_asset_url('Core:assets/metronic-v5/demo/default/base/scripts.bundle.js'))}}
 
     <!--end::Global Theme Bundle -->
 
     @yield('page_level_js')
     @stack('page_level_js')
-    {{Html::script(module_asset_url('core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
+    {{Html::script(module_asset_url('Core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.js'))}}
 
     <!--end::Page Scripts -->
 
-    {{Html::script(module_asset_url('core:resources/views/admin/'.$theme_cms->value.'/js/base.js').'?id='.filemtime(module_asset_path('core:resources/views/admin/'.$theme_cms->value.'/js/base.js')))}}
+    {{Html::script(module_asset_url('Core:resources/views/admin/'.$theme_cms->value.'/js/base.js').'?id='.filemtime(module_asset_path('Core:resources/views/admin/'.$theme_cms->value.'/js/base.js')))}}
     @yield('page_script_js')
     @stack('page_script_js')
   </body>
