@@ -1,7 +1,6 @@
 @extends('core::admin.'.$theme_cms->value.'.templates.parent')
 
 @section('page_level_css')
-    {{Html::style(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
     {{Html::style(url('vendor/file-manager/css/file-manager.css'))}}
 @endsection
 
@@ -51,7 +50,5 @@
 @endsection
 
 @section('page_level_js')
-    {{Html::script(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
-    {{Html::script(module_asset_url('core:assets/js/autosize.min.js'))}}
     {{Html::script('vendor/file-manager/js/file-manager.js')}}
 @endsection
