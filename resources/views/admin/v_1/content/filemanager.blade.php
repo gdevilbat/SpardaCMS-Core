@@ -1,7 +1,7 @@
 @extends('core::admin.'.$theme_cms->value.'.templates.parent')
 
 @section('page_level_css')
-    {{Html::style(url('vendor/file-manager/css/file-manager.css'))}}
+    {{Html::style('vendor/file-manager/css/file-manager.css')}}
 @endsection
 
 @section('title_dashboard', ' File Manager')

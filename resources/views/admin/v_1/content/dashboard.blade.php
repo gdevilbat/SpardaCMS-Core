@@ -51,5 +51,4 @@
 @section('page_level_js')
     {{Html::script(module_asset_url('Core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
     {{Html::script(module_asset_url('Core:assets/js/autosize.min.js'))}}
-    {{Html::script('vendor/laravel-filemanager/js/lfm.js')}}
 @endsection
