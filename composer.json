@@ -9,14 +9,11 @@
         }
     ],
     "require": {
-        "php": "^7.1.3",
-        "laravel/framework": "5.8.*",
-        "joshbrw/laravel-module-installer": "^2.0",
-        "laravelcollective/html": "^5.8",
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.75",
         "intervention/image": "^2.5",
         "alexusmai/laravel-file-manager": "^2.0",
-        "doctrine/dbal": "^2.0",
-        "unisharp/laravel-filemanager": "^1.9"
+        "doctrine/dbal": "^2.0"
     },
     "extra": {
         "laravel": {

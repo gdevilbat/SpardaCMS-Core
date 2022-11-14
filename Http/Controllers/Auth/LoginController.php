@@ -3,7 +3,6 @@
 namespace Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\Auth;
 
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController as Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -18,8 +17,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -38,36 +35,60 @@ class LoginController extends Controller
         $this->middleware('core.guest')->except(['logout', 'isLogin']);
     }
 
-    /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function showLoginForm()
     {
-        return view('core::auth.login');
-    }
-
-    public function isLogin()
-    {
-        if(\Auth::check())
-            return response()->json(['status' => true], 200);
-
-        return response()->json(['status' => false], 403);
+        return view('core::index'); 
     }
 
     /**
-     * Log the user out of the application.
+     * Handle account login request
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  LoginRequest  $request
      * @return \Illuminate\Http\Response
+     */
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->getCredentials();
+
+        if (! Auth::validate($credentials)) {
+            throw ValidationException::withMessages([
+                'username' => [trans('auth.failed')],
+            ]);
+        }
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
+    }
+
+    /**
+     * Handle response after user authenticated
+     *
+     * @param  Request  $request
+     * @param  Auth  $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        return response()->json([
+            'status' => true,
+            'data' => [
+                'redirect_url' => $this->redirectTo,
+            ],
+        ]);
+    }
+
+    /**
+     * Log out account user.
+     *
+     * @return \Illuminate\Routing\Redirector
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        Auth::logout();
 
         $request->session()->regenerate();
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return redirect('admin');
     }
 }

@@ -32,7 +32,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerFactories();
+        //$this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         $this->commands([\Gdevilbat\SpardaCMS\Modules\Core\Console\SeedCommand::class]);
@@ -114,7 +114,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/Modules/SpardaCMS/core');
 
-        $sourcePath = __DIR__.'/../resources/views';
+        $sourcePath = __DIR__.'/../Resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
@@ -137,7 +137,7 @@ class CoreServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'core');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'core');
+            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'core');
         }
     }
 
