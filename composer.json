@@ -11,6 +11,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "laravel/framework": "^8.75",
+        "joshbrw/laravel-module-installer": "^2.0",
         "intervention/image": "^2.5",
         "alexusmai/laravel-file-manager": "^2.0",
         "doctrine/dbal": "^2.0"
