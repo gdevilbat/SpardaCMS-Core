@@ -13,7 +13,7 @@
 	</li>
 @endcan
 @can('super-access')
-	<li class="m-menu__item  {{strstr(request()->path(), 'cms.module') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
+	<li class="m-menu__item  {{strstr(Route::current()->getName(), 'cms.module') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
 	    <a href="{{route('cms.module.master')}}" class="m-menu__link ">
 	        <i class="m-menu__link-icon flaticon-squares-4"></i>
 	        <span class="m-menu__link-title"> 
@@ -27,7 +27,7 @@
 	</li>
 @endcan
 @can('menu-core')
-	<li class="m-menu__item  {{request()->path() == '/control/setting' ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
+	<li class="m-menu__item  {{strstr(Route::current()->getName(), 'cms.setting') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
 	    <a href="{{route('cms.setting.create')}}" class="m-menu__link ">
 	        <i class="m-menu__link-icon flaticon-cogwheel"></i>
 	        <span class="m-menu__link-title"> 
