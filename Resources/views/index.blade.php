@@ -20,11 +20,7 @@
 </head>
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
     <div id="main">
-        <v-app>
-            <v-main>
-                <router-view></router-view>
-            </v-main>
-        </v-app>
+        <router-view></router-view>
     </div>
 </body>
 <script src="{{ mix('/js/manifest.js') }}"></script>

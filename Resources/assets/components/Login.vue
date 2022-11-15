@@ -17,10 +17,10 @@
 									</div>
 									<form class="m-login__form m-form"  v-on:submit.prevent="submit">
 										<div class="form-group m-form__group">
-											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
+											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off" v-model="username">
 										</div>
 										<div class="form-group m-form__group">
-											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
+											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" v-model="password">
 										</div>
 										<div class="row m-login__form-sub">
 											<div class="col m--align-left">
@@ -34,7 +34,7 @@
 											</div>
 										</div>
 										<div class="m-login__form-action">
-											<button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign In</button>
+											<button  class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign In</button>
 										</div>
 									</form>
 								</div>
@@ -114,18 +114,56 @@
     import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css'
     import '../../../assets/metronic-v5/demo/default/base/style.bundle.css'
 
-    // import '../../../assets/metronic-v5/vendors/base/vendors.bundle.js'
-    // import '../../../assets/metronic-v5/demo/default/base/scripts.bundle.js'
-    // import '../../../assets/metronic-v5/snippets/custom/pages/user/login.js'
-
     export default {
+        data(){
+            return{
+                username : '',
+                password : '',
+                isLoading: false
+            }
+        },
+        created() {
+            let self = this;
+
+			var doc = document.createElement('script');  
+			doc.setAttribute('src',this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js");
+			document.body.appendChild(doc);
+
+            setTimeout(function() {
+				var doc = document.createElement('script');  
+				doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js");
+				doc.setAttribute('type', 'text/javascript');
+				doc.setAttribute("defer", "defer");
+				document.body.appendChild(doc);
+
+                var doc = document.createElement('script');  
+                doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/snippets/custom/pages/user/login.js");
+                doc.setAttribute("defer", "defer");
+                document.body.appendChild(doc);
+			}, 1000);
+
+		},
         methods: {
             submit: function(){
-                alert('test');
+                this.isLoading = true
+                axios({
+                    method : "post",
+                    url : "/control/auth",
+                    data : {email : this.username, password : this.password}
+                }).then(Response=>{
+                    window.location.href = Response.data.data.redirect_url
+                }).catch(function(error){
+                    self.isLoading = false
+                })    
             }
         },
     }
 </script>
+<style lang="scss">
+    #main{
+        height: 100%;
+    }
+</style>
 <style lang="scss" scoped>
     .m-page{
         height: 100%;

@@ -15,6 +15,6 @@ class DashboardController extends CoreController
      */
     public function index()
     {
-        return view('core::admin.'.$this->data['theme_cms']->value.'.content.dashboard', $this->data);
+        return view('core::dashboard');
     }
 }

@@ -4,6 +4,11 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\Auth;
 
 use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController as Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+
+use Gdevilbat\SpardaCMS\Modules\Core\Http\Requests\LoginRequest;
+
+use Auth;
 
 class LoginController extends Controller
 {
@@ -52,9 +57,11 @@ class LoginController extends Controller
 
         if (! Auth::validate($credentials)) {
             throw ValidationException::withMessages([
-                'username' => [trans('auth.failed')],
+                'email' => [trans('auth.failed')],
             ]);
         }
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
 

@@ -27,7 +27,7 @@ class SettingController extends CoreController
      */
     public function create()
     {
-        $this->data['admin_directories'] = $this->getDirectories('core:resources/views/admin');
+        $this->data['admin_directories'] = $this->getDirectories('core:Resources/views/admin');
         return view('core::admin.'.$this->data['theme_cms']->value.'.content.setting', $this->data);
     }
 

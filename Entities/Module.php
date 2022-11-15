@@ -66,7 +66,7 @@ class Module extends Model
         {
             $core_modules = collect(Module_core::allEnabled())->keys();
             $core_modules = $core_modules->map(function($item, $key){
-                              return str_slug($item);  
+                              return \Str::slug($item);  
                             });
 
             Config::set(['core_modules' => $core_modules]);

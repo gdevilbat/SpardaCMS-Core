@@ -37,7 +37,7 @@
     {{Html::style(module_asset_url('Core:assets/metronic-v5/vendors/custom/datatables/datatables.bundle.css'))}}
     <!-- END PAGE LEVEL PLUGINS -->
 
-    {{Html::style(module_asset_url('Core:resources/views/admin/'.$theme_cms->value.'/css/base.css').'?id='.filemtime(module_asset_path('Core:resources/views/admin/'.$theme_cms->value.'/css/base.css')))}}
+    {{Html::style(module_asset_url('Core:Resources/views/admin/'.$theme_cms->value.'/css/base.css').'?id='.filemtime(module_asset_path('Core:Resources/views/admin/'.$theme_cms->value.'/css/base.css')))}}
     
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
 
@@ -54,7 +54,7 @@
 
   </head>
   <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-    <!-- begin:: Page -->
+      <!-- begin:: Page -->
       <div class="m-grid m-grid--hor m-grid--root m-page">
 
         <!-- BEGIN: Header -->
@@ -283,7 +283,7 @@
 
     <!--end::Page Scripts -->
 
-    {{Html::script(module_asset_url('Core:resources/views/admin/'.$theme_cms->value.'/js/base.js').'?id='.filemtime(module_asset_path('Core:resources/views/admin/'.$theme_cms->value.'/js/base.js')))}}
+    {{Html::script(module_asset_url('Core:Resources/views/admin/'.$theme_cms->value.'/js/base.js').'?id='.filemtime(module_asset_path('Core:Resources/views/admin/'.$theme_cms->value.'/js/base.js')))}}
     @yield('page_script_js')
     @stack('page_script_js')
   </body>

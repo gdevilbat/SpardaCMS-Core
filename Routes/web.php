@@ -38,7 +38,10 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
 
     Route::group(['middleware' => 'core.auth'], function() {
 
-        Route::get('dashboard', 'DashboardController@index');
+        Route::get('spa/{any}', 'DashboardController@index')
+            ->where('any', '^((?!auth).)*$');
+
+        Route::post('menu', 'MenuController@getMenu');
         
         /*=============================================
         =            Setting CMS            =

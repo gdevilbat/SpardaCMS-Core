@@ -18,7 +18,7 @@ class ModuleTest extends DuskTestCase
      */
     public function testCreateModule()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
         $faker = \Faker\Factory::create();
 
         $this->browse(function (Browser $browser) use ($user, $faker) {
@@ -45,7 +45,7 @@ class ModuleTest extends DuskTestCase
      */
     public function testEditModule()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
 
         $this->browse(function (Browser $browser) use ($user) {
 
@@ -69,7 +69,7 @@ class ModuleTest extends DuskTestCase
      */
     public function testDeleteModule()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
 
         $this->browse(function (Browser $browser) use ($user) {
 

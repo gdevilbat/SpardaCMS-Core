@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+use  Gdevilbat\SpardaCMS\Modules\Core\Entities\User;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -18,12 +20,13 @@ class UsersTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('users')->insert([
+        User::firstOrCreate(
+            ['email' => 'admin@default.app'],
             [
-                'email' => 'admin@default.app',
-                'password' => bcrypt('smartnaco'),
+                
+                'password' => 'smartnaco',
                 'name' => 'Super Admin',
             ],
-        ]);
+        );
     }
 }

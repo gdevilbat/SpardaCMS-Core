@@ -29,7 +29,7 @@ class ModuleController extends CoreController
     {
         $core_modules = collect(Module::allEnabled())->keys();
         $core_modules = $core_modules->map(function($item, $key){
-                          return str_slug($item);  
+                          return \Str::slug($item);  
                         });
 
         $modules = $this->module_m->select('slug')->pluck('slug');
@@ -40,7 +40,7 @@ class ModuleController extends CoreController
         foreach ($add_modules as $key => $value) 
         {
             $module = new $this->module_m;
-            $module->name = title_case(str_replace('-', ' ', $value));
+            $module->name = \Str::title(str_replace('-', ' ', $value));
             $module->slug = $value;
             $module->description = '';
             $module->save();

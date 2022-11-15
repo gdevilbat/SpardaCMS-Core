@@ -18,7 +18,7 @@ class SettingTest extends DuskTestCase
      */
     public function testEditSetting()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
 
         $this->browse(function (Browser $browser) use ($user) {
             $faker = \Faker\Factory::create();

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting;
+
 class SettingTableSeeder extends Seeder
 {
     /**
@@ -18,15 +20,20 @@ class SettingTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('setting')->insert([
+        Setting::firstOrCreate(
+            [ 'name' => 'theme_public'],
             [
                 'name' => 'theme_public',
-                'value' => json_encode('classic'),
+                'value' => 'classic',
             ],
+        );
+
+        Setting::firstOrCreate(
+            [ 'name' => 'theme_cms'],
             [
                 'name' => 'theme_cms',
-                'value' => json_encode('v_1'),
+                'value' => 'v_1',
             ],
-        ]);
+        );
     }
 }

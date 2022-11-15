@@ -4,7 +4,7 @@ namespace Gdevilbat\SpardaCMS\Modules\Core\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\User as User_m;
+use App\Models\User as User_m;
 use Illuminate\Notifications\Notifiable;
 
 use App;
