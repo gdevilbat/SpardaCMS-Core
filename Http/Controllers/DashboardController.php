@@ -15,6 +15,15 @@ class DashboardController extends CoreController
      */
     public function index()
     {
+        return view('core::admin.'.$this->data['theme_cms']->value.'.content.dashboard', $this->data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Response
+     */
+    public function spa()
+    {
         return view('core::dashboard');
     }
 }
