@@ -127,20 +127,19 @@
 
 			var doc = document.createElement('script');  
 			doc.setAttribute('src',this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js");
-			document.body.appendChild(doc);
 
-            setTimeout(function() {
+			doc.onload = function handleScriptLoaded(){
 				var doc = document.createElement('script');  
 				doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js");
 				doc.setAttribute('type', 'text/javascript');
-				doc.setAttribute("defer", "defer");
 				document.body.appendChild(doc);
 
                 var doc = document.createElement('script');  
                 doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/snippets/custom/pages/user/login.js");
-                doc.setAttribute("defer", "defer");
                 document.body.appendChild(doc);
-			}, 1000);
+			}
+
+			document.body.appendChild(doc);
 
 		},
         methods: {

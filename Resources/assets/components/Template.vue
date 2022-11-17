@@ -13,7 +13,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                   <div class="m-stack__item m-stack__item--middle m-brand__logo">
                     <a href="" class="m-brand__logo-wrapper">
-                      <img src="" alt="logo" class="img-logo">
+                      <img v-if="settings.logo != ''" v-bind:src="settings.logo" alt="logo" class="img-logo">
                     </a>
                   </div>
                   <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -210,62 +210,95 @@
     import '../../../assets/metronic-v5/demo/default/base/style.bundle.css'
 
     export default {
+        props: {
+
+        },
         data(){
             return{
-				sidebar: '',
-				user : {},
-				breadcumb: ''
+              sidebar: '',
+              user : {},
+              breadcumb: '',
+              settings: {
+                logo: '',
+                global: {
+                  value:{
+                    meta_title: null
+                  }
+                }
+              },
+              vendor_bundle: this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js",
+              script_bundle: this.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js",
             }
         },
-		created() {
-			let self = this;
-			var doc = document.createElement('script');  
-			doc.setAttribute('src',this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js");
-			doc.setAttribute('type', 'text/javascript');
-			doc.setAttribute("defer", "defer");
-			document.body.appendChild(doc);
+        created() {
+          let self = this;
 
-			setTimeout(function() {
-				var doc = document.createElement('script');  
-				doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js");
-				doc.setAttribute('type', 'text/javascript');
-				doc.setAttribute("defer", "defer");
-				document.body.appendChild(doc);
-			}, 1000);
+          if(!this.isLoadedScript(self.vendor_bundle)){
+            var doc = document.createElement('script');  
+            doc.setAttribute('src',self.vendor_bundle);
+            doc.setAttribute('type', 'text/javascript');
+      
+            doc.onload = function handleScriptLoaded() {
+              if(!self.isLoadedScript(self.script_bundle)){
+                var doc = document.createElement('script');  
+                doc.setAttribute('src',self.script_bundle);
+                doc.setAttribute('type', 'text/javascript');
+                document.body.appendChild(doc);
+              }
+            };
+      
+            document.body.appendChild(doc);
+          }
 
-
-			// watch the params of the route to fetch the data again
-			this.$watch(
-				() => this.$route.params,
-				() => {
-					this.getSidebar()
-				},
-				// fetch the data when the view is created and the data is
-				// already being observed
-				{ immediate: true }
-			)
-		},
-		mounted() {
-			let self = this;
-			axios({
-				method : "post",
-				url : "/control/account/me",
-				}).then(Response=>{
-					self.user = Response.data;
-				}).catch(function(error){
-			})
-		},
+          // watch the params of the route to fetch the data again
+          this.$watch(
+            () => this.$route.params,
+            () => {
+              this.getSidebar()
+              this.getSetting()
+            },
+            // fetch the data when the view is created and the data is
+            // already being observed
+            { immediate: true }
+          )
+        },
+        mounted() {
+          let self = this;
+          axios({
+            method : "post",
+            url : "/control/account/me",
+            }).then(Response=>{
+              self.user = Response.data;
+            }).catch(function(error){
+          })
+        },
         methods: {
-			getSidebar: function(){
-				let self = this;
-				axios({
-					method : "post",
-					url : "/control/menu",
-					}).then(Response=>{
-						self.sidebar = Response.data;
-					}).catch(function(error){
-				})
-			}
+          getSidebar: function(){
+            let self = this;
+            axios({
+              method : "post",
+              url : "/control/menu",
+              }).then(Response=>{
+                self.sidebar = Response.data;
+              }).catch(function(error){
+            })
+          },
+          getSetting: function(){
+            let self = this;
+            axios({
+              method : "post",
+              url : "/control/setting",
+              }).then(Response=>{
+                self.settings = Response.data;
+              }).catch(function(error){
+            })
+          },
+          isLoadedScript: function(lib){
+            return document.querySelectorAll('[src="' + lib + '"]').length > 0
+          },
+          libSelector: function(lib){
+            return document.querySelector('[src="' + lib + '"]')
+          }
         },
     }
 </script>
@@ -278,11 +311,19 @@
 	#page{
 		height: 100%;
 	}
+
 	.m-page{
 		height: 100%;
 	}
+
 	.m-dropdown__header{
 		background: url(../../../assets/metronic-v5/app/media/img/misc/user_profile_bg.jpg); 
 		background-size: cover;
 	}
+
+  .img-logo{
+    max-width: 100%;
+    height: auto;
+  }
+
 </style>

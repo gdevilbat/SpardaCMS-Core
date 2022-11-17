@@ -79,45 +79,31 @@ class SettingController extends CoreController
         return redirect()->back()->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
+    public function setting(Request $request)
     {
-        return view('core::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('core::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            'logo' => empty($this->data['settings']->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('Core:assets/images/Spartan.png') : generate_storage_url($this->data['settings']->where('name','global')->flatten()->first()->value['logo']),
+            'global' => !empty($this->data['settings']->where('name','global')->flatten()->first()) ? $this->data['settings']->where('name','global')->flatten()->first() : [
+                'value' => [
+                    'background' => [
+                        'landscape' => null,
+                        'portrait' => null,
+                    ],
+                    'favicon' => null,
+                    'fb_share_description' => null,
+                    'fb_share_image' => null,
+                    'fb_share_title' => null,
+                    'google_site_verification' => null,
+                    'logo' => null,
+                    'maintenance_image' => null,
+                    'meta_description' => null,
+                    'meta_keyword' => null,
+                    'meta_script' => null,
+                    'meta_title' => null,
+                    'not_found_image' => null,
+                ]
+            ]
+        ]);
     }
 
     private function getDirectories($path)

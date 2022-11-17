@@ -1,27 +1,52 @@
 <template>
 	<div class="row">
-    <div class="col-sm-12">
+        <div class="col-sm-12">
 
-        <!--begin::Portlet-->
-        <div class="m-portlet m-portlet--tab">
-
-            <div class="m-portlet__body">
-                <div class="note note-info">
-                    <h3 class="block">Hi, There. Welcome To {{$route.meta.APP_NAME}} Dashboard</h3>
-                    <p> This Is A Landing Page. Choose Your Action On Sidebar</p>
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="fa fa-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Setting Form
+                            </h3>
+                        </div>
+                    </div>
                 </div>
+
+                <!--begin::Form-->
+                <form class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                        <Meta/>
+                        <hr/>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions">
+                            <div class="offset-md-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--end::Form-->
+
             </div>
+            <!--end::Portlet-->
 
-            <!--end::Form-->
         </div>
-
-        <!--end::Portlet-->
-
     </div>
-  </div>
 </template>
 <script>
+    import Meta from './Meta.vue'
+
     export default {
+        name: 'Global',
+        components: {
+            Meta
+        },
         data(){
             return{
             }
