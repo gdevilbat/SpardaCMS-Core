@@ -222,7 +222,6 @@
                 logo: '',
                 global: {
                   value:{
-                    meta_title: null
                   }
                 }
               },
