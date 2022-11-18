@@ -61,7 +61,15 @@ class SettingController extends CoreController
                 $setting = $this->setting_m->where('name', $key);
                 if(!$setting->update(['value' => json_encode($value)]))
                 {
-                    return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Update '.$key]);
+                    if($request->ajax()){
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Failed To Update '.$key,
+                            'code' => 400
+                        ]);
+                    }else{
+                        return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Update '.$key]);
+                    }
                 }
             }
             else
@@ -71,12 +79,29 @@ class SettingController extends CoreController
                 $setting['value'] = $value;
                 if(!$setting->save())
                 {
-                    return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Create '.$key]);
+                    if($request->ajax()){
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Failed To Create '.$key,
+                            'code' => 400
+                        ]);
+                    }else{
+                        return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Update '.$key]);
+                    }
                 }
             }
         }
 
-        return redirect()->back()->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
+        if($request->ajax()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Success To Update Setting',
+                'code' => 200
+            ]);
+        }else{
+            return redirect()->back()->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
+        }
+
     }
 
     public function setting(Request $request)
@@ -84,25 +109,24 @@ class SettingController extends CoreController
         return response()->json([
             'logo' => empty($this->data['settings']->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('Core:assets/images/Spartan.png') : generate_storage_url($this->data['settings']->where('name','global')->flatten()->first()->value['logo']),
             'global' => !empty($this->data['settings']->where('name','global')->flatten()->first()) ? $this->data['settings']->where('name','global')->flatten()->first() : [
-                'value' => [
-                    'background' => [
-                        'landscape' => null,
-                        'portrait' => null,
-                    ],
-                    'favicon' => null,
-                    'fb_share_description' => null,
-                    'fb_share_image' => null,
-                    'fb_share_title' => null,
-                    'google_site_verification' => null,
-                    'logo' => null,
-                    'maintenance_image' => null,
-                    'meta_description' => null,
-                    'meta_keyword' => null,
-                    'meta_script' => null,
-                    'meta_title' => null,
-                    'not_found_image' => null,
-                ]
-            ]
+                    'value' => [
+                        'background' => [
+                            'landscape' => null,
+                            'portrait' => null,
+                        ],
+                        'favicon' => null,
+                        'fb_share_description' => null,
+                        'fb_share_image' => null,
+                        'fb_share_title' => null,
+                        'google_site_verification' => null,
+                        'logo' => null,
+                        'maintenance_image' => null,
+                        'meta_description' => null,
+                        'meta_title' => null,
+                        'not_found_image' => null,
+                    ]
+                ],
+            'pagination_count' => empty($this->data['settings']->where('name','pagination_count')->flatten()->first()) ? null : $this->data['settings']->where('name','pagination_count')->flatten()->first()->value
         ]);
     }
 

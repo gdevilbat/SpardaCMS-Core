@@ -47,16 +47,16 @@
             <div class="col-md-8">
                     <div class="input-group m-input-group">
                         <div class="input-group-prepend">
-                            <button data-input="global-fb-share-image" data-preview="global-fb-share-image_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                            <button data-input="global-fb-share-image" class="btn btn-primary" v-on:click="lfmInput($event)">
                             <i class="fa fa-picture-o"></i> Choose
                             </button>
                         </div>
-                        <input id="global-fb-share-image" class="form-control m-input" type="text" v-bind:name="$parent.$options.name.toLowerCase()+'[fb_share_image]'">
+                        <input id="global-fb-share-image" class="form-control m-input" type="text" v-bind:name="$parent.$options.name.toLowerCase()+'[fb_share_image]'" v-model="$parent.$parent.settings.global.value.fb_share_image">
                     </div>
-                <img id="global-fb-share-image_preview" style="margin-top:15px;max-height:100px;">
+                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.$parent.settings.global.value.fb_share_image" v-if="$parent.$parent.settings.global.value.fb_share_image != null">
             </div>
             <div class="col-md-8 offset-md-4">
-                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                <span class="m-form__help">*Best Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
             </div>
         </div>
     </div>
@@ -64,8 +64,6 @@
 <script>
     import $ from "jquery"
     import FileManager from './FileManager.vue' 
-
-    import "../../../assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css"
 
     import autosize from '../../../assets/js/autosize.min.js'
 

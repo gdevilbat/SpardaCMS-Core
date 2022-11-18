@@ -20,6 +20,12 @@
                 <!--begin::Form-->
                 <form class="m-form m-form--fit m-form--label-align-right" v-on:submit.prevent="submit($event)">
                     <div class="m-portlet__body">
+                        <div class="col-md-5 offset-md-4" v-if="updated.status">
+                            <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                {{updated.message}}
+                            </div>
+                        </div>
                         <Meta/>
                         <hr/>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -29,16 +35,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-background-landscape" data-preview="global-background-landscape_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-background-landscape" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-background-landscape" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][landscape]'">
+                                        <input readonly id="global-background-landscape" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][landscape]'" v-model="$parent.settings.global.value.background.landscape">
                                     </div>
-                                <img id="global-background-landscape_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.landscape" v-if="$parent.settings.global.value.background.landscape != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -48,16 +54,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-background-portrait" data-preview="global-background-portrait_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-background-portrait" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-background-portrait" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][portrait]'">
+                                        <input readonly id="global-background-portrait" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][portrait]'" v-model="$parent.settings.global.value.background.portrait">
                                     </div>
-                                <img id="global-background-portrait_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.portrait" v-if="$parent.settings.global.value.background.portrait != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -67,16 +73,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-favicon" data-preview="global-favicon_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-favicon" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-favicon" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[favicon]'">
+                                        <input readonly id="global-favicon" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[favicon]'" v-model="$parent.settings.global.value.favicon">
                                     </div>
-                                <img id="global-favicon_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.favicon" v-if="$parent.settings.global.value.favicon != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -86,16 +92,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-logo" data-preview="global-logo_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-logo" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-logo" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[logo]'">
+                                        <input readonly id="global-logo" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[logo]'" v-model="$parent.settings.global.value.logo">
                                     </div>
-                                <img id="global-logo_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.logo" v-if="$parent.settings.global.value.logo != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -105,16 +111,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-not_found_image" data-preview="global-not_found_image_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-not_found_image" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-not_found_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[not_found_image]'">
+                                        <input readonly id="global-not_found_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[not_found_image]'" v-model="$parent.settings.global.value.not_found_image">
                                     </div>
-                                <img id="global-not_found_image_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.not_found_image" v-if="$parent.settings.global.value.not_found_image != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
@@ -124,16 +130,16 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-maintenance_image" data-preview="global-maintenance_image_preview" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-maintenance_image" class="btn btn-primary" v-on:click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input id="global-maintenance_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[maintenance_image]'">
+                                        <input readonly id="global-maintenance_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[maintenance_image]'" v-model="$parent.settings.global.value.maintenance_image">
                                     </div>
-                                <img id="global-maintenance_image_preview" style="margin-top:15px;max-height:100px;">
+                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.maintenance_image" v-if="$parent.settings.global.value.maintenance_image != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
-                                <span class="m-form__help">*Max Size 1MB, Best Resolution 1920px X 1080px (16:9)</span>
+                                <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
                             </div>
                         </div>
                         <hr>
@@ -142,7 +148,7 @@
                                 <label for="exampleInputEmail1">{{$options.name}} Google Site Verification :</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control m-input" v-bind:name="$options.name.toLowerCase()+'[google_site_verification]'" placeholder="Google Site Verification" v-bind:value="$parent.settings.global.value.google_site_verification">
+                                <input type="text" class="form-control m-input" v-bind:name="$options.name.toLowerCase()+'[google_site_verification]'" placeholder="Google Site Verification" v-model="$parent.settings.global.value.google_site_verification">
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex">
@@ -150,7 +156,7 @@
                                 <label for="exampleInputEmail1">Pagination Count :</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" class="form-control m-input" name="pagination_count" placeholder="Google Site Verification" v-bind:value="$parent.settings.pagination_count">
+                                <input type="number" class="form-control m-input" name="pagination_count" placeholder="Pagination Number of Page" v-model="$parent.settings.pagination_count">
                             </div>
                         </div>
                     </div>
@@ -182,6 +188,11 @@
         },
         data(){
             return{
+                updated: {
+                    status: false,
+                    code: 0,
+                    message: ''
+                }
             }
         },
          created() {
@@ -207,18 +218,25 @@
         },
         methods: {
             submit: function(e){
-                let formData = new FormData(e.target);
+                const formData = new FormData(e.target);
                 formData.append('_method', 'PUT');
+
+                const self = this;
 
                 axios({
                     method: "post",
                     url: "/control/setting",
                     data: formData,
-                    headers: { "Content-Type": "multipart/form-data" },
+                   // headers: { "Content-Type": "multipart/form-data" },
                 })
                 .then(function (response) {
                     //handle success
-                    console.log(response);
+                    self.updated = response.data;
+                   window.scrollTo(0, 0);
+
+                   setTimeout(() => {
+                    self.$set(self.updated, 'status', false);
+                   }, 2000);
                 })
                 .catch(function (response) {
                     //handle error

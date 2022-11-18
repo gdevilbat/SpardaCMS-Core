@@ -20,6 +20,7 @@ class Module extends Model
     protected $casts = [
         'scope' => 'array',
     ];
+    protected $appends = ['string_is_scanable'];
 
     const FOREIGN_KEY = 'module_id';
 

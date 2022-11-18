@@ -15,7 +15,8 @@
         "intervention/image": "^2.5",
         "laravelcollective/html": "^6.3",
         "alexusmai/laravel-file-manager": "^2.0",
-        "doctrine/dbal": "^2.0"
+        "doctrine/dbal": "^2.0",
+        "yajra/laravel-datatables-oracle": "^9.0"
     },
     "extra": {
         "laravel": {

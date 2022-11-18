@@ -206,9 +206,6 @@
 	</div>
 </template>
 <script>
-    import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css'
-    import '../../../assets/metronic-v5/demo/default/base/style.bundle.css'
-
     export default {
         props: {
 
@@ -222,8 +219,13 @@
                 logo: '',
                 global: {
                   value:{
+                    background:{
+                      landscape: null,
+                      portrait: null
+                    }
                   }
-                }
+                },
+                pagination_count: null
               },
               vendor_bundle: this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js",
               script_bundle: this.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js",
@@ -301,6 +303,10 @@
         },
     }
 </script>
+<style>
+    @import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css';
+    @import '../../../assets/metronic-v5/demo/default/base/style.bundle.css';
+</style>
 <style lang="scss">
 	#main{
 		height: 100%;

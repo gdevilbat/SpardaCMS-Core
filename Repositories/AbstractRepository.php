@@ -230,6 +230,11 @@ abstract class AbstractRepository implements BaseRepository
         return $query->whereIn("id", $ids)->get();
     }
 
+    final function query()
+    {
+        return $this->model->query();
+    }
+
     /**
      * @inheritdoc
      */

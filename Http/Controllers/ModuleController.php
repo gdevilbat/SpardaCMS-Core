@@ -12,6 +12,8 @@ use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
 use Module;
 use App;
 
+use Yajra\DataTables\DataTables;
+
 class ModuleController extends CoreController
 {
     public function __construct(Module_m $module)
@@ -51,6 +53,30 @@ class ModuleController extends CoreController
         $this->data['modules'] = $this->module_repository->all();
 
         return view('core::admin.'.$this->data['theme_cms']->value.'.content.Module.master', $this->data);
+    }
+
+    public function data(Request $request)
+    {
+        $core_modules = collect(Module::allEnabled())->keys();
+        $core_modules = $core_modules->map(function($item, $key){
+                          return \Str::slug($item);  
+                        });
+
+        $modules = $this->module_m->select('slug')->pluck('slug');
+
+        $add_modules = $core_modules->diff($modules)->flatten();
+        $remove_modules = $modules->diff($core_modules)->flatten();
+
+        foreach ($add_modules as $key => $value) 
+        {
+            $module = new $this->module_m;
+            $module->name = \Str::title(str_replace('-', ' ', $value));
+            $module->slug = $value;
+            $module->description = '';
+            $module->save();
+        }
+
+        return DataTables::of($this->module_repository->query())->make();
     }
 
     /**

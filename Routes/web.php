@@ -66,6 +66,8 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
             Route::post('form', 'ModuleController@store')->middleware('can:super-access')->name('cms.module.store');
             Route::put('form', 'ModuleController@store')->middleware('can:super-access')->name('cms.module.store');
             Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access')->name('cms.module.delete');
+
+            Route::post('data', 'ModuleController@data')->middleware('can:super-access');
         });
         
         /*=====  End of Module CMS  ======*/
