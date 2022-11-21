@@ -144,7 +144,10 @@
             <!-- END: Subheader -->
             <div class="m-content">
 
-			  <router-view name="content"></router-view>
+            <router-view name="content"></router-view>
+             <loading
+                        :is-full-page="true"
+                        :active.sync="loading"/>
 
               <!--End::Section-->
             </div>
@@ -206,14 +209,21 @@
 	</div>
 </template>
 <script>
-    export default {
-        props: {
+    import Loading from 'vue-loading-overlay';
 
+    export default {
+        components: {
+            Loading
+        },
+        props: {
         },
         data(){
             return{
+              loading: false,
               sidebar: '',
-              user : {},
+              user : {
+                'account': {}
+              },
               breadcumb: '',
               settings: {
                 logo: '',
@@ -274,7 +284,7 @@
           })
         },
         methods: {
-          getSidebar: function(){
+          getSidebar(){
             let self = this;
             axios({
               method : "post",
@@ -284,20 +294,22 @@
               }).catch(function(error){
             })
           },
-          getSetting: function(){
+          getSetting(){
             let self = this;
+            self.loading = true;
             axios({
               method : "post",
               url : "/control/setting",
               }).then(Response=>{
                 self.settings = Response.data;
+                self.loading = false;
               }).catch(function(error){
             })
           },
-          isLoadedScript: function(lib){
+          isLoadedScript(lib){
             return document.querySelectorAll('[src="' + lib + '"]').length > 0
           },
-          libSelector: function(lib){
+          libSelector(lib){
             return document.querySelector('[src="' + lib + '"]')
           }
         },
@@ -314,6 +326,8 @@
 	}
 </style>
 <style lang="scss" scoped>
+  @import 'vue-loading-overlay/dist/vue-loading.css';
+
 	#page{
 		height: 100%;
 	}

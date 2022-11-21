@@ -2,7 +2,7 @@
      <div>
         <div class="form-group m-form__group d-md-flex">
             <div class="col-md-4 d-md-flex justify-content-end py-3">
-                <label for="exampleInputEmail1">{{title}}</label>
+                <label for="exampleInputEmail1">{{title}} :</label>
             </div>
             <div class="col-md-8">
                 <div v-for="(item, index) in (components)" :key="index">

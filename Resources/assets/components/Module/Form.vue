@@ -19,12 +19,14 @@
 
             <form class="m-form m-form--fit m-form--label-align-right" v-on:submit.prevent="submit($event)">
                 <div class="m-portlet__body">
-                    <div class="col-md-5 offset-md-4">
-                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}" v-if="updated.status">
+                    <div class="col-md-5 offset-md-4" v-if="updated.status">
+                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                             {{updated.message}}
                         </div>
-                        <div class="alert alert-danger" v-if="Object.keys(errors).length > 0">
+                    </div>
+                    <div class="col-md-5 offset-md-4" v-if="Object.keys(errors).length > 0">
+                        <div class="alert alert-danger">
                             <ul v-for="(error, key) in errors" :key="key">
                                 <li v-for="(item, index) in error" :key="index">{{item}}</li>
                             </ul>
@@ -32,7 +34,7 @@
                     </div>
                     <div class="form-group m-form__group d-md-flex">
                         <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
-                            <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                            <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span> :</label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input slugify" data-target="slug" name="name" placeholder="Module Name" v-model="data.name">
@@ -40,7 +42,7 @@
                     </div>
                     <div class="form-group m-form__group d-md-flex">
                         <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
-                            <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                            <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span> :</label>
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control m-input" name="slug" id="slug" placeholder="Module Slug"  v-model="data.slug" readonly>
@@ -48,15 +50,15 @@
                     </div>
                     <div class="form-group m-form__group d-md-flex">
                         <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
-                            <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                            <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span> :</label>
                         </div>
                         <div class="col-md-8">
                             <input type="number" class="form-control m-input" min="1" name="order" placeholder="Module order" v-model="data.order">
                         </div>
                     </div>
                     <div class="form-group m-form__group d-md-flex">
-                        <div class="col-md-4 d-md-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Module Scanable<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                            <label for="exampleInputEmail1">Module Scanable<span class="ml-1 m--font-danger" aria-required="true">*</span> :</label>
                         </div>
                         <div class="col-md-8">
                             <div class="m-radio-list">
@@ -72,8 +74,8 @@
                         </div>
                     </div>
                     <div class="form-group m-form__group d-md-flex">
-                        <div class="col-md-4 d-md-flex justify-content-end py-3">
-                            <label for="exampleInputEmail1">Module Description</label>
+                        <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                            <label for="exampleInputEmail1">Module Description :</label>
                         </div>
                         <div class="col-md-8">
                             <textarea class="form-control m-input autosize" type="text" name="description" placeholder="Module Description" v-model="data.description"></textarea>
@@ -186,7 +188,7 @@
             }
         },
         methods: {
-            slugify: function(text){
+            slugify(text){
                 {
                 return text.toString().toLowerCase()
                     .replace(/\s+/g, '-')           // Replace spaces with -
@@ -196,7 +198,7 @@
                     .replace(/-+$/, '');            // Trim - from end of text
                 }
             },
-            submit: function(e){
+            submit(e){
                 const formData = new FormData(e.target);
 
                 if(this.$route.query.code != undefined){
@@ -240,7 +242,7 @@
     }
 </script>
 <style >
-    @import 'vue-loading-overlay/dist/vue-loading.css';
 </style>
 <style lang="scss" scoped>
+    @import 'vue-loading-overlay/dist/vue-loading.css';
 </style>

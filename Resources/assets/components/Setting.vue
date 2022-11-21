@@ -201,8 +201,8 @@
                 loading: false,
             }
         },
-         created() {
-          this.$parent.$data.breadcumb = ` <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        created() {
+            this.$parent.$data.breadcumb = ` <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                                                 <li class="m-nav__item m-nav__item--home">
                                                     <a href="#" class="m-nav__link m-nav__link--icon">
                                                         <i class="m-nav__link-icon la la-home"></i>
@@ -223,7 +223,7 @@
                                             </ul>`;
         },
         methods: {
-            submit: function(e){
+            submit(e){
                 const formData = new FormData(e.target);
                 formData.append('_method', 'PUT');
 
@@ -254,8 +254,8 @@
         },
     }
 </script>
-<style >
-    @import 'vue-loading-overlay/dist/vue-loading.css';
+<style>
 </style>
 <style lang="scss" scoped>
+    @import 'vue-loading-overlay/dist/vue-loading.css';
 </style>

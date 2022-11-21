@@ -18,14 +18,14 @@
                     </div>
                 <!--end::Portlet-->
 
-                <div class="col-md-5">
-                    <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}" v-if="updated.status">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-                        {{updated.message}}
-                    </div>
-                </div>
 
                 <div class="m-portlet__body">
+                    <div class="col-md-5" v-if="updated.status">
+                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            {{updated.message}}
+                        </div>
+                    </div>
                     <div class="row mb-4">
                         <div class="col-md-5">
                             <router-link :to="{name: 'module-form'}" class="btn btn-brand m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
@@ -182,9 +182,10 @@
     }
 </script>
 <style >
-    @import 'vue-loading-overlay/dist/vue-loading.css';
 </style>
 <style lang="scss">
+    @import 'vue-loading-overlay/dist/vue-loading.css';
+    
     .pagination{
         -webkit-box-pack: end !important;
         -ms-flex-pack: end !important;
