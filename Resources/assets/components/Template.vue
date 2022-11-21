@@ -154,30 +154,6 @@
           </div>
         </div>
 
-		<div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body"> 
-						<h5 class="text-center">
-							Are You Sure ?
-						</h5>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary confirmed">Delete</button>
-						<button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancel</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-
         <!-- end:: Body -->
 
         <div class="loading-overlay h-100 w-100"></div>

@@ -266,10 +266,27 @@ class ModuleController extends CoreController
             }
             $query->delete();
 
-            return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Delete Module!'));
+            if($request->ajax()){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Successfully Delete Module!',
+                    'code' => 200
+                ]);
+            }else{
+                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Delete Module!'));
+            }
+
             
         } catch (\Exception $e) {
-            return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Failed Delete Module, It\'s Has Been Used!'));
+            if($request->ajax()){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Failed Delete Module, It\'s Has Been Used!',
+                    'code' => 400
+                ]);
+            }else{
+                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Failed Delete Module, It\'s Has Been Used!'));
+            }
         }
     }
 }
