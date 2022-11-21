@@ -49,7 +49,7 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
         =            Setting CMS            =
         =============================================*/
         
-		    Route::post('setting', 'SettingController@setting')->middleware('can:menu-core')->name('cms.setting.config');
+		    Route::post('setting/data', 'SettingController@data')->middleware('can:menu-core')->name('cms.setting.config');
 		    Route::get('setting', 'SettingController@create')->middleware('can:menu-core')->name('cms.setting.create');
 		    Route::put('setting', 'SettingController@store')->middleware('can:menu-core')->name('cms.setting.store');
         

@@ -268,7 +268,7 @@
             self.loading = true;
             axios({
               method : "post",
-              url : "/control/setting",
+              url : "/control/setting/data",
               }).then(Response=>{
                 self.settings = Response.data;
                 self.loading = false;

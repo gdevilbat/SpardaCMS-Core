@@ -104,7 +104,7 @@ class SettingController extends CoreController
 
     }
 
-    public function setting(Request $request)
+    public function data(Request $request)
     {
         return response()->json([
             'logo' => empty($this->data['settings']->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('Core:assets/images/Spartan.png') : generate_storage_url($this->data['settings']->where('name','global')->flatten()->first()->value['logo']),
