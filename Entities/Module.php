@@ -10,6 +10,8 @@ use Config;
 
 class Module extends Model
 {
+    const FOREIGN_KEY = 'module_id';
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -20,9 +22,14 @@ class Module extends Model
     protected $casts = [
         'scope' => 'array',
     ];
-    protected $appends = ['string_is_scanable'];
+    protected $appends = [
+        'primary_key',
+        'encrypted_id',
+        'string_is_scanable',
+        'string_scope',
+        'array_scope'
+    ];
 
-    const FOREIGN_KEY = 'module_id';
 
     /**
      * Set the user's Slug.
@@ -33,6 +40,16 @@ class Module extends Model
     public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = Str::slug($value, '-');
+    }
+
+    public function getPrimaryKeyAttribute()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getEncryptedIdAttribute()
+    {
+        return encrypt($this->getKey());
     }
 
     /**
@@ -49,6 +66,22 @@ class Module extends Model
         }
 
         return 'No';
+    }
+
+    public function getStringScopeAttribute()
+    {
+        if(!empty($this->scope))
+            return implode(', ',$this->scope);
+
+        return '-';
+    }
+
+    public function getArrayScopeAttribute()
+    {
+        if(empty($this->scope))
+            return [];
+
+        return $this->scope;
     }
 
     /**

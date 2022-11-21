@@ -41,8 +41,8 @@
             </div>
         </div>
         <div class="form-group m-form__group d-md-flex flex-wrap">
-            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                <label for="">{{$parent.$options.name}} Facebook Share Image</label>
+            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                <label for="">{{$parent.$options.name}} Facebook Share Image :</label>
             </div>
             <div class="col-md-8">
                     <div class="input-group m-input-group">

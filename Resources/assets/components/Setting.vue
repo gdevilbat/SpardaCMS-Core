@@ -29,8 +29,8 @@
                         <Meta/>
                         <hr/>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Background Landscape</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Background Landscape :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -48,8 +48,8 @@
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Background Portrait</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Background Portrait :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -67,8 +67,8 @@
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Favicon Image</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Favicon Image :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -86,8 +86,8 @@
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Logo Image</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Logo Image :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -105,8 +105,8 @@
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Not Found Image</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Not Found Image :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -124,8 +124,8 @@
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex flex-wrap">
-                            <div class="col-md-4 d-md-flex justify-content-end py-3">
-                                <label for="">{{$options.name}} Maintenance Image</label>
+                            <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                                <label for="">{{$options.name}} Maintenance Image :</label>
                             </div>
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
@@ -169,6 +169,9 @@
                     </div>
                 </form>
                 <!--end::Form-->
+                 <loading
+                    :is-full-page="true"
+                    :active.sync="loading"/>
 
             </div>
             <!--end::Portlet-->
@@ -179,12 +182,14 @@
 <script>
     import Meta from './Meta.vue'
     import FileManager from './FileManager.vue'
+    import Loading from 'vue-loading-overlay'
 
     export default {
         mixins: [FileManager],
         name: 'Global',
         components: {
-            Meta
+            Meta,
+            Loading
         },
         data(){
             return{
@@ -192,7 +197,8 @@
                     status: false,
                     code: 0,
                     message: ''
-                }
+                },
+                loading: false,
             }
         },
          created() {
@@ -223,6 +229,7 @@
 
                 const self = this;
 
+                self.loading = true;
                 axios({
                     method: "post",
                     url: "/control/setting",
@@ -232,11 +239,12 @@
                 .then(function (response) {
                     //handle success
                     self.updated = response.data;
-                   window.scrollTo(0, 0);
+                    window.scrollTo(0, 0);
+                    self.loading = false;
 
-                   setTimeout(() => {
+                    setTimeout(() => {
                     self.$set(self.updated, 'status', false);
-                   }, 2000);
+                    }, 2000);
                 })
                 .catch(function (response) {
                     //handle error
@@ -246,5 +254,8 @@
         },
     }
 </script>
+<style >
+    @import 'vue-loading-overlay/dist/vue-loading.css';
+</style>
 <style lang="scss" scoped>
 </style>

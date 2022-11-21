@@ -11,8 +11,10 @@ use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
 
 use Module;
 use App;
+use DB;
 
 use Yajra\DataTables\DataTables;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class ModuleController extends CoreController
 {
@@ -76,7 +78,21 @@ class ModuleController extends CoreController
             $module->save();
         }
 
-        return DataTables::of($this->module_repository->query())->make();
+        $length = $request->input('length');
+        $column = $request->input('column');
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = $this->module_repository->query()->orderBy($column, $dir);
+
+        if($searchValue)
+        {
+            $query->where(DB::raw("CONCAT(name,'-',slug,'-',created_at)"), 'like', '%'.$searchValue.'%');
+        }
+
+        $data = $query->paginate($length);
+
+        return new DataTableCollectionResource($data);
     }
 
     /**
@@ -137,22 +153,54 @@ class ModuleController extends CoreController
         {
             if($request->isMethod('POST'))
             {
-                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
+                if($request->ajax()){
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success To Add Module!',
+                        'code' => 200
+                    ]);
+                }else{
+                    return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Add Module!'));
+                }
             }
             else
             {
-                return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
+                if($request->ajax()){
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success To Update Module!',
+                        'code' => 200
+                    ]);
+                }else{
+                    return redirect(route('cms.module.master'))->with('global_message', array('status' => 200,'message' => 'Successfully Update Module!'));
+                }
             }
         }
         else
         {
             if($request->isMethod('POST'))
             {
-                return redirect()->back()->with('global_message', array('status' => 400, 'message' => 'Failed To Add Module!'));
+                if($request->ajax()){
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Failed To Add Module!',
+                        'code' => 400
+                    ]);
+                }else{
+                    return redirect()->back()->with('global_message', array('status' => 400, 'message' => 'Failed To Add Module!'));
+                }
             }
             else
             {
-                return redirect()->back()->with('global_message', array('status' => 400, 'message' => 'Failed To Update Module!'));
+                if($request->ajax()){
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Failed To Update Module!',
+                        'code' => 400
+                    ]);
+                }else{
+                    return redirect()->back()->with('global_message', array('status' => 400, 'message' => 'Failed To Update Module!'));
+                }
             }
         }
     }
@@ -162,9 +210,12 @@ class ModuleController extends CoreController
      * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        return view('core::show');
+        return response([
+            'status' => true,
+            'data' => $this->module_repository->findOrFail(decrypt($request->input('code')))
+        ]);
     }
 
     /**

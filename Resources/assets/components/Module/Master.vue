@@ -18,6 +18,13 @@
                     </div>
                 <!--end::Portlet-->
 
+                <div class="col-md-5">
+                    <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}" v-if="updated.status">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        {{updated.message}}
+                    </div>
+                </div>
+
                 <div class="m-portlet__body">
                     <div class="row mb-4">
                         <div class="col-md-5">
@@ -31,21 +38,45 @@
                     </div>
                     <data-table
                         :data="data"
+                        order-by="id_module"
                         :columns="columns"
-                        @on-table-props-changed="reloadTable"
-                        :debounce-delay="5000">
+                        @on-table-props-changed="reloadTable">
                     </data-table>
+                     <loading
+                        :is-full-page="true"
+                        :active.sync="loading"/>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
 <script>
+    import _ from 'lodash'
+    import Loading from 'vue-loading-overlay';
+    
+    import Action from './Action.vue'
+
     export default {
+        components: {
+            Action,
+            Loading
+        },
+        props: {
+            updated: {
+                type: Object,
+                default(rawProps) {
+                    return {
+                            status: false,
+                            code: 0,
+                            message: ''
+                    }
+                }
+            },
+        },
         data(){
             return{
                 url: '/control/module/data',
+                loading: false,
                 data: {},
                 tableProps: {
                     search: '',
@@ -65,9 +96,30 @@
                         orderable: true,
                     },
                     {
+                        label: 'Slug',
+                        name: 'slug',
+                        orderable: true,
+                    },
+                    {
+                        label: 'Order',
+                        name: 'order',
+                        orderable: true,
+                    },
+                    {
                         label: 'Scanable',
                         name: 'string_is_scanable',
                         orderable: false,
+                    },
+                    {
+                        label: 'Scope',
+                        name: 'string_scope',
+                        orderable: false,
+                    },
+                    {
+                        label: '',
+                        name: 'View',
+                        orderable: false,
+                        component: Action, 
                     },
                 ]
             }
@@ -92,7 +144,7 @@
                                                 </a>
                                             </li>
                                         </ul>`;
-
+            this.loading = true
             this.getData(this.url);
         },
         methods: {
@@ -105,6 +157,7 @@
                 })
                 .then(response => {
                     self.data = response.data;
+                    self.loading = false;
                 })
                 // eslint-disable-next-line
                 .catch(errors => {
@@ -112,10 +165,29 @@
                 })
             },
             reloadTable(tableProps) {
-                this.getData(this.url, tableProps);
-            }
+                const self = this;
+                let debounce = _.debounce(function (e) {
+                    self.getData(self.url, tableProps);
+                }, 500)
+
+                if(!self.loading){
+                    self.loading = true
+                    debounce();
+                }
+            },
+            displayRow(data) {
+                alert(`You clicked row ${data.id}`);
+            },
         }
     }
 </script>
-<style lang="scss" scoped>
+<style >
+    @import 'vue-loading-overlay/dist/vue-loading.css';
+</style>
+<style lang="scss">
+    .pagination{
+        -webkit-box-pack: end !important;
+        -ms-flex-pack: end !important;
+        justify-content: flex-end !important;
+    }
 </style>

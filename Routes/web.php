@@ -68,6 +68,7 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
             Route::delete('form', 'ModuleController@destroy')->middleware('can:super-access')->name('cms.module.delete');
 
             Route::post('data', 'ModuleController@data')->middleware('can:super-access');
+            Route::post('show', 'ModuleController@show')->middleware('can:super-access');
         });
         
         /*=====  End of Module CMS  ======*/

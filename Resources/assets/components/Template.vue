@@ -254,7 +254,7 @@
           // watch the params of the route to fetch the data again
           this.$watch(
             () => this.$route.params,
-            () => {
+            (to, from) => {
               this.getSidebar()
               this.getSetting()
             },
@@ -304,6 +304,7 @@
     }
 </script>
 <style>
+    @import 'vuetify/dist/vuetify.min.css';
     @import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css';
     @import '../../../assets/metronic-v5/demo/default/base/style.bundle.css';
 </style>

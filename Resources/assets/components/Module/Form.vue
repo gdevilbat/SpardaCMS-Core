@@ -4,13 +4,99 @@
 
         <!--begin::Portlet-->
         <div class="m-portlet m-portlet--tab">
-
-            <div class="m-portlet__body">
-                <div class="note note-info">
-                    <h3 class="block">Hi, There. Welcome To {{$route.meta.APP_NAME}} Dashboard</h3>
-                    <p> This Is A Landing Page. Choose Your Action On Sidebar</p>
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="fa fa-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Module Form
+                        </h3>
+                    </div>
                 </div>
             </div>
+
+            <form class="m-form m-form--fit m-form--label-align-right" v-on:submit.prevent="submit($event)">
+                <div class="m-portlet__body">
+                    <div class="col-md-5 offset-md-4">
+                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}" v-if="updated.status">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            {{updated.message}}
+                        </div>
+                        <div class="alert alert-danger" v-if="Object.keys(errors).length > 0">
+                            <ul v-for="(error, key) in errors" :key="key">
+                                <li v-for="(item, index) in error" :key="index">{{item}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                            <label for="exampleInputEmail1">Module Name<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control m-input slugify" data-target="slug" name="name" placeholder="Module Name" v-model="data.name">
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                            <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control m-input" name="slug" id="slug" placeholder="Module Slug"  v-model="data.slug" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end align-items-center py-3">
+                            <label for="exampleInputEmail1">Module Order<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control m-input" min="1" name="order" placeholder="Module order" v-model="data.order">
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
+                            <label for="exampleInputEmail1">Module Scanable<span class="ml-1 m--font-danger" aria-required="true">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="m-radio-list">
+                                <label class="m-radio">
+                                    <input type="radio" name="is_scanable" :value="1" v-model="data.is_scanable"> Yes
+                                    <span></span>
+                                </label>
+                                <label class="m-radio">
+                                    <input type="radio" name="is_scanable" :value="0" v-model="data.is_scanable"> No
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group d-md-flex">
+                        <div class="col-md-4 d-md-flex justify-content-end py-3">
+                            <label for="exampleInputEmail1">Module Description</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea class="form-control m-input autosize" type="text" name="description" placeholder="Module Description" v-model="data.description"></textarea>
+                        </div>
+                    </div>
+                    <FormComponent
+                        title="Scope"
+                        name="scope"
+                        :components="data.array_scope"
+                    />
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions">
+                        <div class="offset-md-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+             <loading
+                :is-full-page="true"
+                :active.sync="loading"/>
 
             <!--end::Form-->
         </div>
@@ -21,29 +107,140 @@
   </div>
 </template>
 <script>
+    import Loading from 'vue-loading-overlay'
+    import FormComponent from '../Component.vue'
+    import $ from 'jquery'
+
+    import autosize from '../../../../assets/js/autosize.min.js'
+
     export default {
+        components: {
+            Loading,
+            FormComponent
+        },
         data(){
             return{
+                data: {
+                    array_scope: []
+                },
+                loading: false,
+                updated: {
+                    status: false,
+                    code: 0,
+                    message: ''
+                },
+                errors: {}
             }
         },
         created() {
-          this.$parent.$data.breadcumb = `<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                                              <li class="m-nav__item m-nav__item--home">
-                                                  <a href="#" class="m-nav__link m-nav__link--icon">
-                                                      <i class="m-nav__link-icon la la-home"></i>
-                                                  </a>
-                                              </li>
-                                              <li class="m-nav__separator">-</li>
-                                              <li class="m-nav__item">
-                                                  <a href="" class="m-nav__link">
-                                                      <span class="m-nav__link-text">Home</span>
-                                                  </a>
-                                              </li>
-                                          </ul>`;
+          this.$parent.$data.breadcumb = ` <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                                            <li class="m-nav__item m-nav__item--home">
+                                                <a href="#" class="m-nav__link m-nav__link--icon">
+                                                    <i class="m-nav__link-icon la la-home"></i>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator">-</li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <span class="m-nav__link-text">Home</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator">-</li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <span class="m-nav__link-text">Module</span>
+                                                </a>
+                                            </li>
+                                        </ul>`;
+        },
+        mounted(){
+            const self = this;
+            if(this.$route.query.code != undefined){
+                self.loading = true;
+                axios({
+                        method: "post",
+                        url: '/control/module/show',
+                        data: {'code': this.$route.query.code}
+                    })
+                    .then(response => {
+                        self.data = response.data.data;
+                        self.loading = false;
+                    })
+                    // eslint-disable-next-line
+                    .catch(errors => {
+                        //Handle Errors
+                    })
+            }
+
+            this.$nextTick(() => {
+                let self = this;
+                let vendor = this.$parent.libSelector(this.$parent.vendor_bundle);
+                vendor.addEventListener('load', (event) => {
+                   autosize($(".autosize"));
+                });
+            });
+        },
+        watch:{
+            'data.name'(newValue) {
+                this.$set(this.data, 'slug', this.slugify(newValue));
+            }
         },
         methods: {
+            slugify: function(text){
+                {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start of text
+                    .replace(/-+$/, '');            // Trim - from end of text
+                }
+            },
+            submit: function(e){
+                const formData = new FormData(e.target);
+
+                if(this.$route.query.code != undefined){
+                    formData.append('_method', 'PUT');
+                    formData.append(this.data.primary_key, this.$route.query.code);
+                }
+
+                const self = this;
+
+                self.loading = true;
+                axios({
+                    method: "post",
+                    url: "/control/module/form",
+                    data: formData,
+                })
+                .then(function (response) {
+                    //handle success
+                    self.updated = response.data;
+                    self.loading = false;
+
+                    if(response.data.status){
+                        self.$router.push({
+                            name: 'module-master',
+                            params: { updated: response.data }
+                        })
+                    }else{
+                        window.scrollTo(0, 0);
+                        setTimeout(() => {
+                            self.$set(self.updated, 'status', false);
+                        }, 2000);
+                    }
+
+                })
+                .catch(function (error) {
+                    //handle error
+                    self.loading = false;
+                    self.errors = error.response.data.errors
+                });
+            }
         },
     }
 </script>
+<style >
+    @import 'vue-loading-overlay/dist/vue-loading.css';
+</style>
 <style lang="scss" scoped>
 </style>
