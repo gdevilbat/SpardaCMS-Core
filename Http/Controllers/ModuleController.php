@@ -182,7 +182,7 @@ class ModuleController extends CoreController
             {
                 if($request->ajax()){
                     return response()->json([
-                        'status' => false,
+                        'status' => true,
                         'message' => 'Failed To Add Module!',
                         'code' => 400
                     ]);
@@ -194,7 +194,7 @@ class ModuleController extends CoreController
             {
                 if($request->ajax()){
                     return response()->json([
-                        'status' => false,
+                        'status' => true,
                         'message' => 'Failed To Update Module!',
                         'code' => 400
                     ]);

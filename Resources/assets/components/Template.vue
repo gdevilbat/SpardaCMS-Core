@@ -274,14 +274,7 @@
           )
         },
         mounted() {
-          let self = this;
-          axios({
-            method : "post",
-            url : "/control/account/me",
-            }).then(Response=>{
-              self.user = Response.data;
-            }).catch(function(error){
-          })
+          this.getUser()
         },
         methods: {
           getSidebar(){
@@ -303,6 +296,16 @@
               }).then(Response=>{
                 self.settings = Response.data;
                 self.loading = false;
+              }).catch(function(error){
+            })
+          },
+          getUser(){
+            let self = this;
+            axios({
+              method : "post",
+              url : "/control/account/me",
+              }).then(Response=>{
+                self.user = Response.data;
               }).catch(function(error){
             })
           },
