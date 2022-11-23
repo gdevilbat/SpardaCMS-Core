@@ -226,6 +226,26 @@
         },
         props: {
         },
+        metaInfo(){
+          return {
+            script: [
+              {
+                type: 'text/javascript', 
+                src: "/metronic-v5/vendors/base/vendors.bundle.js", 
+                defer:true, 
+                body: true,
+                callback: () => (this.vendor_loaded = true)
+              },
+              { 
+                skip: !this.vendor_loaded, 
+                type: 'text/javascript', 
+                src: "/metronic-v5/demo/default/base/scripts.bundle.js", 
+                defer:true, 
+                body: true
+              }
+            ],
+          }
+        },
         data(){
             return{
               loading: false,
@@ -246,30 +266,10 @@
                 },
                 pagination_count: null
               },
-              vendor_bundle: this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js",
-              script_bundle: this.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js",
+              vendor_loaded: false,
             }
         },
         created() {
-          let self = this;
-
-          if(!this.isLoadedScript(self.vendor_bundle)){
-            var doc = document.createElement('script');  
-            doc.setAttribute('src',self.vendor_bundle);
-            doc.setAttribute('type', 'text/javascript');
-      
-            doc.onload = function handleScriptLoaded() {
-              if(!self.isLoadedScript(self.script_bundle)){
-                var doc = document.createElement('script');  
-                doc.setAttribute('src',self.script_bundle);
-                doc.setAttribute('type', 'text/javascript');
-                document.body.appendChild(doc);
-              }
-            };
-      
-            document.body.appendChild(doc);
-          }
-
           // watch the params of the route to fetch the data again
           this.$watch(
             () => this.$route.params,
@@ -318,12 +318,6 @@
               }).catch(function(error){
             })
           },
-          isLoadedScript(lib){
-            return document.querySelectorAll('[src="' + lib + '"]').length > 0
-          },
-          libSelector(lib){
-            return document.querySelector('[src="' + lib + '"]')
-          }
         },
     }
 </script>

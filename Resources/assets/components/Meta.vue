@@ -85,18 +85,7 @@
         },
         mounted(){
             this.$nextTick(() => {
-                let self = this;
-                let vendor = this.$parent.$parent.libSelector(this.$parent.$parent.vendor_bundle);
-                vendor.addEventListener('load', (event) => {
-                   autosize($(".autosize"));
-    
-                   if(!self.$parent.$parent.isLoadedScript(this.$route.meta.APP_URL+'/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js')){
-                        var doc = document.createElement('script');  
-                        doc.setAttribute('src',this.$route.meta.APP_URL+'/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js');
-                        doc.setAttribute('type', 'text/javascript');
-                        document.body.appendChild(doc);
-                   }
-                });
+                autosize($(".autosize"));
             });
         }
     }

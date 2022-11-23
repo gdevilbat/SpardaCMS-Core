@@ -114,34 +114,44 @@
     import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css'
     import '../../../assets/metronic-v5/demo/default/base/style.bundle.css'
 
+	import $ from 'jquery'
+
     export default {
+		metaInfo(){
+			return {
+				script: [
+					{
+						type: 'text/javascript', 
+						src: "/metronic-v5/vendors/base/vendors.bundle.js", 
+						defer:true, 
+						body: true,
+						callback: () => (this.vendor_loaded = true)
+					},
+					{ 
+						skip: !this.vendor_loaded, 
+						type: 'text/javascript', 
+						src: "/metronic-v5/demo/default/base/scripts.bundle.js", 
+						defer:true, 
+						body: true
+					},
+					{
+						skip: !this.vendor_loaded, 
+						type: 'text/javascript', 
+						src: "/metronic-v5/snippets/custom/pages/user/login.js", 
+						defer:true, 
+						body: true
+					},
+				],
+			}
+		},
         data(){
             return{
+				vendor_loaded: false,
                 username : '',
                 password : '',
                 isLoading: false
             }
         },
-        created() {
-            let self = this;
-
-			var doc = document.createElement('script');  
-			doc.setAttribute('src',this.$route.meta.APP_URL+"/metronic-v5/vendors/base/vendors.bundle.js");
-
-			doc.onload = function handleScriptLoaded(){
-				var doc = document.createElement('script');  
-				doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/demo/default/base/scripts.bundle.js");
-				doc.setAttribute('type', 'text/javascript');
-				document.body.appendChild(doc);
-
-                var doc = document.createElement('script');  
-                doc.setAttribute('src',self.$route.meta.APP_URL+"/metronic-v5/snippets/custom/pages/user/login.js");
-                document.body.appendChild(doc);
-			}
-
-			document.body.appendChild(doc);
-
-		},
         methods: {
             submit: function(){
                 this.isLoading = true
