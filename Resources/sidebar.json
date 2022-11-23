@@ -1,0 +1,20 @@
+[
+    {
+        "text": "File Manager",
+        "type": "link",
+        "name": "file-manager",
+        "icon": "flaticon-symbol"
+    },
+    {
+        "text": "Module",
+        "type": "link",
+        "name": "module-master",
+        "icon": "flaticon-squares-4"
+    },
+    {
+        "text": "Setting",
+        "type": "link",
+        "name": "setting",
+        "icon": "flaticon-cogwheel"
+    }
+]

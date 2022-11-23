@@ -34,15 +34,13 @@ Route::group(['prefix' => 'control'], function() {
     
 });
 
-Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
+Route::group(['prefix' => 'control', 'middleware' => 'core.auth'], function() {
+    Route::get('spa/{any}', 'DashboardController@spa')
+        ->where('any', '^((?!auth).)*$');
 
-    Route::group(['middleware' => 'core.auth'], function() {
-
-        Route::get('spa/{any}', 'DashboardController@spa')
-            ->where('any', '^((?!auth).)*$');
-
-        Route::post('menu', 'MenuController@getMenu');
-
+    Route::post('menu', 'MenuController@getSidebar');
+    
+    Route::group(['middleware' => 'core.menu'], function() {
         Route::get('dashboard', 'DashboardController@index');
         
         /*=============================================
@@ -80,7 +78,5 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
             Route::get('/laravel-filemanager', 'FileManagerController@index')->middleware('can:menu-filemanager-core')->name('cms.filemanager.master');
         
         /*=====  End of Laravel Filemanager  ======*/
-        
-        
 	});
 });

@@ -120,8 +120,41 @@
 
             <!-- BEGIN: Aside Menu -->
             <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
-              <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow " v-html="sidebar">
-				
+              <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
+                <template v-for="(sidebar) in sidebars">
+                  <template v-for="(item) in sidebar">
+                    <li class="m-menu__item" :class="{'m-menu__item--active': item.name == $route.name}" aria-haspopup="true" :key="item.name" v-if="item.type=='link'">
+                        <router-link :to="{name: item.name}" class="m-menu__link ">
+                                <i class="m-menu__link-icon" :class="item.icon"></i>
+                                <span class="m-menu__link-title"> 
+                                    <span class="m-menu__link-wrap"> 
+                                        <span class="m-menu__link-text">
+                                            {{item.text}}
+                                        </span>
+                                    </span>
+                                </span>
+                        </router-link>
+                    </li>
+                    <li class="m-menu__item m-menu__item m-menu__item--submenu"  aria-haspopup="true" m-menu-submenu-toggle="hover" :key="item.name" v-if="item.type=='dropdown'">
+                        <a href="javascript:void(0)" class="m-menu__link m-menu__toggle">
+                            <i class="m-menu__link-icon" :class="item.icon"></i>
+                                <span class="m-menu__link-text">{{item.text}}</span>
+                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                        </a>
+                        <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                          <ul class="m-menu__subnav">
+                            <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text">{{item.text}}</span></span></li>
+                            <li class="m-menu__item" :class="{'m-menu__item--active': children.name == $route.name}"  aria-haspopup="true" v-for="children in item.childrens" :key="children.name">
+                              <router-link :to="{name: children.name}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
+                                <span class="m-menu__link-text">{{children.text}}</span>
+                              </router-link>
+                            </li>
+                          </ul>
+                        </div>
+                    </li>
+                  </template>
+                </template>
               </ul>
              </div>
 
@@ -196,7 +229,7 @@
         data(){
             return{
               loading: false,
-              sidebar: '',
+              sidebars: [],
               user : {
                 'account': {}
               },
@@ -259,7 +292,7 @@
               method : "post",
               url : "/control/menu",
               }).then(Response=>{
-                self.sidebar = Response.data;
+                self.sidebars = Response.data;
               }).catch(function(error){
             })
           },
