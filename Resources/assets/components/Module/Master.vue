@@ -36,15 +36,11 @@
                             </router-link>
                         </div>
                     </div>
-                    <data-table
-                        :data="data"
-                        order-by="id_module"
-                        :columns="columns"
-                        @on-table-props-changed="reloadTable">
-                    </data-table>
-                     <loading
-                        :is-full-page="true"
-                        :active.sync="loading"/>
+                    <Datatable
+                        url="/control/module/data"
+                        :tableProps="this.tableProps"
+                        :columns="this.columns"
+                    />
                 </div>
             </div>
         </div>
@@ -52,14 +48,13 @@
 </template>
 <script>
     import _ from 'lodash'
-    import Loading from 'vue-loading-overlay';
     
-    import Action from './Action.vue'
+    import Datatable from '^/Core/Resources/assets/components/Datatable/Master.vue'
+    import Action from '^/Core/Resources/assets/components/Datatable/Action.vue'
 
     export default {
         components: {
-            Action,
-            Loading
+            Datatable
         },
         props: {
             updated: {
@@ -75,8 +70,6 @@
         },
         data(){
             return{
-                url: '/control/module/data',
-                loading: false,
                 data: {},
                 tableProps: {
                     search: '',
@@ -119,6 +112,23 @@
                         label: '',
                         name: 'View',
                         orderable: false,
+                        meta: {
+                            action:{
+                                edit: {
+                                   status: true ,
+                                   link: 'module-form'
+                                },
+                                delete: {
+                                   status: true ,
+                                   link: '/control/module/form'
+                                }
+                            }
+                        },
+                        action:{
+                            edit: {
+                                status: true 
+                            }
+                        },
                         component: Action, 
                     },
                 ]
@@ -144,40 +154,8 @@
                                                 </a>
                                             </li>
                                         </ul>`;
-            this.loading = true
-            this.getData(this.url);
         },
         methods: {
-            getData(url = this.url, options = this.tableProps) {
-                let self = this;
-                axios({
-                    method: "post",
-                    url: url,
-                    params: options
-                })
-                .then(response => {
-                    self.data = response.data;
-                    self.loading = false;
-                })
-                // eslint-disable-next-line
-                .catch(errors => {
-                    //Handle Errors
-                })
-            },
-            reloadTable(tableProps) {
-                const self = this;
-                let debounce = _.debounce(function (e) {
-                    self.getData(self.url, tableProps);
-                }, 500)
-
-                if(!self.loading){
-                    self.loading = true
-                    debounce();
-                }
-            },
-            displayRow(data) {
-                alert(`You clicked row ${data.id}`);
-            },
         }
     }
 </script>

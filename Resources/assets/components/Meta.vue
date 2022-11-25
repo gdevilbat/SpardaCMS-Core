@@ -63,9 +63,9 @@
 </template>
 <script>
     import $ from "jquery"
-    import FileManager from './FileManager.vue' 
+    import FileManager from '^/Core/Resources/assets/components/FileManager.vue' 
 
-    import autosize from '../../../assets/js/autosize.min.js'
+    import autosize from '^/Core/assets/js/autosize.min.js'
 
     export default {
         mixins: [FileManager],

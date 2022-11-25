@@ -5,15 +5,15 @@
                 Action
             </a>
             <div class="dropdown-menu dropdown-menu-left">
-                <button class="dropdown-item" type="button">
-                    <router-link :to="{name: 'module-form', query: {'code': data.encrypted_id}}" class="m-link m-link--state m-link--info">
+                <button class="dropdown-item" type="button" v-if="action.edit.status">
+                    <router-link :to="{name: action.edit.link, query: {'code': data.encrypted_id}}" class="m-link m-link--state m-link--info">
                        <i class="fa fa-edit"> Edit</i>
                     </router-link>
                 </button>
-                <button class="dropdown-item" type="button"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
+                <button class="dropdown-item" type="button" v-if="action.delete.status"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
             </div>
         </div>
-        <div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel">
+        <div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel" v-if="action.delete.status">
           <div class="modal-dialog">
             <form v-on:submit.prevent="remove($event)">
                 <div class="modal-content">
@@ -54,21 +54,29 @@
         props: {
             data: {},
             name: {},
-            action: {
-                type: Object,
-                default(rawProps) {
-                    return { 
-                        view: false,
-                        edit: false,
-                        delete: false 
-                    }
-                } 
-            }
         },
         data(){
             return {
-                loading: false
+                loading: false,
+                action: {
+                    view: {
+                        status: false
+                    },
+                    edit: {
+                        status: false
+                    },
+                    delete: {
+                        status: false
+                    } 
+                }
             }
+        },
+        mounted(){
+            if(this.$parent.meta.hasOwnProperty('action')){
+                const merged = Object.assign( {}, this.action, this.$parent.meta.action);
+                this.action = merged;
+            }
+
         },
         methods: {
             remove(e){
@@ -80,7 +88,7 @@
                 self.loading = true;
                 axios({
                     method: "post",
-                    url: "/control/module/form",
+                    url: this.action.delete.link,
                     data: formData,
                 })
                 .then(function (response) {

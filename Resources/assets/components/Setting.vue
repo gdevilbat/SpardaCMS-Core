@@ -181,7 +181,7 @@
 </template>
 <script>
     import Meta from './Meta.vue'
-    import FileManager from './FileManager.vue'
+    import FileManager from '^/Core/Resources/assets/components/FileManager.vue'
     import Loading from 'vue-loading-overlay'
 
     export default {

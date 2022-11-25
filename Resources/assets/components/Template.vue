@@ -54,7 +54,7 @@
                        m-dropdown-toggle="click">
                         <a href="#" class="m-nav__link m-dropdown__toggle">
                           <span class="m-topbar__userpic">
-                            <img src="../../../assets/images/atomix_user31.png" class="m--img-rounded m--marginless" alt="" />
+                            <img :src="require('^/Core/assets/images/atomix_user31.png')" class="m--img-rounded m--marginless" alt="" />
                           </span>
                           <span class="m-topbar__username m--hide">{{user.name}}</span>
                         </a>
@@ -64,7 +64,7 @@
                             <div class="m-dropdown__header m--align-center" style="">
                               <div class="m-card-user m-card-user--skin-dark">
                                 <div class="m-card-user__pic">
-                                  <img src="../../../assets/images/atomix_user31.png" class="m--img-rounded m--marginless" alt="" />
+                                  <img :src="require('^/Core/assets/images/atomix_user31.png')" class="m--img-rounded m--marginless" alt="" />
                                 </div>
                                 <div class="m-card-user__details">
                                   <span class="m-card-user__name m--font-weight-500">{{user.name}}</span>
@@ -323,8 +323,8 @@
 </script>
 <style>
     @import 'vuetify/dist/vuetify.min.css';
-    @import '../../../assets/metronic-v5/vendors/base/vendors.bundle.css';
-    @import '../../../assets/metronic-v5/demo/default/base/style.bundle.css';
+    @import '^/Core/assets/metronic-v5/vendors/base/vendors.bundle.css';
+    @import '^/Core/assets/metronic-v5/demo/default/base/style.bundle.css';
 </style>
 <style lang="scss">
 	#main{
@@ -343,7 +343,7 @@
 	}
 
 	.m-dropdown__header{
-		background: url(../../../assets/metronic-v5/app/media/img/misc/user_profile_bg.jpg); 
+		background: url(^/Core/assets/metronic-v5/app/media/img/misc/user_profile_bg.jpg); 
 		background-size: cover;
 	}
 

@@ -110,10 +110,10 @@
 </template>
 <script>
     import Loading from 'vue-loading-overlay'
-    import FormComponent from '../Component.vue'
+    import FormComponent from '^/Core/Resources/assets/components/Component.vue'
     import $ from 'jquery'
 
-    import autosize from '../../../../assets/js/autosize.min.js'
+    import autosize from '^/Core/assets/js/autosize.min.js'
 
     export default {
         components: {
@@ -157,6 +157,9 @@
         },
         mounted(){
             const self = this;
+            
+            autosize($('.autosize'));
+
             if(this.$route.query.code != undefined){
                 self.loading = true;
                 axios({
@@ -175,11 +178,7 @@
             }
 
             this.$nextTick(() => {
-                let self = this;
-                let vendor = this.$parent.libSelector(this.$parent.vendor_bundle);
-                vendor.addEventListener('load', (event) => {
-                   autosize($(".autosize"));
-                });
+                autosize($(".autosize"));
             });
         },
         watch:{
