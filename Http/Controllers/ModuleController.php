@@ -12,6 +12,7 @@ use Gdevilbat\SpardaCMS\Modules\Core\Entities\Module as Module_m;
 use Module;
 use App;
 use DB;
+use Auth;
 
 use Yajra\DataTables\DataTables;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
@@ -91,6 +92,14 @@ class ModuleController extends CoreController
         }
 
         $data = $query->paginate($length);
+
+        $data->each(function ($module) {
+            $module->permissions = [
+                'update' => Auth::user()->can('super-access'),
+                'delete' => Auth::user()->can('super-access'),
+            ];
+        });
+
 
         return new DataTableCollectionResource($data);
     }

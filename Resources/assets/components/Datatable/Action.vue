@@ -5,12 +5,12 @@
                 Action
             </a>
             <div class="dropdown-menu dropdown-menu-left">
-                <button class="dropdown-item" type="button" v-if="action.edit.status">
+                <button class="dropdown-item" type="button" v-if="action.edit.status && data.permissions.update">
                     <router-link :to="{name: action.edit.link, query: {'code': data.encrypted_id}}" class="m-link m-link--state m-link--info">
                        <i class="fa fa-edit"> Edit</i>
                     </router-link>
                 </button>
-                <button class="dropdown-item" type="button" v-if="action.delete.status"><a class="m-link m-link--state m-link--accent" @click="confirmation()" href="javascript:void(0)"><i class="fa fa-trash"> Delete</i></a></button>
+                <button class="dropdown-item" type="button" v-if="action.delete.status && data.permissions.delete"><a class="m-link m-link--state m-link--accent" @click="confirmation()" href="javascript:void(0)"><i class="fa fa-trash"> Delete</i></a></button>
             </div>
         </div>
         <div class="modal fade" ref="small" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel" v-if="action.delete.status">

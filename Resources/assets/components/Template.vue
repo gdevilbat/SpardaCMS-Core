@@ -253,6 +253,7 @@
               user : {
                 'account': {}
               },
+              permissions:{},
               breadcumb: '',
               settings: {
                 logo: '',
@@ -314,7 +315,8 @@
               method : "post",
               url : "/control/account/me",
               }).then(Response=>{
-                self.user = Response.data;
+                self.user = Response.data.data.user;
+                self.permissions = Response.data.data.permissions;
               }).catch(function(error){
             })
           },
