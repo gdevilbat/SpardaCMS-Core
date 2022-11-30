@@ -18,10 +18,10 @@
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form m-form--fit m-form--label-align-right" v-on:submit.prevent="submit($event)">
+                <form class="m-form m-form--fit m-form--label-align-right" @submit.prevent="submit($event)">
                     <div class="m-portlet__body">
                         <div class="col-md-5 offset-md-4" v-if="updated.status">
-                            <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
+                            <div class="alert alert-dismissible fade show" :class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                                 {{updated.message}}
                             </div>
@@ -35,13 +35,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-background-landscape" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-background-landscape" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-background-landscape" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][landscape]'" v-model="$parent.settings.global.value.background.landscape">
+                                        <input readonly id="global-background-landscape" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[background][landscape]'" v-model="$parent.settings.global.value.background.landscape">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.landscape" v-if="$parent.settings.global.value.background.landscape != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.landscape" v-if="$parent.settings.global.value.background.landscape != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -54,13 +54,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-background-portrait" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-background-portrait" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-background-portrait" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[background][portrait]'" v-model="$parent.settings.global.value.background.portrait">
+                                        <input readonly id="global-background-portrait" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[background][portrait]'" v-model="$parent.settings.global.value.background.portrait">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.portrait" v-if="$parent.settings.global.value.background.portrait != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.background.portrait" v-if="$parent.settings.global.value.background.portrait != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -73,13 +73,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-favicon" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-favicon" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-favicon" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[favicon]'" v-model="$parent.settings.global.value.favicon">
+                                        <input readonly id="global-favicon" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[favicon]'" v-model="$parent.settings.global.value.favicon">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.favicon" v-if="$parent.settings.global.value.favicon != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.favicon" v-if="$parent.settings.global.value.favicon != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -92,13 +92,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-logo" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-logo" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-logo" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[logo]'" v-model="$parent.settings.global.value.logo">
+                                        <input readonly id="global-logo" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[logo]'" v-model="$parent.settings.global.value.logo">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.logo" v-if="$parent.settings.global.value.logo != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.logo" v-if="$parent.settings.global.value.logo != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -111,13 +111,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-not_found_image" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-not_found_image" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-not_found_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[not_found_image]'" v-model="$parent.settings.global.value.not_found_image">
+                                        <input readonly id="global-not_found_image" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[not_found_image]'" v-model="$parent.settings.global.value.not_found_image">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.not_found_image" v-if="$parent.settings.global.value.not_found_image != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.not_found_image" v-if="$parent.settings.global.value.not_found_image != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -130,13 +130,13 @@
                             <div class="col-md-8">
                                     <div class="input-group m-input-group">
                                         <div class="input-group-prepend">
-                                            <button data-input="global-maintenance_image" class="btn btn-primary" v-on:click="lfmInput($event)">
+                                            <button data-input="global-maintenance_image" class="btn btn-primary" @click="lfmInput($event)">
                                             <i class="fa fa-picture-o"></i> Choose
                                             </button>
                                         </div>
-                                        <input readonly id="global-maintenance_image" class="form-control m-input" type="text" v-bind:name="$options.name.toLowerCase()+'[maintenance_image]'" v-model="$parent.settings.global.value.maintenance_image">
+                                        <input readonly id="global-maintenance_image" class="form-control m-input" type="text" :name="$options.name.toLowerCase()+'[maintenance_image]'" v-model="$parent.settings.global.value.maintenance_image">
                                     </div>
-                                <img style="margin-top:15px;max-height:100px;" v-bind:src="$route.meta.STORAGE_URL+$parent.settings.global.value.maintenance_image" v-if="$parent.settings.global.value.maintenance_image != null">
+                                <img style="margin-top:15px;max-height:100px;" :src="$route.meta.STORAGE_URL+$parent.settings.global.value.maintenance_image" v-if="$parent.settings.global.value.maintenance_image != null">
                             </div>
                             <div class="col-md-8 offset-md-4">
                                 <span class="m-form__help">*Best Size Less Than 1MB, Best Resolution 1920px X 1080px (16:9)</span>
@@ -148,7 +148,7 @@
                                 <label for="exampleInputEmail1">{{$options.name}} Google Site Verification :</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control m-input" v-bind:name="$options.name.toLowerCase()+'[google_site_verification]'" placeholder="Google Site Verification" v-model="$parent.settings.global.value.google_site_verification">
+                                <input type="text" class="form-control m-input" :name="$options.name.toLowerCase()+'[google_site_verification]'" placeholder="Google Site Verification" v-model="$parent.settings.global.value.google_site_verification">
                             </div>
                         </div>
                         <div class="form-group m-form__group d-md-flex">

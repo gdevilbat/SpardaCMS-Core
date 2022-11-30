@@ -16,6 +16,11 @@ class User extends User_m
 
     const FOREIGN_KEY = 'user_id';
 
+    protected $appends = [
+        'primary_key',
+        'encrypted_id',
+    ];
+
     public function group()
     {
         return $this->hasOneThrough(
@@ -69,6 +74,16 @@ class User extends User_m
         {
             $this->attributes['password'] = bcrypt($value);
         }
+    }
+
+    public function getPrimaryKeyAttribute()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getEncryptedIdAttribute()
+    {
+        return encrypt($this->getKey());
     }
 
     public static function getTableName()

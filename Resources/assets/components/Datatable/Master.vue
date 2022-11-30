@@ -2,7 +2,7 @@
 	<div>
         <data-table
             :data="data"
-            order-by="id_module"
+            :order-by="id"
             :columns="columns"
             @on-table-props-changed="reloadTable">
         </data-table>
@@ -21,6 +21,7 @@
         },
         props: {
             url: String,
+            id: String,
             tableProps: Object,
             columns: Array
         },

@@ -17,10 +17,10 @@
                 </div>
             </div>
 
-            <form class="m-form m-form--fit m-form--label-align-right" v-on:submit.prevent="submit($event)">
+            <form class="m-form m-form--fit m-form--label-align-right" @submit.prevent="submit($event)">
                 <div class="m-portlet__body">
                     <div class="col-md-5 offset-md-4" v-if="updated.status">
-                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
+                        <div class="alert alert-dismissible fade show" :class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                             {{updated.message}}
                         </div>
@@ -45,7 +45,7 @@
                             <label for="exampleInputEmail1">Module Slug<span class="ml-1 m--font-danger" aria-required="true">*</span> :</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control m-input" name="slug" id="slug" placeholder="Module Slug"  v-model="data.slug" readonly>
+                            <input type="text" class="form-control m-input" name="slug" placeholder="Module Slug"  v-model="data.slug" readonly>
                         </div>
                     </div>
                     <div class="form-group m-form__group d-md-flex">

@@ -21,7 +21,7 @@
 
                 <div class="m-portlet__body">
                     <div class="col-md-5" v-if="updated.status">
-                        <div class="alert alert-dismissible fade show" v-bind:class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
+                        <div class="alert alert-dismissible fade show" :class="{'alert-info': updated.code == 200, 'alert-danger': updated.code != 200}">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                             {{updated.message}}
                         </div>
@@ -38,6 +38,7 @@
                     </div>
                     <Datatable
                         url="/control/module/data"
+                        :id="primary_key"
                         :tableProps="this.tableProps"
                         :columns="this.columns"
                     />
@@ -69,18 +70,21 @@
             },
         },
         data(){
+            const primary_key = 'id_module';
+
             return{
                 data: {},
+                primary_key: primary_key,
                 tableProps: {
                     search: '',
                     length: 10,
-                    column: 'id_module',
+                    column: primary_key,
                     dir: 'asc'
                 },
                 columns: [
                     {
                         label: 'ID',
-                        name: 'id_module',
+                        name: primary_key,
                         orderable: true,
                     },
                     {

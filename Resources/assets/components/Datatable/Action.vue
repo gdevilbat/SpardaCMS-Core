@@ -10,12 +10,12 @@
                        <i class="fa fa-edit"> Edit</i>
                     </router-link>
                 </button>
-                <button class="dropdown-item" type="button" v-if="action.delete.status"><a class="m-link m-link--state m-link--accent" data-toggle="modal" href="#small"><i class="fa fa-trash"> Delete</i></a></button>
+                <button class="dropdown-item" type="button" v-if="action.delete.status"><a class="m-link m-link--state m-link--accent" @click="confirmation()" href="javascript:void(0)"><i class="fa fa-trash"> Delete</i></a></button>
             </div>
         </div>
-        <div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel" v-if="action.delete.status">
+        <div class="modal fade" ref="small" id="small" tabindex="-1" role="dialog" aria-hidden="true"  aria-labelledby="exampleModalLabel" v-if="action.delete.status">
           <div class="modal-dialog">
-            <form v-on:submit.prevent="remove($event)">
+            <form @submit.prevent="remove($event)">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
@@ -27,7 +27,7 @@
                         <h5 class="text-center">
                         Are You Sure ?
                         </h5>
-                        <input type="hidden" v-bind:name="data.primary_key" v-bind:value="data.encrypted_id">
+                        <input type="hidden" :name="data.primary_key" :value="data.encrypted_id">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary confirmed">Delete</button>
@@ -79,6 +79,10 @@
 
         },
         methods: {
+            confirmation(){
+                console.log(this.$refs.small);
+                window.$(this.$refs.small).modal('show')
+            },
             remove(e){
                 const formData = new FormData(e.target);
                 formData.append('_method', 'DELETE');

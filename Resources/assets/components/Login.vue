@@ -15,7 +15,7 @@
 									<div class="m-login__head">
 										<h3 class="m-login__title">Sign In To Admin</h3>
 									</div>
-									<form class="m-login__form m-form"  v-on:submit.prevent="submit">
+									<form class="m-login__form m-form"  @submit.prevent="submit">
 										<div class="form-group m-form__group">
 											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off" v-model="username">
 										</div>

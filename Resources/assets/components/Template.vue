@@ -13,7 +13,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                   <div class="m-stack__item m-stack__item--middle m-brand__logo">
                     <a href="" class="m-brand__logo-wrapper">
-                      <img v-if="settings.logo != ''" v-bind:src="settings.logo" alt="logo" class="img-logo">
+                      <img v-if="settings.logo != ''" :src="settings.logo" alt="logo" class="img-logo">
                     </a>
                   </div>
                   <div class="m-stack__item m-stack__item--middle m-brand__tools">

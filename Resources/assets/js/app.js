@@ -69,7 +69,7 @@ const router = new VueRouter({
     ]
 })
 
-const files = require.context('^', true, /[a-zA-Z0-9].+\/Resources\/assets\/js\/routes\.js$/i);
+const files = require.context('^', true, /\/[a-zA-Z0-9].+\/Resources\/assets\/js\/routes\.js$/i);
 files.keys().map(function(key){
     const file = files(key).default;
     const object = new file(Meta);
