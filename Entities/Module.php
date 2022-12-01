@@ -24,6 +24,7 @@ class Module extends Model
     ];
     protected $appends = [
         'primary_key',
+        'foreign_key',
         'encrypted_id',
         'string_is_scanable',
         'string_scope',
@@ -45,6 +46,11 @@ class Module extends Model
     public function getPrimaryKeyAttribute()
     {
         return $this->getPrimaryKey();
+    }
+
+    public function getForeignKeyAttribute()
+    {
+        return SELF::FOREIGN_KEY;
     }
 
     public function getEncryptedIdAttribute()

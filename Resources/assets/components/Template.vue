@@ -251,7 +251,8 @@
               loading: false,
               sidebars: [],
               user : {
-                'account': {}
+                account: {},
+                role: {}
               },
               permissions:{},
               breadcumb: '',

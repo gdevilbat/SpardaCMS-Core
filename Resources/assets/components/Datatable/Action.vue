@@ -80,7 +80,6 @@
         },
         methods: {
             confirmation(){
-                console.log(this.$refs.small);
                 window.$(this.$refs.small).modal('show')
             },
             remove(e){
