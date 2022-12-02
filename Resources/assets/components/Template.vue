@@ -135,7 +135,7 @@
                                 </span>
                         </router-link>
                     </li>
-                    <li class="m-menu__item m-menu__item m-menu__item--submenu"  aria-haspopup="true" m-menu-submenu-toggle="hover" :key="item.name" v-if="item.type=='dropdown'">
+                    <li class="m-menu__item m-menu__item m-menu__item--submenu" :class="{'m-menu__item--expanded m-menu__item--open': item.childrens.map(children => children.name).includes($route.name)}"  aria-haspopup="true" m-menu-submenu-toggle="hover" :key="item.name" v-if="item.type=='dropdown'">
                         <a href="javascript:void(0)" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon" :class="item.icon"></i>
                                 <span class="m-menu__link-text">{{item.text}}</span>
