@@ -17,15 +17,15 @@ if (! function_exists('module_asset_url')) {
             $asset = $tmp[1];
         }
 
-        if(file_exists(base_path('resources/views/Modules/SpardaCMS/'.$tmp[0].'/'.$asset)))
+        if(file_exists(base_path('resources/views/Modules/'.$tmp[0].'/'.$asset)))
         {
-            return asset('resources/views/Modules/SpardaCMS/'.$tmp[0].'/'.$asset);
-        }elseif(file_exists(base_path('vendor/gdevilbat/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1])))
+            return asset('resources/views/Modules/'.$tmp[0].'/'.$asset);
+        }elseif(file_exists(base_path('vendor/gdevilbat/'.ucfirst($tmp[0]).'/'.$tmp[1])))
         {
-            return asset('vendor/gdevilbat/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]);
-        }elseif(file_exists(base_path('Modules/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]))) 
+            return asset('vendor/gdevilbat/'.ucfirst($tmp[0]).'/'.$tmp[1]);
+        }elseif(file_exists(base_path('Modules/'.ucfirst($tmp[0]).'/'.$tmp[1]))) 
         {
-            return asset('Modules/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]);
+            return asset('Modules/'.ucfirst($tmp[0]).'/'.$tmp[1]);
         }
 
         return Module::asset($path);
@@ -49,15 +49,15 @@ if (! function_exists('module_asset_path')) {
             $asset = $tmp[1];
         }
 
-        if(file_exists(base_path('resources/views/Modules/SpardaCMS/'.$tmp[0].'/'.$asset)))
+        if(file_exists(base_path('resources/views/Modules/'.$tmp[0].'/'.$asset)))
         {
-            return base_path('resources/views/Modules/SpardaCMS/'.$tmp[0].'/'.$asset);
-        }elseif(file_exists(base_path('vendor/gdevilbat/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1])))
+            return base_path('resources/views/Modules/'.$tmp[0].'/'.$asset);
+        }elseif(file_exists(base_path('vendor/gdevilbat/'.ucfirst($tmp[0]).'/'.$tmp[1])))
         {
-            return base_path('vendor/gdevilbat/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]);
-        }elseif(file_exists(base_path('Modules/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]))) 
+            return base_path('vendor/gdevilbat/'.ucfirst($tmp[0]).'/'.$tmp[1]);
+        }elseif(file_exists(base_path('Modules/'.ucfirst($tmp[0]).'/'.$tmp[1]))) 
         {
-            return base_path('Modules/SpardaCms'.ucfirst($tmp[0]).'/'.$tmp[1]);
+            return base_path('Modules/'.ucfirst($tmp[0]).'/'.$tmp[1]);
         }
 
         return Module::getModulePath($tmp[0]).$tmp[1];

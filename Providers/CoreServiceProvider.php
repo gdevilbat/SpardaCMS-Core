@@ -101,7 +101,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            __DIR__.'/../assets' => resource_path('views/Modules/SpardaCMS/core/assets'),
+            __DIR__.'/../assets' => resource_path('views/Modules/core/assets'),
         ], 'public');
     }
 
@@ -112,7 +112,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/Modules/SpardaCMS/core');
+        $viewPath = resource_path('views/Modules/core');
 
         $sourcePath = __DIR__.'/../resources/views';
 
@@ -121,7 +121,7 @@ class CoreServiceProvider extends ServiceProvider
         ],'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/Modules/SpardaCMS/core';
+            return $path . '/Modules/core';
         }, \Config::get('view.paths')), [$sourcePath]), 'core');
     }
 
@@ -132,7 +132,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/Modules/SpardaCMS/core');
+        $langPath = resource_path('lang/Modules/core');
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'core');
